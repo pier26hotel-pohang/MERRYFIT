@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --brand: #047857; /* emerald-700 */
+  --brand-pink: #ec4899;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic",
+    "맑은 고딕", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
