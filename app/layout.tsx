@@ -1,9 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "메리핏 예약",
   description: "메리핏 필라테스 예약·출석",
+  manifest: "/manifest.json",
+  appleWebApp: { capable: true, title: "메리핏", statusBarStyle: "default" },
+  icons: { icon: "/logo.png", apple: "/icon-192.png" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#047857",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

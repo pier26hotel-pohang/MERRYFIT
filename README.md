@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 메리핏 MERRY FIT — 예약 앱
 
-## Getting Started
+포항 메리핏 필라테스 회원 예약·출석·수강권·시간표 웹앱 (Next.js PWA).
 
-First, run the development server:
+## 기능
+- 주간 시간표(요일×시간, 지점·주차 전환), 예약/취소(당일·전날 취소 금지)
+- 정원 관리(1호점 4/6명, 2호점 12명), 수강권 지점범위(공용/전용)
+- 위치 검증 셀프 체크인(지오펜스), 적립금·출석 관리
+- 관리자: 통계·시간표 편집(매주반복/1회성)·회원 상세·메모·수강권 발급
+- 공개 시간표 `/timetable` (카페24 임베드용)
+- PWA(홈 화면 앱 설치)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 개발 실행
+```
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 데이터 저장
+- 현재: 파일 기반 `data/db.json` (프로토타입)
+- 배포 시: **Supabase(PostgreSQL)** — `supabase/schema.sql` 참고, `.env.local.example` 로 키 설정
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 배포
+- GitHub → Vercel 자동 배포, 환경변수에 Supabase 키 입력
+- 로그인: Supabase Auth 카카오 provider
+- 카페24: `/timetable` 을 iframe 임베드
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 구조
+- `app/` 페이지(회원 `/book`, 직원 `/checkin`, 관리자 `/admin`, 공개 `/timetable`)
+- `lib/store.ts` 데이터·비즈니스 로직 · `lib/actions.ts` 서버 액션
+- `components/` UI(시간표 격자·셀프체크인·취소 버튼·수업추가 폼)
