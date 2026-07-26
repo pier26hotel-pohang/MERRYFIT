@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getDB, getMember, todayISO, DOW_LABEL } from "@/lib/store";
+import { getDB, getMember, memberRemaining, todayISO, DOW_LABEL } from "@/lib/store";
 import { checkInAction } from "@/lib/actions";
 
 export const dynamic = "force-dynamic";
@@ -8,8 +8,9 @@ export default function CheckinPage() {
   const db = getDB();
   const today = todayISO();
   const todayDow = new Date().getDay();
+  // 오늘 열리는 수업: 매주 반복(오늘 요일) + 오늘 날짜 1회성
   const slots = db.slots
-    .filter((s) => s.dayOfWeek === todayDow)
+    .filter((s) => (!s.date && s.dayOfWeek === todayDow) || s.date === today)
     .sort((a, b) => a.time.localeCompare(b.time));
 
   return (
@@ -17,7 +18,7 @@ export default function CheckinPage() {
       <Link href="/" className="text-sm text-neutral-500">← 홈</Link>
       <h1 className="mt-3 mb-1 text-2xl font-bold text-emerald-800">출석 체크인</h1>
       <p className="mb-6 text-sm text-neutral-500">
-        오늘 ({DOW_LABEL[todayDow]}요일) 수업 · 출석 시 수강권 1회 차감 + 5,000원 적립
+        오늘 ({DOW_LABEL[todayDow]}요일) 수업 · 출석 시 5,000원 적립
       </p>
 
       {slots.length === 0 && <p className="text-neutral-500">오늘 열리는 수업이 없습니다.</p>}
@@ -27,12 +28,13 @@ export default function CheckinPage() {
           const rsvs = db.reservations.filter(
             (r) => r.slotId === s.id && r.date === today && r.status !== "cancelled"
           );
+          const attended = rsvs.filter((r) => r.status === "attended").length;
           return (
             <section key={s.id}>
               <h2 className="mb-2 text-sm font-semibold text-neutral-700">
                 {s.time} · {s.program}{" "}
                 <span className="font-normal text-neutral-400">
-                  ({rsvs.length}/{s.capacity}) · {s.branch}
+                  · 출석 {attended}/{rsvs.length} · {s.branch}
                 </span>
               </h2>
               {rsvs.length === 0 ? (
@@ -43,13 +45,19 @@ export default function CheckinPage() {
                     const mem = getMember(r.memberId);
                     return (
                       <div key={r.id} className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-3">
-                        <span className="font-medium">{mem?.name ?? "?"}</span>
+                        <span>
+                          <span className="font-medium">{mem?.name ?? "?"}</span>
+                          <span className="ml-2 text-xs text-neutral-400">잔여 {mem ? memberRemaining(mem.id) : 0}회</span>
+                          {mem?.memo ? (
+                            <span className="mt-0.5 block text-xs text-amber-600">📌 {mem.memo}</span>
+                          ) : null}
+                        </span>
                         {r.status === "attended" ? (
-                          <span className="rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-700">출석완료</span>
+                          <span className="shrink-0 rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-700">출석완료</span>
                         ) : (
                           <form action={checkInAction}>
                             <input type="hidden" name="reservationId" value={r.id} />
-                            <button className="rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800">출석</button>
+                            <button className="shrink-0 rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800">출석</button>
                           </form>
                         )}
                       </div>

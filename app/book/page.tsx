@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   getMember,
   memberRemaining,
@@ -11,13 +12,21 @@ import {
   weekRangeLabel,
   canCancelDate,
   todayISO,
+  upcomingReservations,
+  DOW_LABEL,
 } from "@/lib/store";
 import { Branch } from "@/lib/types";
-import { bookAction, cancelAction } from "@/lib/actions";
+import { bookAction } from "@/lib/actions";
 import { WeeklyGrid, programAbbrev } from "@/components/WeeklyGrid";
 import { SelfCheckIn } from "@/components/SelfCheckIn";
+import { CancelButton } from "@/components/CancelButton";
 
 export const dynamic = "force-dynamic";
+
+function fmtD(iso: string) {
+  const d = new Date(iso + "T00:00:00");
+  return `${d.getMonth() + 1}/${d.getDate()}(${DOW_LABEL[d.getDay()]})`;
+}
 
 export default async function MemberHome({
   searchParams,
@@ -40,15 +49,20 @@ export default async function MemberHome({
   const branch: Branch = b === "1호점" || b === "2호점" ? b : member.branch;
   const times = distinctTimes(branch);
   const link = (bb: Branch, wo: number) => `/book?m=${member.id}&b=${bb}&w=${wo}`;
+  const upcoming = upcomingReservations(member.id);
 
   return (
     <main className="pt-6">
       <div className="mb-4 flex items-center justify-between">
-        <Link href="/" className="text-sm text-neutral-500">← 로그아웃</Link>
+        <span className="flex items-center gap-1.5">
+          <Image src="/logo.png" alt="메리핏" width={22} height={22} />
+          <span className="text-sm font-extrabold tracking-tight">MERRY FIT</span>
+        </span>
+        <Link href="/" className="text-sm text-neutral-400">로그아웃</Link>
       </div>
 
       {/* 회원 요약 카드 */}
-      <section className="mb-5 rounded-2xl bg-emerald-800 p-5 text-white">
+      <section className="mb-4 rounded-2xl bg-emerald-800 p-5 text-white">
         <div className="text-lg font-bold">{member.name}님</div>
         <div className="mt-3 grid grid-cols-3 gap-2 text-center">
           <div className="rounded-xl bg-emerald-700/60 py-2">
@@ -66,12 +80,39 @@ export default async function MemberHome({
         </div>
       </section>
 
+      {/* 다가오는 예약 */}
+      {upcoming.length > 0 && (
+        <section className="mb-4 rounded-2xl border border-neutral-200 bg-white p-4">
+          <h2 className="mb-2 text-sm font-semibold text-neutral-700">다가오는 예약</h2>
+          <div className="space-y-1.5">
+            {upcoming.slice(0, 5).map(({ r, slot }) => (
+              <div key={r.id} className="flex items-center justify-between text-sm">
+                <span className="text-neutral-700">
+                  {fmtD(r.date)} {slot.time} · {slot.program}
+                  <span className="ml-1 text-xs text-neutral-400">{slot.branch}</span>
+                </span>
+                {canCancelDate(r.date) ? (
+                  <CancelButton
+                    reservationId={r.id}
+                    className="rounded px-2 py-0.5 text-xs font-medium text-pink-600 hover:bg-pink-50"
+                  >
+                    취소
+                  </CancelButton>
+                ) : (
+                  <span className="text-xs text-neutral-300" title="당일·전날 취소 불가">🔒</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* 메리핏 쇼핑몰 (적립금 사용) */}
       <a
         href="https://merryfitpila.cafe24.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="mb-5 flex items-center justify-center gap-2 rounded-2xl bg-pink-500 py-3 font-semibold text-white shadow-sm transition hover:bg-pink-600"
+        className="mb-4 flex items-center justify-center gap-2 rounded-2xl bg-pink-500 py-3 font-semibold text-white shadow-sm transition hover:bg-pink-600"
       >
         🛍️ 메리핏 쇼핑몰 · 적립금 사용하기
       </a>
@@ -135,15 +176,12 @@ export default async function MemberHome({
               </div>
               {myR ? (
                 canCancelDate(date) ? (
-                  <form action={cancelAction}>
-                    <input type="hidden" name="reservationId" value={myR.id} />
-                    <button
-                      title="누르면 예약이 취소됩니다"
-                      className="mt-0.5 w-full rounded bg-pink-500 py-0.5 text-[10px] font-medium text-white hover:bg-pink-600"
-                    >
-                      신청됨 ✕
-                    </button>
-                  </form>
+                  <CancelButton
+                    reservationId={myR.id}
+                    className="mt-0.5 w-full rounded bg-pink-500 py-0.5 text-[10px] font-medium text-white hover:bg-pink-600"
+                  >
+                    신청됨 ✕
+                  </CancelButton>
                 ) : (
                   <div
                     title="당일·전날에는 취소할 수 없어요"

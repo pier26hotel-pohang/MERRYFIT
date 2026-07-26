@@ -188,6 +188,47 @@ export function getActiveReservation(slotId: string, date: string, memberId: str
   );
 }
 
+export function memberPasses(memberId: string): Pass[] {
+  return getDB().passes.filter((p) => p.memberId === memberId);
+}
+// 회원의 예약(취소 제외)에 수업 정보를 붙여서 반환
+export function reservationsWithSlot(memberId: string) {
+  const db = getDB();
+  return db.reservations
+    .filter((r) => r.memberId === memberId && r.status !== "cancelled")
+    .map((r) => ({ r, slot: db.slots.find((s) => s.id === r.slotId) }))
+    .filter((x) => x.slot) as {
+    r: DB["reservations"][number];
+    slot: ScheduleSlot;
+  }[];
+}
+// 다가오는 예약 (오늘 이후, booked)
+export function upcomingReservations(memberId: string) {
+  const today = todayISO();
+  return reservationsWithSlot(memberId)
+    .filter((x) => x.r.status === "booked" && x.r.date >= today)
+    .sort((a, b) => (a.r.date + a.slot.time).localeCompare(b.r.date + b.slot.time));
+}
+// 관리자 요약 통계
+export function adminStats() {
+  const db = getDB();
+  const today = todayISO();
+  const monday = mondayOfWeek(0);
+  const sunday = new Date(monday);
+  sunday.setDate(sunday.getDate() + 6);
+  const weekStart = toISO(monday);
+  const weekEnd = toISO(sunday);
+  const active = db.reservations.filter((r) => r.status !== "cancelled");
+  return {
+    members: db.members.length,
+    todayBooked: active.filter((r) => r.date === today).length,
+    weekAttended: db.reservations.filter(
+      (r) => r.status === "attended" && r.date >= weekStart && r.date <= weekEnd
+    ).length,
+    totalRemaining: db.passes.reduce((s, p) => s + p.remaining, 0),
+  };
+}
+
 // ---------- 변경 ----------
 export function book(slotId: string, memberId: string, date: string): { ok: boolean; msg: string } {
   const db = getDB();

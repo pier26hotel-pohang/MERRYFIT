@@ -8,6 +8,7 @@ import {
   slotBookedCount,
   occurrenceDate,
   listOneTimeSlots,
+  adminStats,
   DOW_LABEL,
 } from "@/lib/store";
 import { Branch } from "@/lib/types";
@@ -45,14 +46,27 @@ export default async function AdminPage({
   const members = listMembers();
   const times = distinctTimes(branch);
   const oneTimes = listOneTimeSlots().filter((s) => s.branch === branch);
+  const stats = adminStats();
 
   return (
     <main className="pt-8">
       <Link href="/" className="text-sm text-neutral-500">← 홈</Link>
-      <h1 className="mt-3 mb-1 text-2xl font-bold text-emerald-800">관리자</h1>
-      <p className="mb-5 text-sm text-neutral-500">
-        회원 {members.length} · 수업 슬롯 {db.slots.length}
-      </p>
+      <h1 className="mt-3 mb-3 text-2xl font-bold text-emerald-800">관리자</h1>
+
+      {/* 요약 통계 */}
+      <div className="mb-5 grid grid-cols-4 gap-2 text-center">
+        {[
+          { l: "회원", v: stats.members },
+          { l: "오늘 예약", v: stats.todayBooked },
+          { l: "주간 출석", v: stats.weekAttended },
+          { l: "잔여 합계", v: stats.totalRemaining },
+        ].map((s) => (
+          <div key={s.l} className="rounded-xl border border-neutral-200 bg-white py-2">
+            <div className="text-lg font-bold text-emerald-800">{s.v}</div>
+            <div className="text-[11px] text-neutral-500">{s.l}</div>
+          </div>
+        ))}
+      </div>
 
       {/* 지점 전환 */}
       <div className="mb-3 flex gap-2">
@@ -165,7 +179,9 @@ export default async function AdminPage({
             return (
               <div key={m.id} className="border-b border-neutral-100 pb-4 last:border-0">
                 <div className="flex justify-between text-sm">
-                  <span className="font-medium">{m.name} <span className="text-neutral-400">· {m.branch}</span></span>
+                  <Link href={`/admin/member/${m.id}`} className="font-medium text-emerald-700 hover:underline">
+                    {m.name} <span className="font-normal text-neutral-400">· {m.branch} ›</span>
+                  </Link>
                   <span className="text-neutral-500">잔여 {memberRemaining(m.id)}회 · {m.points.toLocaleString()}P</span>
                 </div>
                 {passes.length > 0 && (
