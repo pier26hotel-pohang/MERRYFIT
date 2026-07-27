@@ -11,6 +11,10 @@ export interface Member {
   branch: Branch; // 주 소속(기본 표시) 지점
   points: number; // 적립금(원)
   memo?: string; // 관리자 메모
+  birthdate?: string; // 생년월일 YYYY-MM-DD
+  address?: string; // 주소
+  createdAt?: string; // 가입일 (관리자)
+  kakaoId?: string; // 카카오 로그인 연결 (auth user id)
 }
 
 // 수강권 사용 가능 지점 범위

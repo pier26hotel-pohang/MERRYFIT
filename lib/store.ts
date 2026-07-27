@@ -59,7 +59,18 @@ export function canCancelDate(date: string): boolean {
 // ---------- 스냅샷 로드 (DB→앱 타입 매핑) ----------
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function mapMember(r: any): Member {
-  return { id: r.id, name: r.name, phone: r.phone ?? "", branch: r.branch, points: r.points ?? 0, memo: r.memo ?? "" };
+  return {
+    id: r.id,
+    name: r.name,
+    phone: r.phone ?? "",
+    branch: r.branch,
+    points: r.points ?? 0,
+    memo: r.memo ?? "",
+    birthdate: r.birthdate ?? undefined,
+    address: r.address ?? undefined,
+    createdAt: r.created_at ?? undefined,
+    kakaoId: r.auth_user_id ?? undefined,
+  };
 }
 function mapPass(r: any): Pass {
   return { id: r.id, memberId: r.member_id, type: r.type, total: r.total, remaining: r.remaining, scope: r.scope };
@@ -94,6 +105,11 @@ export function listMembers(db: DB): Member[] {
 }
 export function getMember(db: DB, id: string): Member | undefined {
   return db.members.find((m) => m.id === id);
+}
+export function getMemberByPhone(db: DB, phone: string): Member | undefined {
+  const norm = (s: string) => s.replace(/[^0-9]/g, "");
+  const p = norm(phone);
+  return db.members.find((m) => norm(m.phone) === p);
 }
 export function memberPasses(db: DB, memberId: string): Pass[] {
   return db.passes.filter((p) => p.memberId === memberId);
@@ -235,8 +251,20 @@ export async function selfCheckIn(memberId: string, lat: number, lng: number): P
   return { ok: true, msg: `${target.slot.time} ${target.slot.program} 출석 완료! +${ATTEND_POINT.toLocaleString()}P 적립 🎉` };
 }
 
-export async function addMember(name: string, phone: string, branch: Branch): Promise<void> {
-  await supabaseAdmin().from("members").insert({ id: uid("m"), name, phone, branch, points: 0, memo: "" });
+export async function addMember(
+  name: string,
+  phone: string,
+  branch: Branch,
+  birthdate?: string,
+  address?: string
+): Promise<string> {
+  const id = uid("m");
+  await supabaseAdmin().from("members").insert({
+    id, name, phone, branch, points: 0, memo: "",
+    birthdate: birthdate || null,
+    address: address || null,
+  });
+  return id;
 }
 export async function setMemberMemo(memberId: string, memo: string): Promise<void> {
   await supabaseAdmin().from("members").update({ memo }).eq("id", memberId);

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { currentMemberId } from "@/lib/auth";
 import {
   loadSnapshot,
   getMember,
@@ -17,7 +19,7 @@ import {
   DOW_LABEL,
 } from "@/lib/store";
 import { Branch } from "@/lib/types";
-import { bookAction } from "@/lib/actions";
+import { bookAction, logoutAction } from "@/lib/actions";
 import { WeeklyGrid, programAbbrev } from "@/components/WeeklyGrid";
 import { SelfCheckIn } from "@/components/SelfCheckIn";
 import { CancelButton } from "@/components/CancelButton";
@@ -32,25 +34,19 @@ function fmtD(iso: string) {
 export default async function MemberHome({
   searchParams,
 }: {
-  searchParams: Promise<{ m?: string; w?: string; b?: string }>;
+  searchParams: Promise<{ w?: string; b?: string }>;
 }) {
-  const { m, w, b } = await searchParams;
+  const { w, b } = await searchParams;
+  const memberId = await currentMemberId();
+  if (!memberId) redirect("/login");
   const db = await loadSnapshot();
-  const member = m ? getMember(db, m) : undefined;
+  const member = getMember(db, memberId);
+  if (!member) redirect("/login");
   const weekOffset = w === "1" ? 1 : 0;
-
-  if (!member) {
-    return (
-      <main className="pt-8">
-        <Link href="/" className="text-sm text-neutral-500">← 로그인</Link>
-        <p className="mt-4">회원을 먼저 선택해주세요.</p>
-      </main>
-    );
-  }
 
   const branch: Branch = b === "1호점" || b === "2호점" ? b : member.branch;
   const times = distinctTimes(db, branch);
-  const link = (bb: Branch, wo: number) => `/book?m=${member.id}&b=${bb}&w=${wo}`;
+  const link = (bb: Branch, wo: number) => `/book?b=${bb}&w=${wo}`;
   const upcoming = upcomingReservations(db, member.id);
 
   return (
@@ -60,7 +56,9 @@ export default async function MemberHome({
           <Image src="/logo.png" alt="메리핏" width={22} height={22} />
           <span className="text-sm font-extrabold tracking-tight">MERRY FIT</span>
         </span>
-        <Link href="/" className="text-sm text-neutral-400">로그아웃</Link>
+        <form action={logoutAction}>
+          <button className="text-sm text-neutral-400 hover:text-neutral-600">로그아웃</button>
+        </form>
       </div>
 
       {/* 회원 요약 카드 */}

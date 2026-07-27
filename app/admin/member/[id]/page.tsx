@@ -70,6 +70,17 @@ export default async function MemberDetail({
         </div>
       </section>
 
+      {/* 회원 정보 */}
+      <section className={`${cardCls} mb-4`}>
+        <h2 className="mb-2 font-semibold">회원 정보</h2>
+        <div className="space-y-1 text-sm text-neutral-600">
+          <div>연락처: {member.phone || "-"}</div>
+          <div>생년월일: {member.birthdate || "-"}</div>
+          <div>주소: {member.address || "-"}</div>
+          <div>가입일: {member.createdAt ? member.createdAt.slice(0, 10) : "-"}</div>
+        </div>
+      </section>
+
       {/* 메모 */}
       <section className={`${cardCls} mb-4`}>
         <h2 className="mb-2 font-semibold">메모</h2>

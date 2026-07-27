@@ -1,7 +1,54 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import * as store from "./store";
 import { Branch, ProgramName, PassScope } from "./types";
+import { ADMIN_ID, ADMIN_PW, ADMIN_COOKIE, MEMBER_COOKIE } from "./auth";
+
+const YEAR = 60 * 60 * 24 * 30;
+
+export async function adminLoginAction(formData: FormData) {
+  const id = String(formData.get("id") ?? "").trim();
+  const pw = String(formData.get("pw") ?? "").trim();
+  if (id === ADMIN_ID && pw === ADMIN_PW) {
+    (await cookies()).set(ADMIN_COOKIE, "1", { httpOnly: true, path: "/", maxAge: YEAR });
+    redirect("/admin");
+  }
+  redirect("/login?e=admin");
+}
+
+export async function memberPhoneLoginAction(formData: FormData) {
+  const phone = String(formData.get("phone") ?? "").trim();
+  const db = await store.loadSnapshot();
+  const m = store.getMemberByPhone(db, phone);
+  if (m) {
+    (await cookies()).set(MEMBER_COOKIE, m.id, { httpOnly: true, path: "/", maxAge: YEAR });
+    redirect("/book");
+  }
+  redirect("/login?e=member");
+}
+
+export async function signupAction(formData: FormData) {
+  const name = String(formData.get("name") ?? "").trim();
+  const phone = String(formData.get("phone") ?? "").trim();
+  const birthdate = String(formData.get("birthdate") ?? "").trim();
+  const address = String(formData.get("address") ?? "").trim();
+  const branch = (String(formData.get("branch") ?? "1호점") as Branch);
+  if (!name || !phone) redirect("/signup?e=1");
+  const db = await store.loadSnapshot();
+  if (store.getMemberByPhone(db, phone)) redirect("/signup?e=dup");
+  const id = await store.addMember(name, phone, branch, birthdate, address);
+  (await cookies()).set(MEMBER_COOKIE, id, { httpOnly: true, path: "/", maxAge: YEAR });
+  redirect("/book");
+}
+
+export async function logoutAction() {
+  const c = await cookies();
+  c.delete(ADMIN_COOKIE);
+  c.delete(MEMBER_COOKIE);
+  redirect("/login");
+}
 
 export async function bookAction(formData: FormData) {
   await store.book(String(formData.get("slotId")), String(formData.get("memberId")), String(formData.get("date")));
@@ -29,7 +76,9 @@ export async function addMemberAction(formData: FormData) {
   const name = String(formData.get("name")).trim();
   const phone = String(formData.get("phone")).trim();
   const branch = String(formData.get("branch")) as Branch;
-  if (name) await store.addMember(name, phone, branch);
+  const birthdate = String(formData.get("birthdate") ?? "").trim();
+  const address = String(formData.get("address") ?? "").trim();
+  if (name) await store.addMember(name, phone, branch, birthdate, address);
   revalidatePath("/admin");
 }
 

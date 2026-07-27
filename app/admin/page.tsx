@@ -17,6 +17,7 @@ import {
   issuePassAction,
   deleteSlotAction,
   setMemoAction,
+  logoutAction,
 } from "@/lib/actions";
 import { WeeklyGrid, programAbbrev } from "@/components/WeeklyGrid";
 import { AddClassForm } from "@/components/AddClassForm";
@@ -50,8 +51,13 @@ export default async function AdminPage({
 
   return (
     <main className="pt-8">
-      <Link href="/" className="text-sm text-neutral-500">← 홈</Link>
-      <h1 className="mt-3 mb-3 text-2xl font-bold text-emerald-800">관리자</h1>
+      <div className="flex items-center justify-between">
+        <span className="text-sm font-semibold text-neutral-500">메리핏 관리자</span>
+        <form action={logoutAction}>
+          <button className="text-sm text-neutral-400 hover:text-neutral-600">로그아웃</button>
+        </form>
+      </div>
+      <h1 className="mt-2 mb-3 text-2xl font-bold text-emerald-800">관리자</h1>
 
       {/* 요약 통계 */}
       <div className="mb-5 grid grid-cols-4 gap-2 text-center">
@@ -140,10 +146,14 @@ export default async function AdminPage({
         <form action={addMemberAction} className="space-y-2">
           <input name="name" placeholder="이름" className={inputCls} required />
           <input name="phone" placeholder="연락처" className={inputCls} />
-          <select name="branch" className={inputCls} defaultValue="1호점">
-            <option>1호점</option>
-            <option>2호점</option>
-          </select>
+          <div className="flex gap-2">
+            <input name="birthdate" type="date" className={inputCls} />
+            <select name="branch" className={inputCls} defaultValue="1호점">
+              <option>1호점</option>
+              <option>2호점</option>
+            </select>
+          </div>
+          <input name="address" placeholder="주소" className={inputCls} />
           <button className={btnCls}>회원 추가</button>
         </form>
       </section>
