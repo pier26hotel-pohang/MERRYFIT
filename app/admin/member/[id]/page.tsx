@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  loadSnapshot,
   getMember,
   memberPasses,
   memberRemaining,
@@ -29,7 +30,8 @@ export default async function MemberDetail({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const member = getMember(id);
+  const db = await loadSnapshot();
+  const member = getMember(db, id);
   if (!member) {
     return (
       <main className="pt-8">
@@ -38,9 +40,9 @@ export default async function MemberDetail({
       </main>
     );
   }
-  const passes = memberPasses(id);
-  const upcoming = upcomingReservations(id);
-  const attended = reservationsWithSlot(id)
+  const passes = memberPasses(db, id);
+  const upcoming = upcomingReservations(db, id);
+  const attended = reservationsWithSlot(db, id)
     .filter((x) => x.r.status === "attended")
     .sort((a, b) => (b.r.date + b.slot.time).localeCompare(a.r.date + a.slot.time));
 
@@ -59,11 +61,11 @@ export default async function MemberDetail({
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
             <div className="text-xs text-emerald-100">잔여</div>
-            <div className="font-bold">{memberRemaining(id)}회</div>
+            <div className="font-bold">{memberRemaining(db, id)}회</div>
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
             <div className="text-xs text-emerald-100">누적 출석</div>
-            <div className="font-bold">{attendedCount(id)}회</div>
+            <div className="font-bold">{attendedCount(db, id)}회</div>
           </div>
         </div>
       </section>

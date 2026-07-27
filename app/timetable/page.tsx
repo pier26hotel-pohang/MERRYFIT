@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
+  loadSnapshot,
   distinctTimes,
   slotForCell,
   slotBookedCount,
@@ -21,7 +22,8 @@ export default async function TimetablePage({
   const { b, w } = await searchParams;
   const branch: Branch = b === "2호점" ? "2호점" : "1호점";
   const weekOffset = w === "1" ? 1 : 0;
-  const times = distinctTimes(branch);
+  const db = await loadSnapshot();
+  const times = distinctTimes(db, branch);
   const link = (bb: Branch, wo: number) => `/timetable?b=${bb}&w=${wo}`;
 
   return (
@@ -72,9 +74,9 @@ export default async function TimetablePage({
         times={times}
         cell={(dow, time) => {
           const date = occurrenceDate(dow, weekOffset);
-          const slot = slotForCell(branch, dow, time, date);
+          const slot = slotForCell(db, branch, dow, time, date);
           if (!slot) return null;
-          const count = slotBookedCount(slot.id, date);
+          const count = slotBookedCount(db, slot.id, date);
           const full = count >= slot.capacity;
           return (
             <div className={`rounded-md border px-1 py-1 ${slot.date ? "border-amber-300 bg-amber-50" : "border-neutral-200 bg-white"}`}>

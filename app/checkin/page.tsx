@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { getDB, getMember, memberRemaining, todayISO, DOW_LABEL } from "@/lib/store";
+import { loadSnapshot, getMember, memberRemaining, todayISO, DOW_LABEL } from "@/lib/store";
 import { checkInAction } from "@/lib/actions";
 
 export const dynamic = "force-dynamic";
 
-export default function CheckinPage() {
-  const db = getDB();
+export default async function CheckinPage() {
+  const db = await loadSnapshot();
   const today = todayISO();
   const todayDow = new Date().getDay();
   // 오늘 열리는 수업: 매주 반복(오늘 요일) + 오늘 날짜 1회성
@@ -42,12 +42,12 @@ export default function CheckinPage() {
               ) : (
                 <div className="space-y-2">
                   {rsvs.map((r) => {
-                    const mem = getMember(r.memberId);
+                    const mem = getMember(db, r.memberId);
                     return (
                       <div key={r.id} className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-3">
                         <span>
                           <span className="font-medium">{mem?.name ?? "?"}</span>
-                          <span className="ml-2 text-xs text-neutral-400">잔여 {mem ? memberRemaining(mem.id) : 0}회</span>
+                          <span className="ml-2 text-xs text-neutral-400">잔여 {mem ? memberRemaining(db, mem.id) : 0}회</span>
                           {mem?.memo ? (
                             <span className="mt-0.5 block text-xs text-amber-600">📌 {mem.memo}</span>
                           ) : null}

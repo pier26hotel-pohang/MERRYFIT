@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { listMembers, memberRemaining } from "@/lib/store";
+import { loadSnapshot, listMembers, memberRemaining } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
-export default function LoginPage() {
-  const members = listMembers();
+export default async function LoginPage() {
+  const db = await loadSnapshot();
+  const members = listMembers(db);
   return (
     <main className="pt-14">
       <header className="mb-10 flex flex-col items-center text-center">
@@ -33,7 +34,7 @@ export default function LoginPage() {
               <span className="font-semibold text-neutral-900">{m.name}</span>
             </span>
             <span className="text-sm text-neutral-500">
-              {m.branch} · 잔여 {memberRemaining(m.id)}회
+              {m.branch} · 잔여 {memberRemaining(db, m.id)}회
             </span>
           </Link>
         ))}

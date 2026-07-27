@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  getDB,
+  loadSnapshot,
   listMembers,
   memberRemaining,
   distinctTimes,
@@ -42,11 +42,11 @@ export default async function AdminPage({
 }) {
   const { b } = await searchParams;
   const branch: Branch = b === "2호점" ? "2호점" : "1호점";
-  const db = getDB();
-  const members = listMembers();
-  const times = distinctTimes(branch);
-  const oneTimes = listOneTimeSlots().filter((s) => s.branch === branch);
-  const stats = adminStats();
+  const db = await loadSnapshot();
+  const members = listMembers(db);
+  const times = distinctTimes(db, branch);
+  const oneTimes = listOneTimeSlots(db).filter((s) => s.branch === branch);
+  const stats = adminStats(db);
 
   return (
     <main className="pt-8">
@@ -90,9 +90,9 @@ export default async function AdminPage({
           times={times}
           cell={(dow, time) => {
             const date = occurrenceDate(dow);
-            const slot = slotForCell(branch, dow, time, date);
+            const slot = slotForCell(db, branch, dow, time, date);
             if (!slot) return null;
-            const count = slotBookedCount(slot.id, date);
+            const count = slotBookedCount(db, slot.id, date);
             return (
               <div className={`relative rounded-md border px-1 py-1 ${slot.date ? "border-amber-300 bg-amber-50" : "border-neutral-200 bg-white"}`}>
                 <form action={deleteSlotAction} className="absolute right-0 top-0">
@@ -182,7 +182,7 @@ export default async function AdminPage({
                   <Link href={`/admin/member/${m.id}`} className="font-medium text-emerald-700 hover:underline">
                     {m.name} <span className="font-normal text-neutral-400">· {m.branch} ›</span>
                   </Link>
-                  <span className="text-neutral-500">잔여 {memberRemaining(m.id)}회 · {m.points.toLocaleString()}P</span>
+                  <span className="text-neutral-500">잔여 {memberRemaining(db, m.id)}회 · {m.points.toLocaleString()}P</span>
                 </div>
                 {passes.length > 0 && (
                   <div className="mt-1 flex flex-wrap gap-1">

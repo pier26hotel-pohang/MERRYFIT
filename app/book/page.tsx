@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
+  loadSnapshot,
   getMember,
   memberRemaining,
   attendedCount,
@@ -34,7 +35,8 @@ export default async function MemberHome({
   searchParams: Promise<{ m?: string; w?: string; b?: string }>;
 }) {
   const { m, w, b } = await searchParams;
-  const member = m ? getMember(m) : undefined;
+  const db = await loadSnapshot();
+  const member = m ? getMember(db, m) : undefined;
   const weekOffset = w === "1" ? 1 : 0;
 
   if (!member) {
@@ -47,9 +49,9 @@ export default async function MemberHome({
   }
 
   const branch: Branch = b === "1호점" || b === "2호점" ? b : member.branch;
-  const times = distinctTimes(branch);
+  const times = distinctTimes(db, branch);
   const link = (bb: Branch, wo: number) => `/book?m=${member.id}&b=${bb}&w=${wo}`;
-  const upcoming = upcomingReservations(member.id);
+  const upcoming = upcomingReservations(db, member.id);
 
   return (
     <main className="pt-6">
@@ -71,11 +73,11 @@ export default async function MemberHome({
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
             <div className="text-xs text-emerald-100">잔여 횟수</div>
-            <div className="text-base font-bold">{memberRemaining(member.id)}회</div>
+            <div className="text-base font-bold">{memberRemaining(db, member.id)}회</div>
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
             <div className="text-xs text-emerald-100">출석</div>
-            <div className="text-base font-bold">{attendedCount(member.id)}회</div>
+            <div className="text-base font-bold">{attendedCount(db, member.id)}회</div>
           </div>
         </div>
       </section>
@@ -160,12 +162,12 @@ export default async function MemberHome({
         times={times}
         cell={(dow, time) => {
           const date = occurrenceDate(dow, weekOffset);
-          const slot = slotForCell(branch, dow, time, date);
+          const slot = slotForCell(db, branch, dow, time, date);
           if (!slot) return null;
-          const count = slotBookedCount(slot.id, date);
+          const count = slotBookedCount(db, slot.id, date);
           const full = count >= slot.capacity;
           const past = date < todayISO();
-          const myR = getActiveReservation(slot.id, date, member.id);
+          const myR = getActiveReservation(db, slot.id, date, member.id);
           return (
             <div className="rounded-md border border-neutral-200 bg-white px-1 py-1">
               <div className="text-[11px] font-semibold leading-tight text-neutral-800">
