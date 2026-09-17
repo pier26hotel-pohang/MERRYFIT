@@ -26,6 +26,16 @@ export default async function SignupPage({
           이미 가입된 연락처예요. 로그인해주세요.
         </p>
       )}
+      {e === "save" && (
+        <p className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-center text-sm text-red-600">
+          저장 중 문제가 생겼어요. 잠시 후 다시 시도해 주세요.
+        </p>
+      )}
+      {e === "pw" && (
+        <p className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-center text-sm text-red-600">
+          비밀번호는 4자 이상이어야 합니다.
+        </p>
+      )}
       {e === "1" && (
         <p className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-center text-sm text-red-600">
           이름과 연락처는 필수입니다.
@@ -42,6 +52,12 @@ export default async function SignupPage({
           <input name="phone" type="tel" placeholder="010-1234-5678" className={inputCls} required />
         </div>
         <div>
+          <label className="mb-1 block text-xs text-neutral-500">비밀번호 *</label>
+          <input name="password" type="password" placeholder="4자 이상" className={inputCls}
+            autoComplete="new-password" minLength={4} required />
+          <p className="mt-1 text-xs text-neutral-400">다음에 연락처와 이 비밀번호로 로그인합니다.</p>
+        </div>
+        <div>
           <label className="mb-1 block text-xs text-neutral-500">생년월일</label>
           <input name="birthdate" type="date" className={inputCls} />
         </div>
@@ -51,7 +67,7 @@ export default async function SignupPage({
         </div>
         <div>
           <label className="mb-1 block text-xs text-neutral-500">지점</label>
-          <select name="branch" className={inputCls} defaultValue="1호점">
+          <select name="branch" className={inputCls} defaultValue="2호점">
             <option>1호점</option>
             <option>2호점</option>
           </select>
@@ -61,7 +77,7 @@ export default async function SignupPage({
         </button>
       </form>
       <p className="mt-3 text-center text-xs text-neutral-400">
-        가입일과 메모는 센터(관리자)에서 관리됩니다.
+        가입하시면 <b className="text-emerald-700">체험 1회권</b>이 바로 들어갑니다. 가입일과 메모는 센터(관리자)에서 관리됩니다.
       </p>
     </main>
   );

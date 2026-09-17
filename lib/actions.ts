@@ -3,16 +3,35 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import * as store from "./store";
-import { Branch, ProgramName, PassScope } from "./types";
-import { ADMIN_ID, ADMIN_PW, ADMIN_COOKIE, MEMBER_COOKIE } from "./auth";
+import * as staff from "./staff";
+import * as consult from "./consult";
+import { Branch, ProgramName, PassScope, DEFAULT_BRANCH } from "./types";
+import { MIN_PASSWORD } from "./password";
+import { ADMIN_ID, ADMIN_PW, FIXED_ADMIN_ENABLED, ADMIN_COOKIE, MEMBER_COOKIE, STAFF_COOKIE, currentMemberId } from "./auth";
 
 const YEAR = 60 * 60 * 24 * 30;
 
+// 직원 로그인 — 강사 계정이 먼저, 없으면 고정 관리자 계정으로 떨어진다.
+// 강사는 /staff(내 급여), 관리자는 /admin 으로 보낸다.
 export async function adminLoginAction(formData: FormData) {
   const id = String(formData.get("id") ?? "").trim();
   const pw = String(formData.get("pw") ?? "").trim();
-  if (id === ADMIN_ID && pw === ADMIN_PW) {
-    (await cookies()).set(ADMIN_COOKIE, "1", { httpOnly: true, path: "/", maxAge: YEAR });
+  const c = await cookies();
+
+  const person = await staff.verifyLogin(id, pw);
+  if (person) {
+    c.set(STAFF_COOKIE, person.id, { httpOnly: true, path: "/", maxAge: YEAR });
+    if (person.role === "admin") {
+      c.set(ADMIN_COOKIE, "1", { httpOnly: true, path: "/", maxAge: YEAR });
+      redirect("/admin");
+    }
+    c.delete(ADMIN_COOKIE);
+    redirect("/staff");
+  }
+
+  if (FIXED_ADMIN_ENABLED && id === ADMIN_ID && pw === ADMIN_PW) {
+    c.set(ADMIN_COOKIE, "1", { httpOnly: true, path: "/", maxAge: YEAR });
+    c.delete(STAFF_COOKIE);
     redirect("/admin");
   }
   redirect("/login?e=admin");
@@ -20,13 +39,16 @@ export async function adminLoginAction(formData: FormData) {
 
 export async function memberPhoneLoginAction(formData: FormData) {
   const phone = String(formData.get("phone") ?? "").trim();
-  const db = await store.loadSnapshot();
-  const m = store.getMemberByPhone(db, phone);
-  if (m) {
-    (await cookies()).set(MEMBER_COOKIE, m.id, { httpOnly: true, path: "/", maxAge: YEAR });
-    redirect("/book");
-  }
-  redirect("/login?e=member");
+  const password = String(formData.get("password") ?? "");
+  if (!phone || !password) redirect("/login?e=member");
+
+  const r = await store.verifyMemberLogin(phone, password);
+  if (r === null) redirect("/login?e=member");   // 없는 연락처
+  if (r === "nopw") redirect("/login?e=nopw");   // 비밀번호 미설정(카카오 가입자 등)
+  if (r === "bad") redirect("/login?e=badpw");   // 비밀번호 불일치
+
+  (await cookies()).set(MEMBER_COOKIE, r.id, { httpOnly: true, path: "/", maxAge: YEAR });
+  redirect("/book");
 }
 
 export async function signupAction(formData: FormData) {
@@ -34,11 +56,20 @@ export async function signupAction(formData: FormData) {
   const phone = String(formData.get("phone") ?? "").trim();
   const birthdate = String(formData.get("birthdate") ?? "").trim();
   const address = String(formData.get("address") ?? "").trim();
-  const branch = (String(formData.get("branch") ?? "1호점") as Branch);
+  const branch = (String(formData.get("branch") ?? DEFAULT_BRANCH) as Branch);
+  const password = String(formData.get("password") ?? "");
   if (!name || !phone) redirect("/signup?e=1");
+  if (password.length < MIN_PASSWORD) redirect("/signup?e=pw");
   const db = await store.loadSnapshot();
   if (store.getMemberByPhone(db, phone)) redirect("/signup?e=dup");
-  const id = await store.addMember(name, phone, branch, birthdate, address);
+  let id: string;
+  try {
+    id = await store.addMember(name, phone, branch, birthdate, address, password);
+  } catch (err) {
+    // 저장에 실패하면 쿠키만 심어두고 넘어가는 일이 없도록 여기서 끊는다.
+    console.error("[signup]", err);
+    redirect("/signup?e=save");
+  }
   (await cookies()).set(MEMBER_COOKIE, id, { httpOnly: true, path: "/", maxAge: YEAR });
   redirect("/book");
 }
@@ -47,7 +78,144 @@ export async function logoutAction() {
   const c = await cookies();
   c.delete(ADMIN_COOKIE);
   c.delete(MEMBER_COOKIE);
+  c.delete(STAFF_COOKIE);
   redirect("/login");
+}
+
+// ---------- 상담 신청 (오픈 페이지 설문) ----------
+export async function submitConsultAction(formData: FormData) {
+  const str = (k: string) => String(formData.get(k) ?? "").trim();
+  const all = (k: string) => formData.getAll(k).map((v) => String(v));
+  const from = str("from").slice(0, 32);
+  const back = (e: string) => `/consult?e=${e}${from ? `&from=${encodeURIComponent(from)}` : ""}`;
+
+  const name = str("name").slice(0, 40);
+  const phone = str("phone").slice(0, 20);
+  const digits = phone.replace(/[^0-9]/g, "");
+  if (!name || digits.length < 9) redirect(back("contact"));
+  if (formData.get("agreePrivacy") !== "on") redirect(back("privacy"));
+
+  const Q = consult.Q;
+  // 불편한 곳·임신 여부·몸 고민은 민감정보(건강) — 별도 동의가 있을 때만 저장한다.
+  const agreeHealth = formData.get("agreeHealth") === "on";
+  try {
+    await consult.saveConsultation({
+      name,
+      phone,
+      contactTime: consult.keepOne(str("contactTime"), Q.contactTime.options),
+      goals: consult.keepAllowed(all("goals"), Q.goals.options),
+      painAreas: agreeHealth ? consult.keepAllowed(all("painAreas"), Q.painAreas.options) : [],
+      pregnancy: agreeHealth ? consult.keepOne(str("pregnancy"), Q.pregnancy.options) : undefined,
+      concern: agreeHealth ? str("concern").slice(0, 1000) : "",
+      experience: consult.keepOne(str("experience"), Q.experience.options),
+      programs: consult.keepAllowed(all("programs"), Q.programs.options),
+      days: consult.keepAllowed(all("days"), Q.days.options),
+      timeSlots: consult.keepAllowed(all("timeSlots"), Q.timeSlots.options),
+      wishTime: str("wishTime").slice(0, 500),
+      priorities: consult.keepAllowed(all("priorities"), Q.priorities.options, Q.priorities.max),
+      source: consult.keepOne(str("source"), Q.source.options),
+      utmSource: from,
+      agreePrivacy: true,
+      agreeHealth,
+      agreeMarketing: formData.get("agreeMarketing") === "on",
+    });
+  } catch (err) {
+    console.error("[consult]", err);
+    redirect(back("save"));
+  }
+  redirect(`/consult/done?n=${encodeURIComponent(name)}`);
+}
+
+export async function setConsultStatusAction(formData: FormData) {
+  const id = String(formData.get("id"));
+  const status = String(formData.get("status")) as consult.ConsultStatus;
+  if (!["new", "contacted", "registered", "closed"].includes(status)) return;
+  const memoRaw = formData.get("memo");
+  await consult.setConsultStatus(id, status, memoRaw === null ? undefined : String(memoRaw).slice(0, 500));
+  revalidatePath("/admin/consult");
+}
+
+// ---------- 적립금 전환 ----------
+export async function requestPointTransferAction(): Promise<{ ok: boolean; msg: string }> {
+  const memberId = await currentMemberId();
+  if (!memberId) return { ok: false, msg: "로그인이 필요해요." };
+  const r = await store.requestPointTransfer(memberId);
+  revalidatePath("/book");
+  return r;
+}
+
+export async function completePointRequestAction(formData: FormData) {
+  await store.completePointRequest(String(formData.get("requestId")));
+  revalidatePath("/admin");
+}
+
+export async function rejectPointRequestAction(formData: FormData) {
+  await store.rejectPointRequest(String(formData.get("requestId")));
+  revalidatePath("/admin");
+}
+
+export async function setMemberPasswordAction(formData: FormData) {
+  const memberId = String(formData.get("memberId"));
+  const password = String(formData.get("password") ?? "");
+  if (memberId && password.length >= MIN_PASSWORD) await store.setMemberPassword(memberId, password);
+  revalidatePath(`/admin/member/${memberId}`);
+}
+
+// ---------- 강사 관리 (관리자 전용) ----------
+export async function addInstructorAction(formData: FormData) {
+  const name = String(formData.get("name") ?? "").trim();
+  const loginId = String(formData.get("loginId") ?? "").trim();
+  const password = String(formData.get("password") ?? "").trim();
+  if (!name || !loginId || password.length < 4) redirect("/admin/staff?e=input");
+  try {
+    await staff.addInstructor({
+      name,
+      loginId,
+      password,
+      role: formData.get("role") === "admin" ? "admin" : "instructor",
+      branch: (String(formData.get("branch") ?? "1호점") as Branch),
+      phone: String(formData.get("phone") ?? "").trim(),
+      bank: String(formData.get("bank") ?? "").trim(),
+      account: String(formData.get("account") ?? "").trim(),
+    });
+  } catch (err) {
+    console.error("[addInstructor]", err);
+    // 대부분 아이디 중복이다.
+    redirect("/admin/staff?e=dup");
+  }
+  redirect("/admin/staff?ok=1");
+}
+
+export async function setRatesAction(formData: FormData) {
+  const instructorId = String(formData.get("instructorId"));
+  const rates: Partial<Record<staff.RateKind, number>> = {};
+  for (const { kind } of staff.RATE_KINDS) {
+    const raw = formData.get(kind);
+    if (raw !== null && String(raw).trim() !== "") rates[kind] = Number(raw);
+  }
+  await staff.setRates(instructorId, rates);
+  revalidatePath("/admin/staff");
+  revalidatePath("/admin/payroll");
+}
+
+export async function setStaffPasswordAction(formData: FormData) {
+  const instructorId = String(formData.get("instructorId"));
+  const password = String(formData.get("password") ?? "").trim();
+  if (password.length >= 4) await staff.setPassword(instructorId, password);
+  redirect("/admin/staff?ok=pw");
+}
+
+export async function setStaffActiveAction(formData: FormData) {
+  await staff.setActive(String(formData.get("instructorId")), formData.get("active") === "1");
+  revalidatePath("/admin/staff");
+}
+
+export async function assignInstructorAction(formData: FormData) {
+  const slotId = String(formData.get("slotId"));
+  const raw = String(formData.get("instructorId") ?? "");
+  await staff.assignInstructor(slotId, raw === "" ? null : raw);
+  revalidatePath("/admin");
+  revalidatePath("/admin/payroll");
 }
 
 export async function bookAction(formData: FormData) {

@@ -12,7 +12,7 @@ export interface BranchGeo {
 export const BRANCH_GEO: Record<string, BranchGeo> = {
   // TODO: 구글맵에서 센터 위치 우클릭 → 좌표 복사해서 넣기
   "1호점": { lat: 36.0190, lng: 129.3435, radiusM: 150 }, // 포항 남구 상공로 184 (임시)
-  "2호점": { lat: 36.0190, lng: 129.3435, radiusM: 150 }, // (임시)
+  "2호점": { lat: 36.0549294, lng: 129.3628948, radiusM: 150 }, // 포항 북구 우현동 646 (새천년대로933번길 5) 2층
 };
 
 // 실제 좌표 입력 후 true 로 변경하면 거리 검증이 켜집니다.

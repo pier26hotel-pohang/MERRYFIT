@@ -2,7 +2,20 @@
 
 export type Branch = "1호점" | "2호점";
 
-export type ProgramName = "기구 필라테스" | "바레" | "필라웨이트" | "단체수업";
+// 손님에게 보여줄 지점 이름. 내부 키(DB)는 그대로 두고 화면에서만 바꾼다.
+export const BRANCH_LABEL: Record<Branch, string> = {
+  "1호점": "1호점",
+  "2호점": "북구점",
+};
+
+export type ProgramName =
+  | "기구 필라테스"
+  | "바레"
+  | "필라테스"
+  | "필라웨이트"
+  | "요가"
+  | "아로마"
+  | "단체수업";
 
 export interface Member {
   id: string;
@@ -60,3 +73,21 @@ export interface DB {
 }
 
 export const ATTEND_POINT = 5000; // 출석 1회 적립금
+
+// 기본 지점 — 2호점 오픈 이후 신규 회원은 2호점을 먼저 본다.
+export const DEFAULT_BRANCH: Branch = "2호점";
+
+// 가입 시 자동으로 들어가는 수강권.
+// 가입 직후 아무것도 못 하고 빈 화면만 보는 구간을 없앤다.
+export const WELCOME_PASS = { type: "체험 1회권", total: 1, scope: "both" as PassScope };
+
+// 적립금 전환 신청
+export type PointRequestStatus = "pending" | "done" | "rejected";
+export interface PointRequest {
+  id: string;
+  memberId: string;
+  points: number;
+  status: PointRequestStatus;
+  memo?: string;
+  createdAt?: string;
+}

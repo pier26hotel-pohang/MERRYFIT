@@ -8,7 +8,7 @@ import {
   occurrenceDate,
   weekRangeLabel,
 } from "@/lib/store";
-import { Branch } from "@/lib/types";
+import { Branch, BRANCH_LABEL } from "@/lib/types";
 import { WeeklyGrid, programAbbrev } from "@/components/WeeklyGrid";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +20,7 @@ export default async function TimetablePage({
   searchParams: Promise<{ b?: string; w?: string }>;
 }) {
   const { b, w } = await searchParams;
-  const branch: Branch = b === "2호점" ? "2호점" : "1호점";
+  const branch: Branch = b === "1호점" ? "1호점" : "2호점"; // 기본 2호점
   const weekOffset = w === "1" ? 1 : 0;
   const db = await loadSnapshot();
   const times = distinctTimes(db, branch);
@@ -44,7 +44,7 @@ export default async function TimetablePage({
               branch === bb ? "bg-emerald-700 text-white" : "bg-neutral-100 text-neutral-600"
             }`}
           >
-            {bb}
+            {BRANCH_LABEL[bb]}
           </Link>
         ))}
       </div>

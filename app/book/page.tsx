@@ -18,10 +18,14 @@ import {
   upcomingReservations,
   DOW_LABEL,
 } from "@/lib/store";
-import { Branch } from "@/lib/types";
+import { Branch, BRANCH_LABEL } from "@/lib/types";
 import { bookAction, logoutAction } from "@/lib/actions";
 import { WeeklyGrid, programAbbrev } from "@/components/WeeklyGrid";
 import { SelfCheckIn } from "@/components/SelfCheckIn";
+import { GuidePanel } from "@/components/GuidePanel";
+import { PointTransferButton } from "@/components/PointTransferButton";
+import { pendingPointRequest } from "@/lib/store";
+import { DEFAULT_BRANCH } from "@/lib/types";
 import { CancelButton } from "@/components/CancelButton";
 
 export const dynamic = "force-dynamic";
@@ -44,8 +48,17 @@ export default async function MemberHome({
   if (!member) redirect("/login");
   const weekOffset = w === "1" ? 1 : 0;
 
-  const branch: Branch = b === "1호점" || b === "2호점" ? b : member.branch;
+  // 기본은 2호점. 직접 고른 지점이 있으면 그대로 존중하고,
+  // 그 지점에 수업이 없으면 수업이 있는 지점을 대신 보여준다
+  // ("등록된 수업이 없습니다"만 뜨는 빈 화면 방지).
+  const picked: Branch | null = b === "1호점" || b === "2호점" ? b : null;
+  let branch: Branch = picked ?? DEFAULT_BRANCH;
+  if (!picked && distinctTimes(db, branch).length === 0) {
+    const other: Branch = branch === "1호점" ? "2호점" : "1호점";
+    if (distinctTimes(db, other).length > 0) branch = other;
+  }
   const times = distinctTimes(db, branch);
+  const pointReq = await pendingPointRequest(member.id);
   const link = (bb: Branch, wo: number) => `/book?b=${bb}&w=${wo}`;
   const upcoming = upcomingReservations(db, member.id);
 
@@ -56,9 +69,12 @@ export default async function MemberHome({
           <Image src="/logo.png" alt="메리핏" width={22} height={22} />
           <span className="text-sm font-extrabold tracking-tight">MERRY FIT</span>
         </span>
-        <form action={logoutAction}>
-          <button className="text-sm text-neutral-400 hover:text-neutral-600">로그아웃</button>
-        </form>
+        <div className="flex items-center gap-2.5">
+          <GuidePanel />
+          <form action={logoutAction}>
+            <button className="text-sm text-neutral-400 hover:text-neutral-600">로그아웃</button>
+          </form>
+        </div>
       </div>
 
       {/* 회원 요약 카드 */}
@@ -66,7 +82,7 @@ export default async function MemberHome({
         <div className="text-lg font-bold">{member.name}님</div>
         <div className="mt-3 grid grid-cols-3 gap-2 text-center">
           <div className="rounded-xl bg-emerald-700/60 py-2">
-            <div className="text-xs text-emerald-100">적립금</div>
+            <div className="text-xs text-emerald-100">센터 적립금</div>
             <div className="text-base font-bold">{member.points.toLocaleString()}원</div>
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
@@ -107,15 +123,18 @@ export default async function MemberHome({
         </section>
       )}
 
-      {/* 메리핏 쇼핑몰 (적립금 사용) */}
+      {/* 메리핏 쇼핑몰
+          주의: 앱 적립금과 쇼핑몰(카페24) 적립금은 아직 연동되어 있지 않다.
+          "바로 쓸 수 있다"고 쓰면 클레임이 되므로 전환 절차를 명시한다. */}
       <a
         href="https://merryfitpila.cafe24.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="mb-4 flex items-center justify-center gap-2 rounded-2xl bg-pink-500 py-3 font-semibold text-white shadow-sm transition hover:bg-pink-600"
+        className="mb-2 flex items-center justify-center gap-2 rounded-2xl bg-pink-500 py-3 font-semibold text-white shadow-sm transition hover:bg-pink-600"
       >
-        🛍️ 메리핏 쇼핑몰 · 적립금 사용하기
+        🛍️ 메리핏 쇼핑몰 바로가기
       </a>
+      <PointTransferButton points={member.points} pending={Boolean(pointReq)} />
 
       {/* 위치 검증 셀프 체크인 */}
       <SelfCheckIn memberId={member.id} />
@@ -130,7 +149,7 @@ export default async function MemberHome({
               branch === bb ? "bg-emerald-700 text-white" : "bg-neutral-100 text-neutral-600"
             }`}
           >
-            {bb}
+            {BRANCH_LABEL[bb]}
           </Link>
         ))}
       </div>

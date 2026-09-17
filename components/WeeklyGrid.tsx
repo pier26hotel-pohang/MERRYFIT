@@ -56,6 +56,8 @@ export function programAbbrev(program: string): string {
       return "기구";
     case "필라웨이트":
       return "필웨";
+    case "필라테스":
+      return "필테";
     case "단체수업":
       return "단체";
     default:

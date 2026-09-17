@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local prototype data
 /data/
+
+# local agent/tool state
+/.omc/

@@ -2,12 +2,20 @@
 // 조회: loadSnapshot()으로 전체를 한 번 읽어 순수 함수로 계산
 // 변경: Supabase에 직접 쓰기(async)
 import { supabaseAdmin } from "./supabase";
-import { DB, Member, Pass, ScheduleSlot, Branch, ProgramName, PassScope, ATTEND_POINT } from "./types";
+import { DB, Member, Pass, ScheduleSlot, Branch, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
+import { makePasswordRecord, passwordMatches } from "./password";
 import { DOW_LABEL, WEEK_ORDER } from "./week-constants";
 export { DOW_LABEL, WEEK_ORDER };
 
 function uid(prefix: string): string {
   return prefix + "_" + Math.random().toString(36).slice(2, 9);
+}
+
+// Supabase 쓰기 결과를 반드시 확인한다.
+// 예전에는 error 를 그냥 흘려보내서, 컬럼 누락 같은 문제가
+// "버튼을 눌러도 아무 일도 안 일어난다"로만 보였다.
+function assertOk(label: string, res: { error: { message: string } | null }): void {
+  if (res.error) throw new Error(`${label} 실패: ${res.error.message}`);
 }
 
 // 프로그램·지점별 기본 정원
@@ -91,6 +99,10 @@ export async function loadSnapshot(): Promise<DB> {
     sb.from("slots").select("*"),
     sb.from("reservations").select("*"),
   ]);
+  // 조회 실패는 화면을 죽이지 않되(공개 시간표), 서버 로그에는 반드시 남긴다.
+  for (const [label, res] of [["members", m], ["passes", p], ["slots", s], ["reservations", r]] as const) {
+    if (res.error) console.error(`[loadSnapshot] ${label}: ${res.error.message}`);
+  }
   return {
     members: (m.data ?? []).map(mapMember),
     passes: (p.data ?? []).map(mapPass),
@@ -190,8 +202,8 @@ export async function book(slotId: string, memberId: string, date: string): Prom
     .sort((a, b) => (a.scope === "both" ? 1 : 0) - (b.scope === "both" ? 1 : 0));
   const pass = eligible[0];
   if (!pass) return { ok: false, msg: `${slot.branch}에서 쓸 수 있는 잔여가 없어요.` };
-  await sb.from("passes").update({ remaining: pass.remaining - 1 }).eq("id", pass.id);
-  await sb.from("reservations").insert({ id: uid("r"), slot_id: slotId, member_id: memberId, date, status: "booked", pass_id: pass.id });
+  assertOk("수강권 차감", await sb.from("passes").update({ remaining: pass.remaining - 1 }).eq("id", pass.id));
+  assertOk("예약 등록", await sb.from("reservations").insert({ id: uid("r"), slot_id: slotId, member_id: memberId, date, status: "booked", pass_id: pass.id }));
   return { ok: true, msg: "예약 완료" };
 }
 
@@ -200,7 +212,7 @@ export async function cancel(reservationId: string): Promise<{ ok: boolean; msg:
   const { data: r } = await sb.from("reservations").select("*").eq("id", reservationId).maybeSingle();
   if (!r || r.status !== "booked") return { ok: false, msg: "취소할 수 없습니다." };
   if (!canCancelDate(r.date)) return { ok: false, msg: "당일·전날에는 취소할 수 없어요." };
-  await sb.from("reservations").update({ status: "cancelled" }).eq("id", reservationId);
+  assertOk("예약 취소", await sb.from("reservations").update({ status: "cancelled" }).eq("id", reservationId));
   // 차감했던 수강권 복구
   let passId = r.pass_id;
   if (!passId) {
@@ -209,7 +221,7 @@ export async function cancel(reservationId: string): Promise<{ ok: boolean; msg:
   }
   if (passId) {
     const { data: p } = await sb.from("passes").select("remaining").eq("id", passId).maybeSingle();
-    if (p) await sb.from("passes").update({ remaining: p.remaining + 1 }).eq("id", passId);
+    if (p) assertOk("수강권 복구", await sb.from("passes").update({ remaining: p.remaining + 1 }).eq("id", passId));
   }
   return { ok: true, msg: "예약이 취소되었습니다." };
 }
@@ -219,9 +231,9 @@ export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg
   const { data: r } = await sb.from("reservations").select("*").eq("id", reservationId).maybeSingle();
   if (!r) return { ok: false, msg: "예약 없음" };
   if (r.status !== "booked") return { ok: false, msg: "이미 처리됨" };
-  await sb.from("reservations").update({ status: "attended" }).eq("id", reservationId);
+  assertOk("출석 처리", await sb.from("reservations").update({ status: "attended" }).eq("id", reservationId));
   const { data: m } = await sb.from("members").select("points").eq("id", r.member_id).maybeSingle();
-  if (m) await sb.from("members").update({ points: (m.points ?? 0) + ATTEND_POINT }).eq("id", r.member_id);
+  if (m) assertOk("포인트 적립", await sb.from("members").update({ points: (m.points ?? 0) + ATTEND_POINT }).eq("id", r.member_id));
   return { ok: true, msg: "출석 처리" };
 }
 
@@ -256,32 +268,131 @@ export async function addMember(
   phone: string,
   branch: Branch,
   birthdate?: string,
-  address?: string
+  address?: string,
+  password?: string
 ): Promise<string> {
   const id = uid("m");
-  await supabaseAdmin().from("members").insert({
+  const pw = password ? makePasswordRecord(password) : null;
+  assertOk("회원 등록", await supabaseAdmin().from("members").insert({
     id, name, phone, branch, points: 0, memo: "",
     birthdate: birthdate || null,
     address: address || null,
-  });
+    password_hash: pw?.hash ?? null,
+    password_salt: pw?.salt ?? null,
+  }));
+  // 가입 직후 아무것도 못 하는 구간이 없도록 체험 수강권을 바로 넣어준다.
+  await issuePass(id, WELCOME_PASS.type, WELCOME_PASS.total, WELCOME_PASS.scope);
   return id;
 }
+
+// 연락처 + 비밀번호 로그인.
+//   null  = 그런 연락처 없음
+//   "nopw" = 회원은 있는데 비밀번호가 설정되지 않음(카카오 가입자·기존 회원)
+//   "bad"  = 비밀번호 불일치
+export async function verifyMemberLogin(
+  phone: string,
+  password: string
+): Promise<{ id: string } | "nopw" | "bad" | null> {
+  const digits = phone.replace(/[^0-9]/g, "");
+  if (!digits) return null;
+  const { data, error } = await supabaseAdmin().from("members").select("id,phone,password_hash,password_salt");
+  if (error) {
+    console.error("[verifyMemberLogin]", error.message);
+    return null;
+  }
+  const m = (data ?? []).find((r) => String(r.phone ?? "").replace(/[^0-9]/g, "") === digits);
+  if (!m) return null;
+  if (!m.password_hash || !m.password_salt) return "nopw";
+  return passwordMatches(password, m.password_hash, m.password_salt) ? { id: m.id } : "bad";
+}
+
+export async function setMemberPassword(memberId: string, password: string): Promise<void> {
+  const pw = makePasswordRecord(password);
+  assertOk("비밀번호 설정", await supabaseAdmin()
+    .from("members").update({ password_hash: pw.hash, password_salt: pw.salt }).eq("id", memberId));
+}
+
+export async function memberHasPassword(memberId: string): Promise<boolean> {
+  const { data } = await supabaseAdmin().from("members").select("password_hash").eq("id", memberId).maybeSingle();
+  return Boolean(data?.password_hash);
+}
+
+// ---------- 적립금 전환 신청 ----------
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function mapPointRequest(r: any): PointRequest {
+  return {
+    id: r.id, memberId: r.member_id, points: r.points,
+    status: r.status as PointRequestStatus, memo: r.memo ?? undefined,
+    createdAt: r.created_at ?? undefined,
+  };
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+export async function requestPointTransfer(memberId: string): Promise<{ ok: boolean; msg: string }> {
+  const sb = supabaseAdmin();
+  const { data: m } = await sb.from("members").select("points").eq("id", memberId).maybeSingle();
+  const points = m?.points ?? 0;
+  if (points <= 0) return { ok: false, msg: "전환할 적립금이 없어요." };
+
+  const { data: dup } = await sb
+    .from("point_requests").select("id").eq("member_id", memberId).eq("status", "pending").maybeSingle();
+  if (dup) return { ok: false, msg: "이미 신청하신 건이 처리 중이에요." };
+
+  assertOk("전환 신청", await sb.from("point_requests").insert({
+    id: uid("pr"), member_id: memberId, points, status: "pending",
+  }));
+  return { ok: true, msg: `${points.toLocaleString()}원 전환을 신청했어요. 확인 후 쇼핑몰에 반영해 드릴게요.` };
+}
+
+export async function listPointRequests(status?: PointRequestStatus): Promise<PointRequest[]> {
+  let q = supabaseAdmin().from("point_requests").select("*").order("created_at", { ascending: false });
+  if (status) q = q.eq("status", status);
+  const { data, error } = await q;
+  if (error) {
+    console.error("[listPointRequests]", error.message);
+    return [];
+  }
+  return (data ?? []).map(mapPointRequest);
+}
+
+export async function pendingPointRequest(memberId: string): Promise<PointRequest | null> {
+  const { data } = await supabaseAdmin()
+    .from("point_requests").select("*").eq("member_id", memberId).eq("status", "pending").maybeSingle();
+  return data ? mapPointRequest(data) : null;
+}
+
+// 쇼핑몰에 지급 완료 → 앱 포인트를 그만큼 차감한다(두 곳에서 중복으로 보이지 않게).
+export async function completePointRequest(requestId: string, memo?: string): Promise<void> {
+  const sb = supabaseAdmin();
+  const { data: req } = await sb.from("point_requests").select("*").eq("id", requestId).maybeSingle();
+  if (!req || req.status !== "pending") return;
+  const { data: m } = await sb.from("members").select("points").eq("id", req.member_id).maybeSingle();
+  const left = Math.max(0, (m?.points ?? 0) - req.points);
+  assertOk("포인트 차감", await sb.from("members").update({ points: left }).eq("id", req.member_id));
+  assertOk("전환 완료", await sb.from("point_requests")
+    .update({ status: "done", done_at: new Date().toISOString(), memo: memo || null }).eq("id", requestId));
+}
+
+export async function rejectPointRequest(requestId: string, memo?: string): Promise<void> {
+  assertOk("전환 반려", await supabaseAdmin().from("point_requests")
+    .update({ status: "rejected", done_at: new Date().toISOString(), memo: memo || null }).eq("id", requestId));
+}
 export async function setMemberMemo(memberId: string, memo: string): Promise<void> {
-  await supabaseAdmin().from("members").update({ memo }).eq("id", memberId);
+  assertOk("메모 저장", await supabaseAdmin().from("members").update({ memo }).eq("id", memberId));
 }
 export async function issuePass(memberId: string, type: string, total: number, scope: PassScope): Promise<void> {
-  await supabaseAdmin().from("passes").insert({ id: uid("p"), member_id: memberId, type, total, remaining: total, scope });
+  assertOk("수강권 발급", await supabaseAdmin().from("passes").insert({ id: uid("p"), member_id: memberId, type, total, remaining: total, scope }));
 }
 export async function addSlot(branch: Branch, program: ProgramName, dayOfWeek: number, time: string): Promise<void> {
   const sb = supabaseAdmin();
   const { data: dup } = await sb.from("slots").select("id").eq("branch", branch).eq("day_of_week", dayOfWeek).eq("time", time).is("date", null).maybeSingle();
   if (dup) return;
-  await sb.from("slots").insert({ id: uid("sl"), branch, program, day_of_week: dayOfWeek, time, capacity: programCapacity(program, branch), date: null });
+  assertOk("시간표 추가", await sb.from("slots").insert({ id: uid("sl"), branch, program, day_of_week: dayOfWeek, time, capacity: programCapacity(program, branch), date: null }));
 }
 export async function addOneTimeSlot(branch: Branch, program: ProgramName, date: string, time: string): Promise<void> {
   const dow = new Date(date + "T00:00:00").getDay();
-  await supabaseAdmin().from("slots").insert({ id: uid("sl"), branch, program, day_of_week: dow, time, capacity: programCapacity(program, branch), date });
+  assertOk("특강 추가", await supabaseAdmin().from("slots").insert({ id: uid("sl"), branch, program, day_of_week: dow, time, capacity: programCapacity(program, branch), date }));
 }
 export async function deleteSlot(slotId: string): Promise<void> {
-  await supabaseAdmin().from("slots").delete().eq("id", slotId);
+  assertOk("시간표 삭제", await supabaseAdmin().from("slots").delete().eq("id", slotId));
 }

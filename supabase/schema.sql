@@ -9,6 +9,8 @@ create table if not exists members (
   branch text not null default '1호점',
   points integer not null default 0,
   memo text default '',
+  birthdate date,                    -- 회원가입 폼에서 입력
+  address text,                      -- 회원가입 폼에서 입력
   created_at timestamptz default now()
 );
 

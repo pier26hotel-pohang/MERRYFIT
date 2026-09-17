@@ -9,16 +9,21 @@ import {
   occurrenceDate,
   listOneTimeSlots,
   adminStats,
+  listPointRequests,
   DOW_LABEL,
 } from "@/lib/store";
-import { Branch } from "@/lib/types";
+import { Branch, BRANCH_LABEL } from "@/lib/types";
 import {
   addMemberAction,
   issuePassAction,
   deleteSlotAction,
   setMemoAction,
   logoutAction,
+  assignInstructorAction,
+  completePointRequestAction,
+  rejectPointRequestAction,
 } from "@/lib/actions";
+import * as staff from "@/lib/staff";
 import { WeeklyGrid, programAbbrev } from "@/components/WeeklyGrid";
 import { AddClassForm } from "@/components/AddClassForm";
 
@@ -42,20 +47,34 @@ export default async function AdminPage({
   searchParams: Promise<{ b?: string }>;
 }) {
   const { b } = await searchParams;
-  const branch: Branch = b === "2호점" ? "2호점" : "1호점";
+  const branch: Branch = b === "1호점" ? "1호점" : "2호점"; // 기본 2호점
   const db = await loadSnapshot();
   const members = listMembers(db);
   const times = distinctTimes(db, branch);
   const oneTimes = listOneTimeSlots(db).filter((s) => s.branch === branch);
   const stats = adminStats(db);
+  const [instructors, slotInstructor, pointReqs] = await Promise.all([
+    staff.listInstructors(),
+    staff.slotInstructorMap(),
+    listPointRequests("pending"),
+  ]);
+  // 매주 반복 수업만 배정 대상으로 둔다(1회성은 아래 별도 섹션).
+  const weekly = db.slots
+    .filter((s) => s.branch === branch && !s.date)
+    .sort((a, b) => (a.dayOfWeek - b.dayOfWeek) || a.time.localeCompare(b.time));
 
   return (
     <main className="pt-8">
       <div className="flex items-center justify-between">
         <span className="text-sm font-semibold text-neutral-500">메리핏 관리자</span>
-        <form action={logoutAction}>
-          <button className="text-sm text-neutral-400 hover:text-neutral-600">로그아웃</button>
-        </form>
+        <div className="flex items-center gap-3">
+          <Link href="/admin/consult" className="text-sm font-semibold text-emerald-700">상담</Link>
+          <Link href="/admin/staff" className="text-sm text-emerald-700">강사</Link>
+          <Link href="/admin/payroll" className="text-sm text-emerald-700">급여</Link>
+          <form action={logoutAction}>
+            <button className="text-sm text-neutral-400 hover:text-neutral-600">로그아웃</button>
+          </form>
+        </div>
       </div>
       <h1 className="mt-2 mb-3 text-2xl font-bold text-emerald-800">관리자</h1>
 
@@ -74,6 +93,39 @@ export default async function AdminPage({
         ))}
       </div>
 
+      {/* 적립금 전환 신청 — 회원이 신청하면 여기 뜬다.
+          카페24에서 지급한 뒤 "지급 완료"를 눌러야 앱 포인트가 차감된다. */}
+      {pointReqs.length > 0 && (
+        <section className={`${cardCls} mb-4 border-pink-200 bg-pink-50/40`}>
+          <h2 className="mb-1 font-semibold text-pink-700">적립금 전환 신청 {pointReqs.length}건</h2>
+          <p className="mb-3 text-xs text-neutral-500">
+            카페24 쇼핑몰에서 해당 금액을 적립해 주신 뒤 <b>지급 완료</b>를 눌러주세요. 그때 앱 적립금이 차감됩니다.
+          </p>
+          <div className="space-y-2">
+            {pointReqs.map((r) => {
+              const m = members.find((x) => x.id === r.memberId);
+              return (
+                <div key={r.id} className="flex items-center gap-2 rounded-lg bg-white p-2.5">
+                  <div className="flex-1 text-sm">
+                    <b>{m?.name ?? "(알 수 없음)"}</b>
+                    <span className="ml-1.5 text-xs text-neutral-500">{m?.phone}</span>
+                    <div className="text-xs text-neutral-500">{r.points.toLocaleString()}원</div>
+                  </div>
+                  <form action={completePointRequestAction}>
+                    <input type="hidden" name="requestId" value={r.id} />
+                    <button className="rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-semibold text-white">지급 완료</button>
+                  </form>
+                  <form action={rejectPointRequestAction}>
+                    <input type="hidden" name="requestId" value={r.id} />
+                    <button className="rounded-lg border border-neutral-300 px-2.5 py-1.5 text-xs text-neutral-600">반려</button>
+                  </form>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {/* 지점 전환 */}
       <div className="mb-3 flex gap-2">
         {(["1호점", "2호점"] as Branch[]).map((bb) => (
@@ -84,7 +136,7 @@ export default async function AdminPage({
               branch === bb ? "bg-emerald-700 text-white" : "bg-neutral-100 text-neutral-600"
             }`}
           >
-            {bb}
+            {BRANCH_LABEL[bb]}
           </Link>
         ))}
       </div>
@@ -114,6 +166,42 @@ export default async function AdminPage({
           }}
         />
         <p className="mt-1 text-xs text-neutral-400">노란 칸 = 1회성 수업</p>
+      </section>
+
+      {/* 담당 강사 배정 — 급여는 여기서 배정한 강사 기준으로 계산된다 */}
+      <section className={`${cardCls} mb-4`}>
+        <h2 className="mb-1 font-semibold">담당 강사 배정</h2>
+        <p className="mb-3 text-xs text-neutral-400">
+          여기서 지정한 강사 기준으로 급여가 자동 계산됩니다.
+          {instructors.length === 0 && (
+            <> 먼저 <Link href="/admin/staff" className="text-emerald-700 underline">강사 계정</Link>을 만들어 주세요.</>
+          )}
+        </p>
+        <div className="space-y-1.5">
+          {weekly.map((slot) => (
+            <form key={slot.id} action={assignInstructorAction} className="flex items-center gap-2">
+              <input type="hidden" name="slotId" value={slot.id} />
+              <span className="w-28 shrink-0 text-sm text-neutral-600">
+                {DOW_LABEL[slot.dayOfWeek]} {slot.time}
+              </span>
+              <span className="w-20 shrink-0 truncate text-xs text-neutral-400">{slot.program}</span>
+              <select
+                name="instructorId"
+                defaultValue={slotInstructor.get(slot.id) ?? ""}
+                className="flex-1 rounded-lg border border-neutral-300 px-2 py-1.5 text-sm"
+              >
+                <option value="">— 미지정 —</option>
+                {instructors.map((p) => (
+                  <option key={p.id} value={p.id}>{p.name}</option>
+                ))}
+              </select>
+              <button className="shrink-0 rounded-lg border border-neutral-300 px-2.5 py-1.5 text-xs">저장</button>
+            </form>
+          ))}
+          {weekly.length === 0 && (
+            <p className="py-2 text-center text-sm text-neutral-400">{branch}에 등록된 수업이 없습니다.</p>
+          )}
+        </div>
       </section>
 
       {/* 수업 추가 (매주 반복 / 1회성) */}
