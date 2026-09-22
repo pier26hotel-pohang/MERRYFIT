@@ -5,6 +5,7 @@ import { supabaseAdmin } from "./supabase";
 import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
 import { makePasswordRecord, passwordMatches } from "./password";
 import { DOW_LABEL, WEEK_ORDER } from "./week-constants";
+import { tierFor } from "./points";
 export { DOW_LABEL, WEEK_ORDER };
 
 function uid(prefix: string): string {
@@ -226,15 +227,30 @@ export async function cancel(reservationId: string): Promise<{ ok: boolean; msg:
   return { ok: true, msg: "예약이 취소되었습니다." };
 }
 
-export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg: string }> {
+export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg: string; earned?: number; tier?: string }> {
   const sb = supabaseAdmin();
   const { data: r } = await sb.from("reservations").select("*").eq("id", reservationId).maybeSingle();
   if (!r) return { ok: false, msg: "예약 없음" };
   if (r.status !== "booked") return { ok: false, msg: "이미 처리됨" };
   assertOk("출석 처리", await sb.from("reservations").update({ status: "attended" }).eq("id", reservationId));
+
+  // 이번 출석까지 포함한 누적 횟수로 등급을 판단한다.
+  const { count } = await sb
+    .from("reservations").select("id", { count: "exact", head: true })
+    .eq("member_id", r.member_id).eq("status", "attended");
+  const tier = tierFor(count ?? 1);
+
   const { data: m } = await sb.from("members").select("points").eq("id", r.member_id).maybeSingle();
-  if (m) assertOk("포인트 적립", await sb.from("members").update({ points: (m.points ?? 0) + ATTEND_POINT }).eq("id", r.member_id));
-  return { ok: true, msg: "출석 처리" };
+  if (m) assertOk("포인트 적립", await sb.from("members").update({ points: (m.points ?? 0) + tier.point }).eq("id", r.member_id));
+  return { ok: true, msg: "출석 처리", earned: tier.point, tier: tier.name };
+}
+
+/** 회원의 누적 출석 횟수 (등급 표시용) */
+export async function attendCount(memberId: string): Promise<number> {
+  const { count } = await supabaseAdmin()
+    .from("reservations").select("id", { count: "exact", head: true })
+    .eq("member_id", memberId).eq("status", "attended");
+  return count ?? 0;
 }
 
 export async function selfCheckIn(memberId: string, lat: number, lng: number): Promise<{ ok: boolean; msg: string }> {
@@ -270,7 +286,8 @@ export async function selfCheckIn(memberId: string, lat: number, lng: number): P
   }
   const res = await checkIn(target.r.id);
   if (!res.ok) return res;
-  return { ok: true, msg: `${target.slot.time} ${target.slot.program} 출석 완료! +${ATTEND_POINT.toLocaleString()}P 적립 🎉` };
+  const earned = res.earned ?? ATTEND_POINT;
+  return { ok: true, msg: `${target.slot.time} ${target.slot.program} 출석 완료! +${earned.toLocaleString()}P 적립 🎉` };
 }
 
 export async function addMember(

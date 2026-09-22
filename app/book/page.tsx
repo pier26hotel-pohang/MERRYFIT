@@ -19,6 +19,7 @@ import {
   DOW_LABEL,
 } from "@/lib/store";
 import { Branch, BRANCH_LABEL } from "@/lib/types";
+import { tierFor, nextTier } from "@/lib/points";
 import { bookAction, logoutAction } from "@/lib/actions";
 import { WeeklyGrid, programAbbrev } from "@/components/WeeklyGrid";
 import { SelfCheckIn } from "@/components/SelfCheckIn";
@@ -94,6 +95,28 @@ export default async function MemberHome({
             <div className="text-base font-bold">{attendedCount(db, member.id)}회</div>
           </div>
         </div>
+
+        {/* 적립 등급 — 많이 나올수록 1회 적립금이 올라간다 */}
+        {(() => {
+          const n = attendedCount(db, member.id);
+          const tier = tierFor(n);
+          const next = nextTier(n);
+          return (
+            <div className="mt-3 flex items-center justify-between gap-3 rounded-xl bg-emerald-900/50 px-3.5 py-2.5">
+              <div>
+                <span className="rounded-full bg-[#EBD2A0] px-2 py-0.5 text-[11px] font-extrabold text-[#1B2B20]">
+                  {tier.name}
+                </span>
+                <span className="ml-2 text-[13px] font-semibold">
+                  출석 1회 {tier.point.toLocaleString()}원
+                </span>
+              </div>
+              <span className="shrink-0 text-[11px] text-emerald-100">
+                {next ? `${next.tier.name}까지 ${next.remaining}회` : "최고 등급"}
+              </span>
+            </div>
+          );
+        })()}
       </section>
 
       {/* 다가오는 예약 */}
