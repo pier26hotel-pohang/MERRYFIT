@@ -79,6 +79,8 @@ function mapMember(r: any): Member {
     address: r.address ?? undefined,
     createdAt: r.created_at ?? undefined,
     kakaoId: r.auth_user_id ?? undefined,
+    cafe24Id: r.cafe24_id ?? undefined,
+    pointsSynced: r.points_synced ?? 0,
   };
 }
 function mapPass(r: any): Pass {
@@ -242,6 +244,19 @@ export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg
 
   const { data: m } = await sb.from("members").select("points").eq("id", r.member_id).maybeSingle();
   if (m) assertOk("포인트 적립", await sb.from("members").update({ points: (m.points ?? 0) + tier.point }).eq("id", r.member_id));
+
+  // 쇼핑몰 적립금에도 바로 올린다. 연동이 꺼져 있거나 실패하면 앱 적립금만 쌓이고,
+  // 관리자 화면에서 나중에 다시 반영할 수 있다 — 출석 자체를 실패로 만들지 않는다.
+  try {
+    const { cafe24Enabled, syncMemberPoints } = await import("./cafe24");
+    if (cafe24Enabled()) {
+      const sync = await syncMemberPoints(r.member_id);
+      if (!sync.ok) console.error("[checkIn] 쇼핑몰 적립 실패", r.member_id, sync.msg);
+    }
+  } catch (e) {
+    console.error("[checkIn] 쇼핑몰 적립 오류", e);
+  }
+
   return { ok: true, msg: "출석 처리", earned: tier.point, tier: tier.name };
 }
 
@@ -331,6 +346,11 @@ export async function verifyMemberLogin(
   if (!m) return null;
   if (!m.password_hash || !m.password_salt) return "nopw";
   return passwordMatches(password, m.password_hash, m.password_salt) ? { id: m.id } : "bad";
+}
+
+export async function setCafe24Id(memberId: string, cafe24Id: string): Promise<void> {
+  assertOk("쇼핑몰 아이디 저장",
+    await supabaseAdmin().from("members").update({ cafe24_id: cafe24Id || null }).eq("id", memberId));
 }
 
 export async function setMemberPassword(memberId: string, password: string): Promise<void> {

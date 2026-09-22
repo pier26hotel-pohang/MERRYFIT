@@ -155,6 +155,22 @@ export async function rejectPointRequestAction(formData: FormData) {
   revalidatePath("/admin");
 }
 
+// 앱 회원 ↔ 쇼핑몰 회원 연결. 카페24 적립금 API는 쇼핑몰 회원아이디로만 지급된다.
+export async function setCafe24IdAction(formData: FormData) {
+  const memberId = String(formData.get("memberId"));
+  const cafe24Id = String(formData.get("cafe24Id") ?? "").trim().slice(0, 20);
+  if (memberId) await store.setCafe24Id(memberId, cafe24Id);
+  revalidatePath(`/admin/member/${memberId}`);
+}
+
+// 아직 쇼핑몰에 안 올라간 적립금을 지금 올린다 (자동 반영이 실패했을 때).
+export async function syncPointsAction(formData: FormData) {
+  const memberId = String(formData.get("memberId"));
+  const { syncMemberPoints } = await import("./cafe24");
+  await syncMemberPoints(memberId);
+  revalidatePath(`/admin/member/${memberId}`);
+}
+
 export async function setMemberPasswordAction(formData: FormData) {
   const memberId = String(formData.get("memberId"));
   const password = String(formData.get("password") ?? "");

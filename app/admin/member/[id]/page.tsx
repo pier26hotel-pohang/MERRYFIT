@@ -9,7 +9,8 @@ import {
   reservationsWithSlot,
   DOW_LABEL,
 } from "@/lib/store";
-import { setMemoAction, issuePassAction } from "@/lib/actions";
+import { setMemoAction, issuePassAction, setCafe24IdAction, syncPointsAction } from "@/lib/actions";
+import { cafe24Status } from "@/lib/cafe24";
 import { BRANCH_LABEL } from "@/lib/types";
 import { tierFor } from "@/lib/points";
 import { CancelButton } from "@/components/CancelButton";
@@ -48,6 +49,9 @@ export default async function MemberDetail({
     .filter((x) => x.r.status === "attended")
     .sort((a, b) => (b.r.date + b.slot.time).localeCompare(a.r.date + a.slot.time));
 
+  const pendingPoints = member.points - (member.pointsSynced ?? 0);
+  const cafe24 = cafe24Status();
+
   return (
     <main className="pt-8">
       <Link href="/admin" className="text-sm text-neutral-500">← 관리자</Link>
@@ -84,6 +88,53 @@ export default async function MemberDetail({
           <div>주소: {member.address || "-"}</div>
           <div>가입일: {member.createdAt ? member.createdAt.slice(0, 10) : "-"}</div>
         </div>
+      </section>
+
+      {/* 쇼핑몰 적립금 연동 */}
+      <section className={`${cardCls} mb-4`}>
+        <h2 className="mb-1 font-semibold">쇼핑몰 적립금</h2>
+        <p className="mb-2 text-xs text-neutral-500">
+          카페24는 쇼핑몰 회원아이디로만 적립금을 줄 수 있어서, 아이디를 연결해야 자동 반영됩니다.
+        </p>
+        <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+          <span className="text-neutral-600">
+            앱 적립금 <b className="text-neutral-900">{member.points.toLocaleString()}원</b>
+          </span>
+          <span className="text-neutral-600">
+            쇼핑몰 반영 <b className="text-neutral-900">{(member.pointsSynced ?? 0).toLocaleString()}원</b>
+          </span>
+          {pendingPoints > 0 && (
+            <span className="rounded-md bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-800">
+              미반영 {pendingPoints.toLocaleString()}원
+            </span>
+          )}
+        </div>
+        <form action={setCafe24IdAction} className="flex gap-2">
+          <input type="hidden" name="memberId" value={member.id} />
+          <input
+            name="cafe24Id"
+            defaultValue={member.cafe24Id ?? ""}
+            placeholder="쇼핑몰 로그인 아이디"
+            className={inputCls}
+            maxLength={20}
+          />
+          <button className="shrink-0 rounded-lg bg-neutral-700 px-3 py-2 text-sm text-white hover:bg-neutral-800">
+            연결
+          </button>
+        </form>
+        {member.cafe24Id && pendingPoints > 0 && (
+          <form action={syncPointsAction} className="mt-2">
+            <input type="hidden" name="memberId" value={member.id} />
+            <button className="w-full rounded-lg bg-emerald-700 py-2 text-sm font-semibold text-white hover:bg-emerald-800">
+              미반영 {pendingPoints.toLocaleString()}원 지금 쇼핑몰에 올리기
+            </button>
+          </form>
+        )}
+        {!cafe24.ok && (
+          <p className="mt-2 text-[11px] text-neutral-400">
+            연동 미설정 — Vercel 환경변수 {cafe24.missing.join(", ")} 필요
+          </p>
+        )}
       </section>
 
       {/* 메모 */}

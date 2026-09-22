@@ -28,6 +28,8 @@ export interface Member {
   address?: string; // 주소
   createdAt?: string; // 가입일 (관리자)
   kakaoId?: string; // 카카오 로그인 연결 (auth user id)
+  cafe24Id?: string; // 쇼핑몰(카페24) 회원아이디 — 적립금 자동 반영에 필요
+  pointsSynced?: number; // points 중 이미 쇼핑몰에 올린 금액
 }
 
 // 수강권 사용 가능 지점 범위
