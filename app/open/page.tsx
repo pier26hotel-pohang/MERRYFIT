@@ -7,8 +7,12 @@ import { BRANCH_INFO } from "@/lib/branch-info";
 export const dynamic = "force-dynamic";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://merryfit-ftf5.vercel.app";
-const OPEN_DATE = "2026-09-19"; // 그랜드 오픈 (KST)
+// 오픈일이 확정되면 "2026-10-15" 처럼 채운다 — 그때부터 D-카운트가 자동으로 뜬다.
+// 비워두면 날짜 없이 "10월 오픈 예정"으로만 안내한다.
+const OPEN_DATE: string = "";
+const OPEN_MONTH = "10월";
 const OPEN_LABEL = (() => {
+  if (!OPEN_DATE) return OPEN_MONTH;
   const [, m, d] = OPEN_DATE.split("-").map(Number);
   return `${m}월 ${d}일`;
 })();
@@ -46,7 +50,8 @@ const WEEK = [
 ];
 
 // 오픈일까지 남은 날 (한국 시간 기준)
-function daysUntilOpen(): number {
+function daysUntilOpen(): number | null {
+  if (!OPEN_DATE) return null;
   const now = new Date(Date.now() + 9 * 3600 * 1000);
   const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
   const [y, m, d] = OPEN_DATE.split("-").map(Number);
@@ -84,13 +89,19 @@ export default async function OpenPage({
         <div className="flex min-h-[27rem] flex-col justify-end px-5 pb-7 pt-24">
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <span className="rounded-full bg-[#EBD2A0] px-3 py-1 text-xs font-bold text-[#1B2B20]">
-              {dday > 0 ? `오픈 D-${dday}` : dday === 0 ? "오늘 오픈!" : "지금 운영 중"}
+              {dday === null
+                ? `${OPEN_MONTH} 오픈 예정`
+                : dday > 0
+                  ? `오픈 D-${dday}`
+                  : dday === 0
+                    ? "오늘 오픈!"
+                    : "지금 운영 중"}
             </span>
             <span className="text-xs font-medium text-white/80">포항 우현동 · 북구점</span>
           </div>
           <p className="text-sm font-semibold tracking-wide text-[#EBD2A0]">메리핏 바레 웰니스</p>
           <h1 className="mt-1 text-[2.35rem] font-extrabold leading-[1.12] tracking-tight text-white [text-wrap:balance]">
-            {dday >= 0 ? (
+            {dday === null || dday >= 0 ? (
               <>
                 {dday === 0 ? "오늘" : OPEN_LABEL}
                 <br />
@@ -109,7 +120,9 @@ export default async function OpenPage({
             <br />
             식물과 라탄 조명 아래에서 운동하는 웰니스 스튜디오입니다.
           </p>
-          {dday >= 0 && <p className="mt-3 text-[11px] text-white/55">※ 위 사진은 완공 예정 모습입니다.</p>}
+          {(dday === null || dday >= 0) && (
+            <p className="mt-3 text-[11px] text-white/55">※ 위 사진은 완공 예정 모습입니다.</p>
+          )}
         </div>
       </section>
 
