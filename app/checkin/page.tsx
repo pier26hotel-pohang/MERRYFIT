@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { loadSnapshot, getMember, memberRemaining, todayISO, DOW_LABEL } from "@/lib/store";
+import { loadSnapshot, getMember, memberRemaining, todayISO, todayDow, DOW_LABEL } from "@/lib/store";
 import { checkInAction } from "@/lib/actions";
 
 export const dynamic = "force-dynamic";
@@ -7,10 +7,10 @@ export const dynamic = "force-dynamic";
 export default async function CheckinPage() {
   const db = await loadSnapshot();
   const today = todayISO();
-  const todayDow = new Date().getDay();
+  const dow = todayDow();
   // 오늘 열리는 수업: 매주 반복(오늘 요일) + 오늘 날짜 1회성
   const slots = db.slots
-    .filter((s) => (!s.date && s.dayOfWeek === todayDow) || s.date === today)
+    .filter((s) => (!s.date && s.dayOfWeek === dow) || s.date === today)
     .sort((a, b) => a.time.localeCompare(b.time));
 
   return (
@@ -18,7 +18,7 @@ export default async function CheckinPage() {
       <Link href="/" className="text-sm text-neutral-500">← 홈</Link>
       <h1 className="mt-3 mb-1 text-2xl font-bold text-emerald-800">출석 체크인</h1>
       <p className="mb-6 text-sm text-neutral-500">
-        오늘 ({DOW_LABEL[todayDow]}요일) 수업 · 출석 시 5,000원 적립
+        오늘 ({DOW_LABEL[dow]}요일) 수업 · 출석 시 5,000원 적립
       </p>
 
       {slots.length === 0 && <p className="text-neutral-500">오늘 열리는 수업이 없습니다.</p>}

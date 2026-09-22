@@ -28,40 +28,59 @@ export function programCapacity(program: ProgramName, branch: Branch): number {
 }
 
 // ---------- 날짜 계산 (순수) ----------
+//
+// 모든 날짜는 한국 시간(KST) 기준이다.
+// 서버(Vercel)는 UTC로 돌기 때문에 new Date().getDate() 같은 "로컬" 날짜를 쓰면
+// 한국 시간 0시~9시 사이에 날짜와 요일이 하루씩 밀린다. 그 구간에는
+// 화·목 06:30 수업의 출석이 아예 잡히지 않는다.
+//
+// 그래서 UTC 시각에 9시간을 더한 Date 를 만들고, 읽을 때는 getUTC* 만 쓴다.
+// 이렇게 하면 서버 시간대가 무엇이든 항상 한국 날짜가 나온다.
+const KST_OFFSET_MS = 9 * 60 * 60 * 1000;
+
 function pad(n: number) {
   return String(n).padStart(2, "0");
 }
+/** 한국 시각을 담은 Date. 반드시 getUTC* 로 읽는다. */
+function kstNow(): Date {
+  return new Date(Date.now() + KST_OFFSET_MS);
+}
 function toISO(d: Date) {
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`;
+}
+/** "YYYY-MM-DD" 를 같은 규칙의 Date 로 (자정 기준) */
+function fromISO(date: string): Date {
+  return new Date(date + "T00:00:00Z");
+}
+/** 오늘의 요일 (0=일 … 6=토), 한국 기준 */
+export function todayDow(): number {
+  return kstNow().getUTCDay();
 }
 export function mondayOfWeek(weekOffset = 0): Date {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  const dow = d.getDay();
-  const diff = (dow + 6) % 7;
-  d.setDate(d.getDate() - diff + weekOffset * 7);
+  const d = kstNow();
+  d.setUTCHours(0, 0, 0, 0);
+  const diff = (d.getUTCDay() + 6) % 7;
+  d.setUTCDate(d.getUTCDate() - diff + weekOffset * 7);
   return d;
 }
 export function occurrenceDate(dayOfWeek: number, weekOffset = 0): string {
   const mon = mondayOfWeek(weekOffset);
   const idx = (dayOfWeek + 6) % 7;
-  mon.setDate(mon.getDate() + idx);
+  mon.setUTCDate(mon.getUTCDate() + idx);
   return toISO(mon);
 }
 export function todayISO(): string {
-  return toISO(new Date());
+  return toISO(kstNow());
 }
 export function weekRangeLabel(weekOffset = 0): string {
   const mon = mondayOfWeek(weekOffset);
   const sun = new Date(mon);
-  sun.setDate(sun.getDate() + 6);
-  return `${mon.getMonth() + 1}/${mon.getDate()} ~ ${sun.getMonth() + 1}/${sun.getDate()}`;
+  sun.setUTCDate(sun.getUTCDate() + 6);
+  return `${mon.getUTCMonth() + 1}/${mon.getUTCDate()} ~ ${sun.getUTCMonth() + 1}/${sun.getUTCDate()}`;
 }
 export function canCancelDate(date: string): boolean {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const d = new Date(date + "T00:00:00");
-  const diffDays = Math.round((d.getTime() - today.getTime()) / 86400000);
+  const today = fromISO(todayISO());
+  const diffDays = Math.round((fromISO(date).getTime() - today.getTime()) / 86400000);
   return diffDays >= 2;
 }
 
@@ -437,7 +456,7 @@ export async function addSlot(branch: Branch, program: ProgramName, dayOfWeek: n
   assertOk("시간표 추가", await sb.from("slots").insert({ id: uid("sl"), branch, program, day_of_week: dayOfWeek, time, capacity: programCapacity(program, branch), date: null }));
 }
 export async function addOneTimeSlot(branch: Branch, program: ProgramName, date: string, time: string): Promise<void> {
-  const dow = new Date(date + "T00:00:00").getDay();
+  const dow = new Date(date + "T00:00:00Z").getUTCDay();
   assertOk("특강 추가", await supabaseAdmin().from("slots").insert({ id: uid("sl"), branch, program, day_of_week: dow, time, capacity: programCapacity(program, branch), date }));
 }
 export async function deleteSlot(slotId: string): Promise<void> {
