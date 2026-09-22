@@ -8,15 +8,19 @@ export const dynamic = "force-dynamic";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://merryfit-ftf5.vercel.app";
 const OPEN_DATE = "2026-09-19"; // 그랜드 오픈 (KST)
+const OPEN_LABEL = (() => {
+  const [, m, d] = OPEN_DATE.split("-").map(Number);
+  return `${m}월 ${d}일`;
+})();
 const PHONE = "054-247-3978";
 const SHOP_URL = "https://merryfitpila.cafe24.com/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "메리핏 북구점 · 9월 19일 그랜드 오픈",
+  title: `메리핏 북구점 · ${OPEN_LABEL} 그랜드 오픈`,
   description: "바레 · 필라테스 · 요가 월 10만원부터. 출석할 때마다 적립금 5,000원 오픈 이벤트. 포항 우현동.",
   openGraph: {
-    title: "메리핏 북구점 · 9월 19일 그랜드 오픈",
+    title: `메리핏 북구점 · ${OPEN_LABEL} 그랜드 오픈`,
     description: "바레 · 필라테스 · 요가 월 10만원부터 · 출석마다 적립금 5,000원",
     images: [{ url: "/open/og.jpg", width: 1200, height: 630, alt: "메리핏 북구점 그랜드 오픈" }],
     type: "website",
@@ -86,16 +90,26 @@ export default async function OpenPage({
           </div>
           <p className="text-sm font-semibold tracking-wide text-[#EBD2A0]">메리핏 바레 웰니스</p>
           <h1 className="mt-1 text-[2.35rem] font-extrabold leading-[1.12] tracking-tight text-white [text-wrap:balance]">
-            9월 19일
-            <br />
-            그랜드 오픈
+            {dday >= 0 ? (
+              <>
+                {dday === 0 ? "오늘" : OPEN_LABEL}
+                <br />
+                그랜드 오픈
+              </>
+            ) : (
+              <>
+                북구점
+                <br />
+                오픈했습니다
+              </>
+            )}
           </h1>
           <p className="mt-3 text-[15px] leading-relaxed text-white/85">
             건강한 움직임, 아름다운 변화의 시작.
             <br />
             식물과 라탄 조명 아래에서 운동하는 웰니스 스튜디오입니다.
           </p>
-          <p className="mt-3 text-[11px] text-white/55">※ 위 사진은 완공 예정 모습입니다.</p>
+          {dday >= 0 && <p className="mt-3 text-[11px] text-white/55">※ 위 사진은 완공 예정 모습입니다.</p>}
         </div>
       </section>
 
