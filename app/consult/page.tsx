@@ -99,8 +99,8 @@ export default async function ConsultPage({
       <form action={submitConsultAction} className="flex flex-col gap-8">
         <input type="hidden" name="from" value={tag} />
 
-        {/* 01 연락처 */}
-        <Block n={1} title="연락처">
+        {/* 01 기본 정보 */}
+        <Block n={1} title="기본 정보">
           <div className="flex flex-col gap-2">
             <label htmlFor="c-name" className="sr-only">이름</label>
             <input id="c-name" name="name" placeholder="이름" className={input} autoComplete="name" required maxLength={40} />
@@ -117,6 +117,8 @@ export default async function ConsultPage({
               maxLength={20}
             />
           </div>
+          <p className="text-xs text-neutral-500">{Q.ageGroup.label}</p>
+          <Chips name="ageGroup" options={Q.ageGroup.options} type="radio" />
           <p className="text-xs text-neutral-500">{Q.contactTime.label}</p>
           <Chips name="contactTime" options={Q.contactTime.options} type="radio" />
         </Block>

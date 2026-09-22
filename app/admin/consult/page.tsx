@@ -89,6 +89,7 @@ function Row({ c }: { c: Consultation }) {
       </div>
 
       <dl className="grid grid-cols-[4.5rem_1fr] gap-x-2 gap-y-1.5 text-[13px]">
+        {c.ageGroup && (<><dt className="text-neutral-400">나이대</dt><dd className="text-neutral-800">{c.ageGroup}</dd></>)}
         {c.goals.length > 0 && (<><dt className="text-neutral-400">목적</dt><dd><Tags items={c.goals} /></dd></>)}
         {c.programs.length > 0 && (<><dt className="text-neutral-400">관심 수업</dt><dd><Tags items={c.programs} /></dd></>)}
         {(c.days.length > 0 || c.timeSlots.length > 0) && (
@@ -209,6 +210,7 @@ export default async function AdminConsultPage({
 
       <section className="mb-6 grid grid-cols-1 gap-3">
         <Bars title="어디서 알게 됐나" rows={sourceRows} total={total} />
+        <Bars title="나이대" rows={tally(all, (c) => c.ageGroup)} total={total} />
         <Bars title="운동 목적" rows={tally(all, (c) => c.goals)} total={total} />
         <Bars title="관심 수업" rows={tally(all, (c) => c.programs)} total={total} />
         <Bars title="희망 시간대" rows={tally(all, (c) => c.timeSlots)} total={total} />

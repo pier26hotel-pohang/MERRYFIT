@@ -102,6 +102,7 @@ export async function submitConsultAction(formData: FormData) {
     await consult.saveConsultation({
       name,
       phone,
+      ageGroup: consult.keepOne(str("ageGroup"), Q.ageGroup.options),
       contactTime: consult.keepOne(str("contactTime"), Q.contactTime.options),
       goals: consult.keepAllowed(all("goals"), Q.goals.options),
       painAreas: agreeHealth ? consult.keepAllowed(all("painAreas"), Q.painAreas.options) : [],

@@ -3,6 +3,10 @@
 import { supabaseAdmin } from "./supabase";
 
 export const Q = {
+  ageGroup: {
+    label: "나이대",
+    options: ["10대", "20대", "30대", "40대", "50대 이상"],
+  },
   contactTime: {
     label: "연락받기 편한 시간",
     options: ["오전 (9~12시)", "점심 (12~14시)", "오후 (14~18시)", "저녁 (18시 이후)", "아무 때나 괜찮아요"],
@@ -92,6 +96,7 @@ export interface Consultation {
   createdAt: string;
   name: string;
   phone: string;
+  ageGroup?: string;
   contactTime?: string;
   goals: string[];
   painAreas: string[];
@@ -136,6 +141,7 @@ export async function saveConsultation(input: ConsultInput): Promise<string> {
     id,
     name: input.name,
     phone: input.phone,
+    age_group: input.ageGroup ?? null,
     contact_time: input.contactTime ?? null,
     goals: input.goals,
     pain_areas: input.painAreas,
@@ -164,6 +170,7 @@ function map(r: any): Consultation {
     createdAt: r.created_at,
     name: r.name,
     phone: r.phone,
+    ageGroup: r.age_group ?? undefined,
     contactTime: r.contact_time ?? undefined,
     goals: r.goals ?? [],
     painAreas: r.pain_areas ?? [],
