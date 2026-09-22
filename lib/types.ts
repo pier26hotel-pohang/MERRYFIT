@@ -4,7 +4,7 @@ export type Branch = "1호점" | "2호점";
 
 // 손님에게 보여줄 지점 이름. 내부 키(DB)는 그대로 두고 화면에서만 바꾼다.
 export const BRANCH_LABEL: Record<Branch, string> = {
-  "1호점": "1호점",
+  "1호점": "남구점",
   "2호점": "북구점",
 };
 

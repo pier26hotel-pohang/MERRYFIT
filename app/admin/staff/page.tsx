@@ -8,6 +8,7 @@ import {
   setStaffActiveAction,
 } from "@/lib/actions";
 import * as staff from "@/lib/staff";
+import { BRANCH_LABEL } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -68,8 +69,8 @@ export default async function AdminStaffPage({
           </div>
           <div className="grid grid-cols-2 gap-2">
             <select name="branch" className={input} defaultValue="1호점">
-              <option>1호점</option>
-              <option>2호점</option>
+              <option value="1호점">{BRANCH_LABEL["1호점"]}</option>
+              <option value="2호점">{BRANCH_LABEL["2호점"]}</option>
             </select>
             <select name="role" className={input} defaultValue="instructor">
               <option value="instructor">강사</option>

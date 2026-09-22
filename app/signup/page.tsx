@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { signupAction } from "@/lib/actions";
+import { BRANCH_LABEL } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -68,8 +69,8 @@ export default async function SignupPage({
         <div>
           <label className="mb-1 block text-xs text-neutral-500">지점</label>
           <select name="branch" className={inputCls} defaultValue="2호점">
-            <option>1호점</option>
-            <option>2호점</option>
+            <option value="1호점">{BRANCH_LABEL["1호점"]}</option>
+            <option value="2호점">{BRANCH_LABEL["2호점"]}</option>
           </select>
         </div>
         <button className="w-full rounded-lg bg-emerald-700 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800">

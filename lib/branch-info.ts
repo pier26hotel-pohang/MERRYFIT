@@ -12,7 +12,7 @@ export interface BranchInfo {
 
 export const BRANCH_INFO: BranchInfo[] = [
   {
-    name: "2호점 (우현동)",
+    name: "북구점 (우현동)",
     address: "포항시 북구 새천년대로933번길 5, 2층",
     landmark: "다이소 맞은편 · 여성아이병원 옆",
     parking: "여성아이병원 주차장 이용 (무료)",
@@ -20,7 +20,7 @@ export const BRANCH_INFO: BranchInfo[] = [
     mapUrl: "https://map.naver.com/p/search/포항 새천년대로933번길 5",
   },
   {
-    name: "1호점 (상공로)",
+    name: "남구점 (상공로)",
     address: "포항시 남구 상공로 184",
     tel: "054-247-3978",
     mapUrl: "https://map.naver.com/p/search/포항 상공로 184",

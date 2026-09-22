@@ -237,8 +237,8 @@ export default async function AdminPage({
           <div className="flex gap-2">
             <input name="birthdate" type="date" className={inputCls} />
             <select name="branch" className={inputCls} defaultValue="1호점">
-              <option>1호점</option>
-              <option>2호점</option>
+              <option value="1호점">{BRANCH_LABEL["1호점"]}</option>
+              <option value="2호점">{BRANCH_LABEL["2호점"]}</option>
             </select>
           </div>
           <input name="address" placeholder="주소" className={inputCls} />
@@ -260,8 +260,8 @@ export default async function AdminPage({
             <input type="number" name="total" placeholder="총 횟수" className={inputCls} required min={1} />
             <select name="scope" className={inputCls} defaultValue="both">
               <option value="both">두 지점 공용</option>
-              <option value="1호점">1호점 전용</option>
-              <option value="2호점">2호점 전용</option>
+              <option value="1호점">{BRANCH_LABEL["1호점"]} 전용</option>
+              <option value="2호점">{BRANCH_LABEL["2호점"]} 전용</option>
             </select>
           </div>
           <button className={btnCls}>수강권 발급</button>
