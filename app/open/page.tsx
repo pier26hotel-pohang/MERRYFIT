@@ -160,7 +160,7 @@ export default async function OpenPage({
         {/* ── 오픈 이벤트 ── */}
         <section className="relative overflow-hidden rounded-2xl bg-[#1B3326] px-5 py-5 text-white">
           <span className="inline-block rounded-full bg-[#EBD2A0] px-2.5 py-0.5 text-[11px] font-extrabold text-[#1B2B20]">
-            오픈 기간 한정
+            오픈 후 3개월 한정
           </span>
           <h2 className="mt-3 text-xl font-extrabold leading-snug tracking-tight">
             출석할 때마다
@@ -172,7 +172,9 @@ export default async function OpenPage({
             <br />
             모인 적립금은 메리핏 쇼핑몰 적립금으로 바꿔드려요.
           </p>
-          <p className="mt-3 text-[11px] text-white/45">이벤트는 예고 없이 종료될 수 있습니다.</p>
+          <p className="mt-3 text-[11px] text-white/45">
+            오픈 후 3개월 안에 등록하신 분께 드리는 혜택입니다.
+          </p>
         </section>
 
         {/* ── 시간표 ── */}

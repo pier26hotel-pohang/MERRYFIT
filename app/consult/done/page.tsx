@@ -31,9 +31,11 @@ export default async function ConsultDone({
       </div>
 
       <div className="rounded-2xl bg-[#1B3326] px-5 py-4 text-left text-white">
-        <p className="text-xs font-bold text-[#EBD2A0]">오픈 기간 한정</p>
+        <p className="text-xs font-bold text-[#EBD2A0]">오픈 후 3개월 한정</p>
         <p className="mt-1 text-[15px] font-bold">출석할 때마다 적립금 5,000원</p>
-        <p className="mt-1 text-xs text-white/70">등록하시면 첫 수업부터 바로 쌓입니다.</p>
+        <p className="mt-1 text-xs text-white/70">
+          오픈 후 3개월 안에 등록하시면 첫 수업부터 바로 쌓입니다.
+        </p>
       </div>
 
       <div className="flex flex-col gap-2">
