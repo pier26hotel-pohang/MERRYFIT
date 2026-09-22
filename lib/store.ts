@@ -2,7 +2,7 @@
 // 조회: loadSnapshot()으로 전체를 한 번 읽어 순수 함수로 계산
 // 변경: Supabase에 직접 쓰기(async)
 import { supabaseAdmin } from "./supabase";
-import { DB, Member, Pass, ScheduleSlot, Branch, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
+import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
 import { makePasswordRecord, passwordMatches } from "./password";
 import { DOW_LABEL, WEEK_ORDER } from "./week-constants";
 export { DOW_LABEL, WEEK_ORDER };
@@ -201,7 +201,7 @@ export async function book(slotId: string, memberId: string, date: string): Prom
     .filter((p) => p.scope === "both" || p.scope === slot.branch)
     .sort((a, b) => (a.scope === "both" ? 1 : 0) - (b.scope === "both" ? 1 : 0));
   const pass = eligible[0];
-  if (!pass) return { ok: false, msg: `${slot.branch}에서 쓸 수 있는 잔여가 없어요.` };
+  if (!pass) return { ok: false, msg: `${BRANCH_LABEL[slot.branch as Branch] ?? slot.branch}에서 쓸 수 있는 잔여가 없어요.` };
   assertOk("수강권 차감", await sb.from("passes").update({ remaining: pass.remaining - 1 }).eq("id", pass.id));
   assertOk("예약 등록", await sb.from("reservations").insert({ id: uid("r"), slot_id: slotId, member_id: memberId, date, status: "booked", pass_id: pass.id }));
   return { ok: true, msg: "예약 완료" };
@@ -249,15 +249,25 @@ export async function selfCheckIn(memberId: string, lat: number, lng: number): P
   const slotMap = new Map((slots ?? []).map((s) => [s.id, s]));
   const todays = (rows ?? [])
     .map((r) => ({ r, slot: slotMap.get(r.slot_id) }))
-    .filter((x) => x.slot) as { r: { id: string }; slot: { time: string; program: string } }[];
+    .filter((x) => x.slot) as { r: { id: string }; slot: { time: string; program: string; branch: string } }[];
   if (todays.length === 0) return { ok: false, msg: "오늘 예약된 수업이 없어요." };
-  if (ENFORCE_GEOFENCE) {
-    const geo = BRANCH_GEO[member.branch];
-    const dist = distanceM(lat, lng, geo.lat, geo.lng);
-    if (dist > geo.radiusM) return { ok: false, msg: `센터에서 약 ${Math.round(dist)}m 떨어져 있어요. 센터에 도착해서 눌러주세요.` };
-  }
   todays.sort((a, b) => a.slot.time.localeCompare(b.slot.time));
   const target = todays[0];
+  if (ENFORCE_GEOFENCE) {
+    // 회원이 등록된 지점이 아니라 "지금 들으러 온 수업의 지점"을 기준으로 잰다.
+    // 남구점 회원이 북구점 수업을 예약해 오는 경우가 있고, 카카오 가입자는
+    // 지점이 기본값으로 들어가 있어서 member.branch 로 재면 엉뚱한 곳과 비교하게 된다.
+    const geo = BRANCH_GEO[target.slot.branch];
+    if (!geo) {
+      // 좌표가 없는 지점이면 막지 않는다 — 설정 누락으로 회원을 돌려보내지 않는다.
+      console.error("[selfCheckIn] 지오펜스 좌표 없음:", target.slot.branch);
+    } else {
+      const dist = distanceM(lat, lng, geo.lat, geo.lng);
+      if (dist > geo.radiusM) {
+        return { ok: false, msg: `${BRANCH_LABEL[target.slot.branch as Branch] ?? target.slot.branch}에서 약 ${Math.round(dist)}m 떨어져 있어요. 센터에 도착해서 눌러주세요.` };
+      }
+    }
+  }
   const res = await checkIn(target.r.id);
   if (!res.ok) return res;
   return { ok: true, msg: `${target.slot.time} ${target.slot.program} 출석 완료! +${ATTEND_POINT.toLocaleString()}P 적립 🎉` };
