@@ -2,10 +2,10 @@
 // 조회: loadSnapshot()으로 전체를 한 번 읽어 순수 함수로 계산
 // 변경: Supabase에 직접 쓰기(async)
 import { supabaseAdmin } from "./supabase";
-import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
+import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, DEFAULT_BRANCH, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
 import { makePasswordRecord, passwordMatches } from "./password";
 import { DOW_LABEL, WEEK_ORDER } from "./week-constants";
-import { tierFor } from "./points";
+import { tierFor, isUnlimitedPass } from "./points";
 export { DOW_LABEL, WEEK_ORDER };
 
 function uid(prefix: string): string {
@@ -255,20 +255,37 @@ export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg
   if (r.status !== "booked") return { ok: false, msg: "이미 처리됨" };
   assertOk("출석 처리", await sb.from("reservations").update({ status: "attended" }).eq("id", reservationId));
 
+  // 무제한권으로 들은 수업은 적립하지 않는다.
+  let unlimited = false;
+  if (r.pass_id) {
+    const { data: p } = await sb.from("passes").select("type").eq("id", r.pass_id).maybeSingle();
+    unlimited = isUnlimitedPass(p?.type);
+  }
+
+  // 요율은 "회원이 속한 지점"을 따른다 — 북구점 신규 고객과 남구점 기존 고객의
+  // 대우를 다르게 하려는 것이므로, 그날 어느 지점 수업을 들었는지가 아니라
+  // 그 사람이 어느 지점 회원인지가 기준이다.
+  // (출석 GPS 검증은 반대로 수업 지점을 본다 — 거긴 물리적 위치 문제라서 다르다.)
+  const { data: mb } = await sb.from("members").select("branch").eq("id", r.member_id).maybeSingle();
+  const branch = (mb?.branch ?? DEFAULT_BRANCH) as Branch;
+
   // 이번 출석까지 포함한 누적 횟수로 등급을 판단한다.
   const { count } = await sb
     .from("reservations").select("id", { count: "exact", head: true })
     .eq("member_id", r.member_id).eq("status", "attended");
-  const tier = tierFor(count ?? 1);
+  const tier = tierFor(branch, count ?? 1);
+  const earned = unlimited ? 0 : tier.point;
 
-  const { data: m } = await sb.from("members").select("points").eq("id", r.member_id).maybeSingle();
-  if (m) assertOk("포인트 적립", await sb.from("members").update({ points: (m.points ?? 0) + tier.point }).eq("id", r.member_id));
+  if (earned > 0) {
+    const { data: m } = await sb.from("members").select("points").eq("id", r.member_id).maybeSingle();
+    if (m) assertOk("포인트 적립", await sb.from("members").update({ points: (m.points ?? 0) + earned }).eq("id", r.member_id));
+  }
 
   // 쇼핑몰 적립금에도 바로 올린다. 연동이 꺼져 있거나 실패하면 앱 적립금만 쌓이고,
   // 관리자 화면에서 나중에 다시 반영할 수 있다 — 출석 자체를 실패로 만들지 않는다.
   try {
     const { cafe24Enabled, syncMemberPoints } = await import("./cafe24");
-    if (cafe24Enabled()) {
+    if (earned > 0 && cafe24Enabled()) {
       const sync = await syncMemberPoints(r.member_id);
       if (!sync.ok) console.error("[checkIn] 쇼핑몰 적립 실패", r.member_id, sync.msg);
     }
@@ -276,7 +293,7 @@ export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg
     console.error("[checkIn] 쇼핑몰 적립 오류", e);
   }
 
-  return { ok: true, msg: "출석 처리", earned: tier.point, tier: tier.name };
+  return { ok: true, msg: "출석 처리", earned, tier: unlimited ? "무제한권(적립 없음)" : tier.name };
 }
 
 /** 회원의 누적 출석 횟수 (등급 표시용) */
@@ -320,8 +337,9 @@ export async function selfCheckIn(memberId: string, lat: number, lng: number): P
   }
   const res = await checkIn(target.r.id);
   if (!res.ok) return res;
-  const earned = res.earned ?? ATTEND_POINT;
-  return { ok: true, msg: `${target.slot.time} ${target.slot.program} 출석 완료! +${earned.toLocaleString()}P 적립 🎉` };
+  const earned = res.earned ?? 0;
+  const head = `${target.slot.time} ${target.slot.program} 출석 완료!`;
+  return { ok: true, msg: earned > 0 ? `${head} +${earned.toLocaleString()}P 적립 🎉` : `${head} 🎉` };
 }
 
 export async function addMember(

@@ -99,8 +99,8 @@ export default async function MemberHome({
         {/* 적립 등급 — 많이 나올수록 1회 적립금이 올라간다 */}
         {(() => {
           const n = attendedCount(db, member.id);
-          const tier = tierFor(n);
-          const next = nextTier(n);
+          const tier = tierFor(member.branch, n);
+          const next = nextTier(member.branch, n);
           return (
             <div className="mt-3 flex items-center justify-between gap-3 rounded-xl bg-emerald-900/50 px-3.5 py-2.5">
               <div>

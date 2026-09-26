@@ -128,6 +128,19 @@ export async function verifyLogin(loginId: string, password: string): Promise<In
   return mapInstructor(data);
 }
 
+/** 관리자 계정이 하나라도 있는지 — 최초 설정 화면을 열어둘지 판단한다. */
+export async function adminAccountExists(): Promise<boolean> {
+  const { count, error } = await supabaseAdmin()
+    .from("instructors").select("id", { count: "exact", head: true })
+    .eq("role", "admin").eq("active", true);
+  // 조회에 실패하면 "있다"로 본다 — 설정 화면이 실수로 열리는 쪽이 더 위험하다.
+  if (error) {
+    console.error("[adminAccountExists]", error.message);
+    return true;
+  }
+  return (count ?? 0) > 0;
+}
+
 // ---------- 등록 · 수정 ----------
 export async function addInstructor(input: {
   name: string; loginId: string; password: string; role?: "admin" | "instructor";

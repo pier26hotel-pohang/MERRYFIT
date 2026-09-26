@@ -155,6 +155,34 @@ export async function rejectPointRequestAction(formData: FormData) {
   revalidatePath("/admin");
 }
 
+// 최초 관리자 계정 생성. 관리자가 이미 있으면 거부한다.
+export async function createFirstAdminAction(formData: FormData) {
+  if ((await staff.adminAccountExists()) || FIXED_ADMIN_ENABLED) redirect("/setup-admin?e=taken");
+
+  const name = String(formData.get("name") ?? "").trim().slice(0, 20);
+  const loginId = String(formData.get("loginId") ?? "").trim().slice(0, 20);
+  const password = String(formData.get("password") ?? "");
+  const password2 = String(formData.get("password2") ?? "");
+
+  if (!name || !loginId) redirect("/setup-admin?e=input");
+  if (password.length < MIN_PASSWORD) redirect("/setup-admin?e=pw");
+  if (password !== password2) redirect("/setup-admin?e=match");
+
+  let id: string;
+  try {
+    id = await staff.addInstructor({ name, loginId, password, role: "admin", branch: DEFAULT_BRANCH });
+  } catch (err) {
+    console.error("[createFirstAdmin]", err);
+    redirect("/setup-admin?e=dup");
+  }
+
+  // 만들자마자 로그인된 상태로 넘어간다.
+  const c = await cookies();
+  c.set(STAFF_COOKIE, id, { httpOnly: true, path: "/", maxAge: YEAR });
+  c.set(ADMIN_COOKIE, "1", { httpOnly: true, path: "/", maxAge: YEAR });
+  redirect("/admin");
+}
+
 // 앱 회원 ↔ 쇼핑몰 회원 연결. 카페24 적립금 API는 쇼핑몰 회원아이디로만 지급된다.
 export async function setCafe24IdAction(formData: FormData) {
   const memberId = String(formData.get("memberId"));
