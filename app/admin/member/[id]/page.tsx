@@ -10,7 +10,10 @@ import {
   todayISO,
   DOW_LABEL,
 } from "@/lib/store";
-import { setMemoAction, issuePassAction, setCafe24IdAction, syncPointsAction, deletePaymentAction } from "@/lib/actions";
+import {
+  setMemoAction, issuePassAction, setCafe24IdAction, syncPointsAction,
+  deletePaymentAction, updatePaymentAction, updatePassAction, deletePassAction,
+} from "@/lib/actions";
 import { listPayments, PAY_METHODS } from "@/lib/payments";
 import { cafe24Status } from "@/lib/cafe24";
 import { BRANCH_LABEL } from "@/lib/types";
@@ -163,22 +166,65 @@ export default async function MemberDetail({
               const expired = isExpired(p, today);
               const unlimited = isUnlimited(p.type);
               return (
-                <div key={p.id} className="flex items-start justify-between gap-2">
-                  <div>
-                    <span className={expired ? "text-neutral-400 line-through" : ""}>{p.type}</span>{" "}
-                    <span className="text-neutral-400">({scopeLabel(p.scope)})</span>
-                    {p.monthly && p.periodStart && !expired && (
-                      <div className="text-[11px] text-emerald-700">
-                        매달 갱신 · 다음 {nextRenewal(p.periodStart, today).slice(5).replace("-", "/")}
-                        {p.expiresAt && ` · ${p.expiresAt.slice(5).replace("-", "/")} 종료`}
-                      </div>
-                    )}
-                    {expired && <div className="text-[11px] text-neutral-400">{p.expiresAt} 만료됨</div>}
-                  </div>
-                  <span className="shrink-0 text-neutral-500">
-                    {expired ? "-" : unlimited ? "무제한" : `${effectiveRemaining(p, today)}/${p.total}`}
-                  </span>
-                </div>
+                <details key={p.id} className="group rounded-lg border border-transparent open:border-neutral-200 open:bg-neutral-50 open:p-2.5">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-2">
+                    <div>
+                      <span className={expired ? "text-neutral-400 line-through" : ""}>{p.type}</span>{" "}
+                      <span className="text-neutral-400">({scopeLabel(p.scope)})</span>
+                      {p.monthly && p.periodStart && !expired && (
+                        <div className="text-[11px] text-emerald-700">
+                          매달 갱신 · 다음 {nextRenewal(p.periodStart, today).slice(5).replace("-", "/")}
+                          {p.expiresAt && ` · ${p.expiresAt.slice(5).replace("-", "/")} 종료`}
+                        </div>
+                      )}
+                      {expired && <div className="text-[11px] text-neutral-400">{p.expiresAt} 만료됨</div>}
+                    </div>
+                    <span className="shrink-0 text-neutral-500">
+                      {expired ? "-" : unlimited ? "무제한" : `${effectiveRemaining(p, today)}/${p.total}`}
+                      <span className="ml-1.5 text-[11px] text-neutral-400 group-open:hidden">수정</span>
+                    </span>
+                  </summary>
+
+                  <form action={updatePassAction} className="mt-2.5 space-y-2 border-t border-neutral-200 pt-2.5">
+                    <input type="hidden" name="passId" value={p.id} />
+                    <input type="hidden" name="memberId" value={member.id} />
+                    <div className="flex gap-2">
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        시작일 · 갱신 기준
+                        <input type="date" name="periodStart" defaultValue={p.periodStart ?? ""} className={inputCls} />
+                      </label>
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        종료일 (비우면 계속)
+                        <input type="date" name="expiresAt" defaultValue={p.expiresAt ?? ""} className={inputCls} />
+                      </label>
+                    </div>
+                    <div className="flex items-end gap-2">
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        남은 횟수
+                        <input name="remaining" defaultValue={p.remaining} inputMode="numeric" className={inputCls} />
+                      </label>
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        총 횟수
+                        <input name="total" defaultValue={p.total} inputMode="numeric" className={inputCls} />
+                      </label>
+                      <label className="flex flex-1 items-center gap-1.5 pb-2 text-[11px] text-neutral-600">
+                        <input type="checkbox" name="monthly" defaultChecked={p.monthly} className="h-4 w-4" />
+                        매달 갱신
+                      </label>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="flex-1 rounded-lg bg-neutral-700 py-2 text-xs font-semibold text-white hover:bg-neutral-800">
+                        수정 저장
+                      </button>
+                      <button
+                        formAction={deletePassAction}
+                        className="rounded-lg border border-neutral-300 px-3 py-2 text-xs text-neutral-500 hover:border-red-300 hover:text-red-600"
+                      >
+                        삭제
+                      </button>
+                    </div>
+                  </form>
+                </details>
               );
             })}
           </div>
@@ -262,26 +308,67 @@ export default async function MemberDetail({
         ) : (
           <ul className="divide-y divide-neutral-100 text-sm">
             {payments.map((x) => (
-              <li key={x.id} className="flex items-start justify-between gap-2 py-2">
-                <div>
-                  <div className="font-medium text-neutral-900">{x.product}</div>
-                  <div className="text-[11px] text-neutral-500">
-                    결제 {x.paidAt.slice(2).replace(/-/g, ".")}
-                    {x.startsAt && ` · 시작 ${x.startsAt.slice(5).replace("-", "/")}`}
-                    {x.endsAt && ` · 종료 ${x.endsAt.slice(5).replace("-", "/")}`}
-                    {x.method && ` · ${x.method}`}
-                  </div>
-                </div>
-                <div className="flex shrink-0 items-center gap-2">
-                  <span className="tabular-nums font-semibold text-neutral-800">
-                    {x.amount.toLocaleString()}원
-                  </span>
-                  <form action={deletePaymentAction}>
+              <li key={x.id} className="py-2">
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-2">
+                    <div>
+                      <div className="font-medium text-neutral-900">{x.product}</div>
+                      <div className="text-[11px] text-neutral-500">
+                        결제 {x.paidAt.slice(2).replace(/-/g, ".")}
+                        {x.startsAt && ` · 시작 ${x.startsAt.slice(5).replace("-", "/")}`}
+                        {x.endsAt && ` · 종료 ${x.endsAt.slice(5).replace("-", "/")}`}
+                        {x.method && ` · ${x.method}`}
+                      </div>
+                    </div>
+                    <span className="shrink-0 tabular-nums font-semibold text-neutral-800">
+                      {x.amount.toLocaleString()}원
+                      <span className="ml-1.5 text-[11px] font-normal text-neutral-400 group-open:hidden">수정</span>
+                    </span>
+                  </summary>
+
+                  <form action={updatePaymentAction} className="mt-2 space-y-2 rounded-lg bg-neutral-50 p-2.5">
                     <input type="hidden" name="paymentId" value={x.id} />
                     <input type="hidden" name="memberId" value={member.id} />
-                    <button className="text-[11px] text-neutral-400 hover:text-red-600">삭제</button>
+                    <div className="flex gap-2">
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        결제일
+                        <input type="date" name="paidAt" defaultValue={x.paidAt} className={inputCls} />
+                      </label>
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        금액
+                        <input name="amount" defaultValue={x.amount} inputMode="numeric" className={inputCls} />
+                      </label>
+                    </div>
+                    <div className="flex gap-2">
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        시작일
+                        <input type="date" name="startsAt" defaultValue={x.startsAt ?? ""} className={inputCls} />
+                      </label>
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        종료일
+                        <input type="date" name="endsAt" defaultValue={x.endsAt ?? ""} className={inputCls} />
+                      </label>
+                      <label className="flex-1 text-[11px] text-neutral-500">
+                        수단
+                        <select name="method" className={inputCls} defaultValue={x.method ?? "카드"}>
+                          {PAY_METHODS.map((m) => <option key={m}>{m}</option>)}
+                        </select>
+                      </label>
+                    </div>
+                    <input name="memo" defaultValue={x.memo ?? ""} placeholder="메모 (예: 3개월 선결제)" className={inputCls} />
+                    <div className="flex gap-2">
+                      <button className="flex-1 rounded-lg bg-neutral-700 py-2 text-xs font-semibold text-white hover:bg-neutral-800">
+                        수정 저장
+                      </button>
+                      <button
+                        formAction={deletePaymentAction}
+                        className="rounded-lg border border-neutral-300 px-3 py-2 text-xs text-neutral-500 hover:border-red-300 hover:text-red-600"
+                      >
+                        삭제
+                      </button>
+                    </div>
                   </form>
-                </div>
+                </details>
               </li>
             ))}
           </ul>

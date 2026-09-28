@@ -546,6 +546,31 @@ export async function issuePass(
   }));
   return passId;
 }
+/**
+ * 발급된 수강권 고치기.
+ * 기존 회원을 옮길 때 날짜를 잘못 넣는 일이 잦아서, 지우고 다시 만들지 않아도
+ * 되도록 열어둔다. 넘기지 않은 항목은 건드리지 않는다.
+ */
+export async function updatePass(
+  passId: string,
+  patch: { remaining?: number; total?: number; monthly?: boolean; periodStart?: string | null; expiresAt?: string | null }
+): Promise<void> {
+  const row: Record<string, unknown> = {};
+  if (patch.total !== undefined) row.total = patch.total;
+  if (patch.remaining !== undefined) row.remaining = patch.remaining;
+  if (patch.monthly !== undefined) row.monthly = patch.monthly;
+  if (patch.periodStart !== undefined) row.period_start = patch.periodStart;
+  if (patch.expiresAt !== undefined) row.expires_at = patch.expiresAt;
+  if (Object.keys(row).length === 0) return;
+  assertOk("수강권 수정", await supabaseAdmin().from("passes").update(row).eq("id", passId));
+}
+
+export async function deletePass(passId: string): Promise<void> {
+  // 이 수강권으로 잡힌 예약의 연결만 끊는다 — 예약 자체는 남긴다.
+  await supabaseAdmin().from("reservations").update({ pass_id: null }).eq("pass_id", passId);
+  assertOk("수강권 삭제", await supabaseAdmin().from("passes").delete().eq("id", passId));
+}
+
 export async function addSlot(branch: Branch, program: ProgramName, dayOfWeek: number, time: string): Promise<void> {
   const sb = supabaseAdmin();
   const { data: dup } = await sb.from("slots").select("id").eq("branch", branch).eq("day_of_week", dayOfWeek).eq("time", time).is("date", null).maybeSingle();

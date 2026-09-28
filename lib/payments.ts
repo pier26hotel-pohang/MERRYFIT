@@ -68,6 +68,24 @@ export async function listPayments(memberId: string): Promise<Payment[]> {
   return (data ?? []).map(map);
 }
 
+/** 결제 기록 고치기. 넘기지 않은 항목은 그대로 둔다. */
+export async function updatePayment(
+  id: string,
+  patch: Partial<Pick<Payment, "product" | "amount" | "paidAt" | "startsAt" | "endsAt" | "method" | "memo">>
+): Promise<void> {
+  const row: Record<string, unknown> = {};
+  if (patch.product !== undefined) row.product = patch.product;
+  if (patch.amount !== undefined) row.amount = patch.amount;
+  if (patch.paidAt !== undefined) row.paid_at = patch.paidAt;
+  if (patch.startsAt !== undefined) row.starts_at = patch.startsAt || null;
+  if (patch.endsAt !== undefined) row.ends_at = patch.endsAt || null;
+  if (patch.method !== undefined) row.method = patch.method || null;
+  if (patch.memo !== undefined) row.memo = patch.memo || null;
+  if (Object.keys(row).length === 0) return;
+  const { error } = await supabaseAdmin().from("payments").update(row).eq("id", id);
+  if (error) throw new Error(`결제 기록 수정 실패: ${error.message}`);
+}
+
 export async function deletePayment(id: string): Promise<void> {
   const { error } = await supabaseAdmin().from("payments").delete().eq("id", id);
   if (error) throw new Error(`결제 기록 삭제 실패: ${error.message}`);

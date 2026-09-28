@@ -8,7 +8,7 @@ import * as consult from "./consult";
 import { Branch, ProgramName, PassScope, DEFAULT_BRANCH } from "./types";
 import { MIN_PASSWORD, MIN_STAFF_PASSWORD } from "./password";
 import { findProduct, isUnlimited } from "./passes";
-import { addPayment, deletePayment } from "./payments";
+import { addPayment, deletePayment, updatePayment } from "./payments";
 import { ADMIN_ID, ADMIN_PW, FIXED_ADMIN_ENABLED, ADMIN_COOKIE, MEMBER_COOKIE, STAFF_COOKIE, currentMemberId } from "./auth";
 
 const YEAR = 60 * 60 * 24 * 30;
@@ -337,6 +337,61 @@ export async function issuePassAction(formData: FormData) {
     }
   }
   revalidatePath("/admin");
+  revalidatePath(`/admin/member/${memberId}`);
+}
+
+// 숫자 입력칸에 "170,000원" 처럼 들어와도 받아준다.
+function wonToNumber(raw: string): number | undefined {
+  const digits = raw.replace(/[^0-9]/g, "");
+  return digits === "" ? undefined : Number(digits);
+}
+
+export async function updatePassAction(formData: FormData) {
+  const passId = String(formData.get("passId"));
+  const memberId = String(formData.get("memberId"));
+  if (!passId) return;
+
+  const num = (k: string) => wonToNumber(String(formData.get(k) ?? ""));
+  // 날짜는 비워서 저장하는 것도 뜻이 있다 (종료일 없음 = 계속). null 로 넘긴다.
+  const dateOrNull = (k: string) => {
+    const v = String(formData.get(k) ?? "").trim();
+    return v === "" ? null : v;
+  };
+
+  await store.updatePass(passId, {
+    remaining: num("remaining"),
+    total: num("total"),
+    monthly: formData.get("monthly") === "on",
+    periodStart: dateOrNull("periodStart"),
+    expiresAt: dateOrNull("expiresAt"),
+  });
+  revalidatePath(`/admin/member/${memberId}`);
+  revalidatePath("/admin");
+}
+
+export async function deletePassAction(formData: FormData) {
+  const passId = String(formData.get("passId"));
+  const memberId = String(formData.get("memberId"));
+  if (passId) await store.deletePass(passId);
+  revalidatePath(`/admin/member/${memberId}`);
+  revalidatePath("/admin");
+}
+
+export async function updatePaymentAction(formData: FormData) {
+  const id = String(formData.get("paymentId"));
+  const memberId = String(formData.get("memberId"));
+  if (!id) return;
+
+  const paidAt = String(formData.get("paidAt") ?? "").trim();
+  await updatePayment(id, {
+    amount: wonToNumber(String(formData.get("amount") ?? "")),
+    // 결제일은 비울 수 없다 — 비워서 보내면 그대로 둔다.
+    paidAt: paidAt || undefined,
+    startsAt: String(formData.get("startsAt") ?? "").trim(),
+    endsAt: String(formData.get("endsAt") ?? "").trim(),
+    method: String(formData.get("method") ?? "").trim(),
+    memo: String(formData.get("memo") ?? "").trim(),
+  });
   revalidatePath(`/admin/member/${memberId}`);
 }
 
