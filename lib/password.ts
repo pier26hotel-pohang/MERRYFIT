@@ -20,3 +20,5 @@ export function passwordMatches(password: string, storedHash: string, salt: stri
 
 // 최소 길이. 현장에서 쓰는 계정이라 너무 빡빡하게 두지 않는다.
 export const MIN_PASSWORD = 4;
+// 관리자·강사 계정은 회원 전체의 개인정보와 결제 내역을 볼 수 있으므로 더 길게 받는다.
+export const MIN_STAFF_PASSWORD = 8;

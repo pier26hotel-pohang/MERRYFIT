@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { createFirstAdminAction } from "@/lib/actions";
 import { adminAccountExists } from "@/lib/staff";
 import { FIXED_ADMIN_ENABLED } from "@/lib/auth";
-import { MIN_PASSWORD } from "@/lib/password";
+import { MIN_STAFF_PASSWORD } from "@/lib/password";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +22,7 @@ export default async function SetupAdminPage({
   const { e } = await searchParams;
   const error =
     e === "input" ? "이름과 아이디를 모두 입력해 주세요."
-    : e === "pw" ? `비밀번호는 ${MIN_PASSWORD}자 이상으로 정해 주세요.`
+    : e === "pw" ? `비밀번호는 ${MIN_STAFF_PASSWORD}자 이상으로 정해 주세요.`
     : e === "match" ? "비밀번호 확인이 일치하지 않습니다."
     : e === "dup" ? "이미 쓰이고 있는 아이디입니다."
     : e === "taken" ? "이미 관리자 계정이 만들어졌습니다."
@@ -65,7 +65,7 @@ export default async function SetupAdminPage({
           id="s-pw"
           name="password"
           type="password"
-          placeholder={`비밀번호 (${MIN_PASSWORD}자 이상)`}
+          placeholder={`비밀번호 (${MIN_STAFF_PASSWORD}자 이상)`}
           className={input}
           autoComplete="new-password"
           required

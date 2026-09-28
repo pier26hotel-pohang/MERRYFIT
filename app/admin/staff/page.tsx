@@ -9,6 +9,7 @@ import {
 } from "@/lib/actions";
 import * as staff from "@/lib/staff";
 import { BRANCH_LABEL } from "@/lib/types";
+import { MIN_STAFF_PASSWORD } from "@/lib/password";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +47,7 @@ export default async function AdminStaffPage({
       )}
       {e === "input" && (
         <p className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">
-          이름 · 아이디는 필수이고, 비밀번호는 4자 이상이어야 합니다.
+          이름 · 아이디는 필수이고, 비밀번호는 {MIN_STAFF_PASSWORD}자 이상이어야 합니다.
         </p>
       )}
       {ok && (
@@ -65,7 +66,7 @@ export default async function AdminStaffPage({
           </div>
           <div className="grid grid-cols-2 gap-2">
             <input name="loginId" placeholder="로그인 아이디 (영문·숫자)" className={input} required />
-            <input name="password" type="text" placeholder="초기 비밀번호 (4자 이상)" className={input} required />
+            <input name="password" type="text" placeholder={`초기 비밀번호 (${MIN_STAFF_PASSWORD}자 이상)`} className={input} required />
           </div>
           <div className="grid grid-cols-2 gap-2">
             <select name="branch" className={input} defaultValue="1호점">

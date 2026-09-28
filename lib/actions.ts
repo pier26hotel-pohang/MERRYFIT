@@ -6,8 +6,9 @@ import * as store from "./store";
 import * as staff from "./staff";
 import * as consult from "./consult";
 import { Branch, ProgramName, PassScope, DEFAULT_BRANCH } from "./types";
-import { MIN_PASSWORD } from "./password";
+import { MIN_PASSWORD, MIN_STAFF_PASSWORD } from "./password";
 import { findProduct, isUnlimited } from "./passes";
+import { addPayment, deletePayment } from "./payments";
 import { ADMIN_ID, ADMIN_PW, FIXED_ADMIN_ENABLED, ADMIN_COOKIE, MEMBER_COOKIE, STAFF_COOKIE, currentMemberId } from "./auth";
 
 const YEAR = 60 * 60 * 24 * 30;
@@ -166,7 +167,7 @@ export async function createFirstAdminAction(formData: FormData) {
   const password2 = String(formData.get("password2") ?? "");
 
   if (!name || !loginId) redirect("/setup-admin?e=input");
-  if (password.length < MIN_PASSWORD) redirect("/setup-admin?e=pw");
+  if (password.length < MIN_STAFF_PASSWORD) redirect("/setup-admin?e=pw");
   if (password !== password2) redirect("/setup-admin?e=match");
 
   let id: string;
@@ -212,7 +213,7 @@ export async function addInstructorAction(formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
   const loginId = String(formData.get("loginId") ?? "").trim();
   const password = String(formData.get("password") ?? "").trim();
-  if (!name || !loginId || password.length < 4) redirect("/admin/staff?e=input");
+  if (!name || !loginId || password.length < MIN_STAFF_PASSWORD) redirect("/admin/staff?e=input");
   try {
     await staff.addInstructor({
       name,
@@ -313,9 +314,36 @@ export async function issuePassAction(formData: FormData) {
 
   // 무제한권은 횟수가 0이어도 발급된다.
   if (memberId && type && (isUnlimited(type) || total > 0)) {
-    await store.issuePass(memberId, type, total, scope, { monthly, periodStart, expiresAt });
+    const passId = await store.issuePass(memberId, type, total, scope, { monthly, periodStart, expiresAt });
+
+    // 결제 정보를 같이 적었으면 이력으로 남긴다. 금액을 비우면 상품 정가를 쓴다.
+    const paidAt = String(formData.get("paidAt") ?? "").trim();
+    if (paidAt) {
+      const raw = String(formData.get("amount") ?? "").trim();
+      const amount = raw ? Number(raw.replace(/[^0-9]/g, "")) : (product?.price ?? 0);
+      try {
+        await addPayment({
+          memberId, passId, product: type,
+          amount: Number.isFinite(amount) ? amount : 0,
+          paidAt,
+          startsAt: periodStart || paidAt,
+          endsAt: expiresAt,
+          method: String(formData.get("method") ?? "").trim() || undefined,
+        });
+      } catch (err) {
+        // 결제 기록이 실패해도 수강권 발급 자체는 살린다.
+        console.error("[issuePass] 결제 기록", err);
+      }
+    }
   }
   revalidatePath("/admin");
+  revalidatePath(`/admin/member/${memberId}`);
+}
+
+export async function deletePaymentAction(formData: FormData) {
+  const id = String(formData.get("paymentId"));
+  const memberId = String(formData.get("memberId"));
+  if (id) await deletePayment(id);
   revalidatePath(`/admin/member/${memberId}`);
 }
 

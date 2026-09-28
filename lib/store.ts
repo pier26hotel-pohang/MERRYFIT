@@ -534,15 +534,17 @@ export async function setMemberMemo(memberId: string, memo: string): Promise<voi
 export async function issuePass(
   memberId: string, type: string, total: number, scope: PassScope,
   opts?: { monthly?: boolean; periodStart?: string; expiresAt?: string }
-): Promise<void> {
+): Promise<string> {
   const monthly = opts?.monthly ?? false;
+  const passId = uid("p");
   assertOk("수강권 발급", await supabaseAdmin().from("passes").insert({
-    id: uid("p"), member_id: memberId, type, total, remaining: total, scope,
+    id: passId, member_id: memberId, type, total, remaining: total, scope,
     monthly,
     // 정기권은 발급일이 곧 매달 갱신일이 된다.
     period_start: monthly ? (opts?.periodStart || todayISO()) : null,
     expires_at: opts?.expiresAt || null,
   }));
+  return passId;
 }
 export async function addSlot(branch: Branch, program: ProgramName, dayOfWeek: number, time: string): Promise<void> {
   const sb = supabaseAdmin();
