@@ -7,12 +7,14 @@ import {
   attendedCount,
   upcomingReservations,
   reservationsWithSlot,
+  todayISO,
   DOW_LABEL,
 } from "@/lib/store";
 import { setMemoAction, issuePassAction, setCafe24IdAction, syncPointsAction } from "@/lib/actions";
 import { cafe24Status } from "@/lib/cafe24";
 import { BRANCH_LABEL } from "@/lib/types";
 import { tierFor } from "@/lib/points";
+import { PASS_PRODUCTS, effectiveRemaining, isExpired, isUnlimited, nextRenewal } from "@/lib/passes";
 import { CancelButton } from "@/components/CancelButton";
 
 export const dynamic = "force-dynamic";
@@ -49,6 +51,7 @@ export default async function MemberDetail({
     .filter((x) => x.r.status === "attended")
     .sort((a, b) => (b.r.date + b.slot.time).localeCompare(a.r.date + a.slot.time));
 
+  const today = todayISO();
   const pendingPoints = member.points - (member.pointsSynced ?? 0);
   const cafe24 = cafe24Status();
 
@@ -154,20 +157,61 @@ export default async function MemberDetail({
           <p className="text-sm text-neutral-400">없음</p>
         ) : (
           <div className="mb-3 space-y-1 text-sm">
-            {passes.map((p) => (
-              <div key={p.id} className="flex justify-between">
-                <span>{p.type} <span className="text-neutral-400">({scopeLabel(p.scope)})</span></span>
-                <span className="text-neutral-500">{p.remaining}/{p.total}</span>
-              </div>
-            ))}
+            {passes.map((p) => {
+              const expired = isExpired(p, today);
+              const unlimited = isUnlimited(p.type);
+              return (
+                <div key={p.id} className="flex items-start justify-between gap-2">
+                  <div>
+                    <span className={expired ? "text-neutral-400 line-through" : ""}>{p.type}</span>{" "}
+                    <span className="text-neutral-400">({scopeLabel(p.scope)})</span>
+                    {p.monthly && p.periodStart && !expired && (
+                      <div className="text-[11px] text-emerald-700">
+                        매달 갱신 · 다음 {nextRenewal(p.periodStart, today).slice(5).replace("-", "/")}
+                        {p.expiresAt && ` · ${p.expiresAt.slice(5).replace("-", "/")} 종료`}
+                      </div>
+                    )}
+                    {expired && <div className="text-[11px] text-neutral-400">{p.expiresAt} 만료됨</div>}
+                  </div>
+                  <span className="shrink-0 text-neutral-500">
+                    {expired ? "-" : unlimited ? "무제한" : `${effectiveRemaining(p, today)}/${p.total}`}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         )}
         <form action={issuePassAction} className="space-y-2 border-t border-neutral-100 pt-3">
           <input type="hidden" name="memberId" value={member.id} />
           <div className="text-xs text-neutral-500">수강권 추가 발급</div>
-          <input name="type" placeholder="예: 자유수강권 20회" className={inputCls} required />
+          <select name="product" className={inputCls} defaultValue={PASS_PRODUCTS[2].type}>
+            {PASS_PRODUCTS.map((pr) => (
+              <option key={pr.type} value={pr.type}>
+                {pr.type} · {pr.count === 0 ? "무제한" : `${pr.count}회`} · {(pr.price / 10000).toLocaleString()}만원
+                {pr.monthly ? " (매달 갱신)" : ""}
+              </option>
+            ))}
+            <option value="custom">직접 입력</option>
+          </select>
           <div className="flex gap-2">
-            <input type="number" name="total" placeholder="총 횟수" className={inputCls} required min={1} />
+            <input name="type" placeholder="직접 입력 시 이름" className={inputCls} />
+            <input type="number" name="total" placeholder="횟수" className={inputCls} min={0} />
+          </div>
+          <label className="flex items-center gap-2 text-xs text-neutral-600">
+            <input type="checkbox" name="monthly" className="h-4 w-4" />
+            직접 입력한 수강권도 매달 갱신하기
+          </label>
+          <div className="flex gap-2">
+            <label className="flex-1 text-[11px] text-neutral-500">
+              갱신 기준일 (비우면 오늘)
+              <input type="date" name="periodStart" className={inputCls} />
+            </label>
+            <label className="flex-1 text-[11px] text-neutral-500">
+              종료일 (비우면 계속)
+              <input type="date" name="expiresAt" className={inputCls} />
+            </label>
+          </div>
+          <div className="flex gap-2">
             <select name="scope" className={inputCls} defaultValue="both">
               <option value="both">두 지점 공용</option>
               <option value="1호점">{BRANCH_LABEL["1호점"]} 전용</option>

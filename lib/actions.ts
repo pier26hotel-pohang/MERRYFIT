@@ -7,6 +7,7 @@ import * as staff from "./staff";
 import * as consult from "./consult";
 import { Branch, ProgramName, PassScope, DEFAULT_BRANCH } from "./types";
 import { MIN_PASSWORD } from "./password";
+import { findProduct, isUnlimited } from "./passes";
 import { ADMIN_ID, ADMIN_PW, FIXED_ADMIN_ENABLED, ADMIN_COOKIE, MEMBER_COOKIE, STAFF_COOKIE, currentMemberId } from "./auth";
 
 const YEAR = 60 * 60 * 24 * 30;
@@ -297,10 +298,23 @@ export async function addMemberAction(formData: FormData) {
 
 export async function issuePassAction(formData: FormData) {
   const memberId = String(formData.get("memberId"));
-  const type = String(formData.get("type")).trim();
-  const total = Number(formData.get("total"));
   const scope = (String(formData.get("scope")) || "both") as PassScope;
-  if (memberId && type && total > 0) await store.issuePass(memberId, type, total, scope);
+
+  // 판매 중인 상품을 고르면 이름·횟수·정기 여부가 자동으로 정해진다.
+  // "직접 입력"일 때만 아래 값들을 쓴다.
+  const picked = String(formData.get("product") ?? "");
+  const product = picked && picked !== "custom" ? findProduct(picked) : undefined;
+
+  const type = product ? product.type : String(formData.get("type") ?? "").trim();
+  const total = product ? product.count : Number(formData.get("total") ?? 0);
+  const monthly = product ? product.monthly : formData.get("monthly") === "on";
+  const periodStart = String(formData.get("periodStart") ?? "").trim() || undefined;
+  const expiresAt = String(formData.get("expiresAt") ?? "").trim() || undefined;
+
+  // 무제한권은 횟수가 0이어도 발급된다.
+  if (memberId && type && (isUnlimited(type) || total > 0)) {
+    await store.issuePass(memberId, type, total, scope, { monthly, periodStart, expiresAt });
+  }
   revalidatePath("/admin");
   revalidatePath(`/admin/member/${memberId}`);
 }

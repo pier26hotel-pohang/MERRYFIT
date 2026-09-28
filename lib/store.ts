@@ -5,7 +5,11 @@ import { supabaseAdmin } from "./supabase";
 import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, DEFAULT_BRANCH, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
 import { makePasswordRecord, passwordMatches } from "./password";
 import { DOW_LABEL, WEEK_ORDER } from "./week-constants";
-import { tierFor, isUnlimitedPass } from "./points";
+import { tierFor } from "./points";
+import {
+  effectiveRemaining, isExpired, isUnlimited, canUse, needsRollover,
+  currentPeriodStart, nextRenewal,
+} from "./passes";
 export { DOW_LABEL, WEEK_ORDER };
 
 function uid(prefix: string): string {
@@ -103,7 +107,12 @@ function mapMember(r: any): Member {
   };
 }
 function mapPass(r: any): Pass {
-  return { id: r.id, memberId: r.member_id, type: r.type, total: r.total, remaining: r.remaining, scope: r.scope };
+  return {
+    id: r.id, memberId: r.member_id, type: r.type, total: r.total, remaining: r.remaining, scope: r.scope,
+    monthly: Boolean(r.monthly),
+    periodStart: r.period_start ?? undefined,
+    expiresAt: r.expires_at ?? undefined,
+  };
 }
 function mapSlot(r: any): ScheduleSlot {
   return { id: r.id, branch: r.branch, program: r.program, dayOfWeek: r.day_of_week, time: r.time, capacity: r.capacity, date: r.date ?? undefined };
@@ -148,8 +157,28 @@ export function getMemberByPhone(db: DB, phone: string): Member | undefined {
 export function memberPasses(db: DB, memberId: string): Pass[] {
   return db.passes.filter((p) => p.memberId === memberId);
 }
+// 지금 실제로 쓸 수 있는 횟수. 정기권은 갱신일이 지났으면 채워진 값으로 센다.
 export function memberRemaining(db: DB, memberId: string): number {
-  return db.passes.filter((p) => p.memberId === memberId).reduce((s, p) => s + p.remaining, 0);
+  const today = todayISO();
+  return db.passes
+    .filter((p) => p.memberId === memberId && !isUnlimited(p.type))
+    .reduce((s, p) => s + effectiveRemaining(p, today), 0);
+}
+
+/** 무제한권을 가지고 있는가 — 잔여 횟수 대신 "무제한"으로 보여주기 위해 */
+export function hasUnlimited(db: DB, memberId: string): boolean {
+  const today = todayISO();
+  return db.passes.some((p) => p.memberId === memberId && isUnlimited(p.type) && !isExpired(p, today));
+}
+
+/** 다음 갱신일이 가장 가까운 정기권 (회원 화면 안내용) */
+export function nextRenewalInfo(db: DB, memberId: string): { date: string; type: string } | null {
+  const today = todayISO();
+  const rows = db.passes
+    .filter((p) => p.memberId === memberId && p.monthly && p.periodStart && !isExpired(p, today))
+    .map((p) => ({ date: nextRenewal(p.periodStart!, today), type: p.type }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+  return rows[0] ?? null;
 }
 export function attendedCount(db: DB, memberId: string): number {
   return db.reservations.filter((r) => r.memberId === memberId && r.status === "attended").length;
@@ -195,7 +224,7 @@ export function adminStats(db: DB) {
   const today = todayISO();
   const monday = mondayOfWeek(0);
   const sunday = new Date(monday);
-  sunday.setDate(sunday.getDate() + 6);
+  sunday.setUTCDate(sunday.getUTCDate() + 6); // mondayOfWeek 는 UTC 필드에 한국 날짜를 담는다
   const weekStart = toISO(monday);
   const weekEnd = toISO(sunday);
   const active = db.reservations.filter((r) => r.status !== "cancelled");
@@ -203,7 +232,7 @@ export function adminStats(db: DB) {
     members: db.members.length,
     todayBooked: active.filter((r) => r.date === today).length,
     weekAttended: db.reservations.filter((r) => r.status === "attended" && r.date >= weekStart && r.date <= weekEnd).length,
-    totalRemaining: db.passes.reduce((s, p) => s + p.remaining, 0),
+    totalRemaining: db.passes.reduce((s, p) => s + (isUnlimited(p.type) ? 0 : effectiveRemaining(p, today)), 0),
   };
 }
 
@@ -218,13 +247,48 @@ export async function book(slotId: string, memberId: string, date: string): Prom
   const ex = existing ?? [];
   if (ex.some((r) => r.member_id === memberId)) return { ok: false, msg: "이미 예약함" };
   if (ex.length >= slot.capacity) return { ok: false, msg: "정원 마감" };
-  const { data: passes } = await sb.from("passes").select("*").eq("member_id", memberId).gt("remaining", 0);
-  const eligible = (passes ?? [])
-    .filter((p) => p.scope === "both" || p.scope === slot.branch)
-    .sort((a, b) => (a.scope === "both" ? 1 : 0) - (b.scope === "both" ? 1 : 0));
-  const pass = eligible[0];
-  if (!pass) return { ok: false, msg: `${BRANCH_LABEL[slot.branch as Branch] ?? slot.branch}에서 쓸 수 있는 잔여가 없어요.` };
-  assertOk("수강권 차감", await sb.from("passes").update({ remaining: pass.remaining - 1 }).eq("id", pass.id));
+  // 정기권은 갱신일이 지났으면 횟수가 채워진 것으로 본다 (DB 는 아래에서 맞춘다).
+  const today = todayISO();
+  const { data: passes } = await sb.from("passes").select("*").eq("member_id", memberId);
+  const usable = (passes ?? [])
+    .map((p) => ({
+      row: p,
+      pass: {
+        type: p.type, total: p.total, remaining: p.remaining,
+        monthly: Boolean(p.monthly),
+        periodStart: p.period_start ?? undefined,
+        expiresAt: p.expires_at ?? undefined,
+      },
+    }))
+    .filter((x) => (x.row.scope === "both" || x.row.scope === slot.branch) && canUse(x.pass, today))
+    // 지점 전용권을 먼저 쓰고 공용권을 아낀다. 무제한권은 횟수가 안 줄어드니 맨 뒤로.
+    .sort((a, b) =>
+      (isUnlimited(a.pass.type) ? 1 : 0) - (isUnlimited(b.pass.type) ? 1 : 0) ||
+      (a.row.scope === "both" ? 1 : 0) - (b.row.scope === "both" ? 1 : 0)
+    );
+
+  const chosen = usable[0];
+  if (!chosen) {
+    const label = BRANCH_LABEL[slot.branch as Branch] ?? slot.branch;
+    return { ok: false, msg: `${label}에서 쓸 수 있는 잔여가 없어요.` };
+  }
+  const pass = chosen.row;
+
+  if (isUnlimited(chosen.pass.type)) {
+    // 무제한권은 횟수를 줄이지 않는다. 주기만 최신으로 맞춰둔다.
+    if (needsRollover(chosen.pass, today)) {
+      assertOk("정기권 갱신", await sb.from("passes")
+        .update({ period_start: currentPeriodStart(chosen.pass.periodStart!, today) }).eq("id", pass.id));
+    }
+  } else if (needsRollover(chosen.pass, today)) {
+    // 갱신일이 지났다 — 이번 주기로 넘기면서 한 번 차감한다.
+    assertOk("정기권 갱신", await sb.from("passes").update({
+      period_start: currentPeriodStart(chosen.pass.periodStart!, today),
+      remaining: pass.total - 1,
+    }).eq("id", pass.id));
+  } else {
+    assertOk("수강권 차감", await sb.from("passes").update({ remaining: pass.remaining - 1 }).eq("id", pass.id));
+  }
   assertOk("예약 등록", await sb.from("reservations").insert({ id: uid("r"), slot_id: slotId, member_id: memberId, date, status: "booked", pass_id: pass.id }));
   return { ok: true, msg: "예약 완료" };
 }
@@ -242,8 +306,11 @@ export async function cancel(reservationId: string): Promise<{ ok: boolean; msg:
     passId = anyPass?.id;
   }
   if (passId) {
-    const { data: p } = await sb.from("passes").select("remaining").eq("id", passId).maybeSingle();
-    if (p) assertOk("수강권 복구", await sb.from("passes").update({ remaining: p.remaining + 1 }).eq("id", passId));
+    const { data: p } = await sb.from("passes").select("type,remaining,total").eq("id", passId).maybeSingle();
+    // 무제한권은 애초에 차감하지 않았으므로 되돌릴 것도 없다.
+    if (p && !isUnlimited(p.type)) {
+      assertOk("수강권 복구", await sb.from("passes").update({ remaining: Math.min(p.remaining + 1, p.total) }).eq("id", passId));
+    }
   }
   return { ok: true, msg: "예약이 취소되었습니다." };
 }
@@ -259,7 +326,7 @@ export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg
   let unlimited = false;
   if (r.pass_id) {
     const { data: p } = await sb.from("passes").select("type").eq("id", r.pass_id).maybeSingle();
-    unlimited = isUnlimitedPass(p?.type);
+    unlimited = isUnlimited(p?.type);
   }
 
   // 요율은 "회원이 속한 지점"을 따른다 — 북구점 신규 고객과 남구점 기존 고객의
@@ -464,8 +531,18 @@ export async function rejectPointRequest(requestId: string, memo?: string): Prom
 export async function setMemberMemo(memberId: string, memo: string): Promise<void> {
   assertOk("메모 저장", await supabaseAdmin().from("members").update({ memo }).eq("id", memberId));
 }
-export async function issuePass(memberId: string, type: string, total: number, scope: PassScope): Promise<void> {
-  assertOk("수강권 발급", await supabaseAdmin().from("passes").insert({ id: uid("p"), member_id: memberId, type, total, remaining: total, scope }));
+export async function issuePass(
+  memberId: string, type: string, total: number, scope: PassScope,
+  opts?: { monthly?: boolean; periodStart?: string; expiresAt?: string }
+): Promise<void> {
+  const monthly = opts?.monthly ?? false;
+  assertOk("수강권 발급", await supabaseAdmin().from("passes").insert({
+    id: uid("p"), member_id: memberId, type, total, remaining: total, scope,
+    monthly,
+    // 정기권은 발급일이 곧 매달 갱신일이 된다.
+    period_start: monthly ? (opts?.periodStart || todayISO()) : null,
+    expires_at: opts?.expiresAt || null,
+  }));
 }
 export async function addSlot(branch: Branch, program: ProgramName, dayOfWeek: number, time: string): Promise<void> {
   const sb = supabaseAdmin();

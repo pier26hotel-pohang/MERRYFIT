@@ -42,6 +42,9 @@ export interface Pass {
   total: number;
   remaining: number;
   scope: PassScope; // both = 두 지점 공용
+  monthly: boolean; // 매달 횟수가 다시 채워지는 정기권
+  periodStart?: string; // 이번 주기 시작일 (매달 이 날 갱신)
+  expiresAt?: string; // 정기권 종료일. 없으면 해지할 때까지 계속
 }
 
 // 시간표 슬롯. date 가 없으면 '매주 반복', 있으면 그 날짜 1회성.

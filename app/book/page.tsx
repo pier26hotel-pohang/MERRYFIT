@@ -6,6 +6,8 @@ import {
   loadSnapshot,
   getMember,
   memberRemaining,
+  hasUnlimited,
+  nextRenewalInfo,
   attendedCount,
   distinctTimes,
   slotForCell,
@@ -88,13 +90,25 @@ export default async function MemberHome({
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
             <div className="text-xs text-emerald-100">잔여 횟수</div>
-            <div className="text-base font-bold">{memberRemaining(db, member.id)}회</div>
+            <div className="text-base font-bold">
+              {hasUnlimited(db, member.id) ? "무제한" : `${memberRemaining(db, member.id)}회`}
+            </div>
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
             <div className="text-xs text-emerald-100">출석</div>
             <div className="text-base font-bold">{attendedCount(db, member.id)}회</div>
           </div>
         </div>
+
+        {(() => {
+          const r = nextRenewalInfo(db, member.id);
+          if (!r) return null;
+          return (
+            <p className="mt-2.5 text-center text-[11px] text-emerald-100/80">
+              {r.type} · {r.date.slice(5).replace("-", "월 ")}일에 횟수가 다시 채워져요
+            </p>
+          );
+        })()}
 
         {/* 적립 등급 — 많이 나올수록 1회 적립금이 올라간다 */}
         {(() => {

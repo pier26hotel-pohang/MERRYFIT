@@ -42,20 +42,6 @@ export function withinMonthlyCap(attendsThisMonth: number): boolean {
   return MONTHLY_POINT_CAP === 0 || attendsThisMonth <= MONTHLY_POINT_CAP;
 }
 
-/**
- * 무제한권으로 들은 수업은 적립하지 않는다.
- * 무제한권은 많이 나올수록 회당 단가가 내려가는데 적립까지 붙으면
- * 회비보다 적립금이 커지는 구간이 생긴다.
- *
- * 수강권 이름은 관리자가 직접 입력하므로 한글·영문 표기를 모두 본다.
- * ("무제한", "루틴패스 Unlimited" 등)
- */
-export function isUnlimitedPass(passType: string | null | undefined): boolean {
-  if (!passType) return false;
-  const t = passType.toLowerCase();
-  return t.includes("무제한") || t.includes("unlimited");
-}
-
 function tiers(branch: Branch): PointTier[] {
   return BRANCH_TIERS[branch] ?? BRANCH_TIERS["2호점"];
 }
