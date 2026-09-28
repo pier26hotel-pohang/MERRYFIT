@@ -25,6 +25,10 @@ export default async function SignupPage({
       {e === "dup" && (
         <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-center text-sm text-amber-700">
           이미 가입된 연락처예요. 로그인해주세요.
+          <br />
+          <span className="text-xs">
+            센터에 등록은 되어 있는데 가입이 안 된다면, 이름이 등록된 것과 다를 수 있어요. 센터로 연락 주세요.
+          </span>
         </p>
       )}
       {e === "save" && (

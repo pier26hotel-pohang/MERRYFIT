@@ -102,6 +102,7 @@ function mapMember(r: any): Member {
     address: r.address ?? undefined,
     createdAt: r.created_at ?? undefined,
     kakaoId: r.auth_user_id ?? undefined,
+    hasPassword: Boolean(r.password_hash),
     cafe24Id: r.cafe24_id ?? undefined,
     pointsSynced: r.points_synced ?? 0,
   };
@@ -435,6 +436,70 @@ export async function addMember(
 //   null  = 그런 연락처 없음
 //   "nopw" = 회원은 있는데 비밀번호가 설정되지 않음(카카오 가입자·기존 회원)
 //   "bad"  = 비밀번호 불일치
+/**
+ * 관리자가 미리 넣어둔 회원인가.
+ *
+ * 비밀번호도 없고 카카오 연결도 없으면, 아직 본인이 한 번도 로그인한 적 없는
+ * "대기" 상태로 본다. 이런 회원은 본인이 가입할 때 기존 기록을 그대로 이어받는다.
+ */
+export function isUnclaimed(m: Member): boolean {
+  return !m.hasPassword && !m.kakaoId;
+}
+
+const normName = (s: string) => s.replace(/\s+/g, "");
+
+/**
+ * 연락처로 대기 중인 회원을 찾는다.
+ * 이름까지 맞아야 한다 — 번호만 알면 남의 기록을 가져갈 수 있으면 안 된다.
+ */
+export function findClaimable(db: DB, phone: string, name: string): { member?: Member; taken: boolean } {
+  const m = getMemberByPhone(db, phone);
+  if (!m) return { taken: false };
+  if (!isUnclaimed(m)) return { taken: true };
+  return normName(m.name) === normName(name) ? { member: m, taken: false } : { taken: true };
+}
+
+/** 대기 중이던 회원을 본인이 이어받는다 — 수강권·적립금·결제 이력이 그대로 따라온다. */
+export async function claimMember(
+  memberId: string,
+  input: { password: string; birthdate?: string; address?: string; branch?: Branch }
+): Promise<void> {
+  const pw = makePasswordRecord(input.password);
+  const row: Record<string, unknown> = { password_hash: pw.hash, password_salt: pw.salt };
+  if (input.birthdate) row.birthdate = input.birthdate;
+  if (input.address) row.address = input.address;
+  if (input.branch) row.branch = input.branch;
+  assertOk("회원 이어받기", await supabaseAdmin().from("members").update(row).eq("id", memberId));
+}
+
+/** 카카오로 들어온 회원에게 연락처를 붙인다. */
+export async function setMemberPhone(memberId: string, phone: string): Promise<void> {
+  assertOk("연락처 저장", await supabaseAdmin().from("members").update({ phone }).eq("id", memberId));
+}
+
+/**
+ * 카카오로 새로 생긴 껍데기 회원을, 관리자가 미리 넣어둔 기존 회원에 붙인다.
+ * 껍데기 쪽에 딸린 게 있으면 먼저 옮기고 지운다.
+ */
+export async function mergeKakaoIntoMember(stubId: string, targetId: string, phone: string): Promise<void> {
+  const sb = supabaseAdmin();
+  const { data: stub } = await sb.from("members").select("auth_user_id,points").eq("id", stubId).maybeSingle();
+  if (!stub) return;
+
+  // 가입 직후 자동으로 들어간 체험권·예약이 있을 수 있다.
+  await sb.from("passes").update({ member_id: targetId }).eq("member_id", stubId);
+  await sb.from("reservations").update({ member_id: targetId }).eq("member_id", stubId);
+
+  const { data: target } = await sb.from("members").select("points").eq("id", targetId).maybeSingle();
+  assertOk("카카오 연결", await sb.from("members").update({
+    auth_user_id: stub.auth_user_id,
+    phone,
+    points: (target?.points ?? 0) + (stub.points ?? 0),
+  }).eq("id", targetId));
+
+  assertOk("임시 회원 정리", await sb.from("members").delete().eq("id", stubId));
+}
+
 export async function verifyMemberLogin(
   phone: string,
   password: string

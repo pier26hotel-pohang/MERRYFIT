@@ -28,6 +28,7 @@ export interface Member {
   address?: string; // 주소
   createdAt?: string; // 가입일 (관리자)
   kakaoId?: string; // 카카오 로그인 연결 (auth user id)
+  hasPassword?: boolean; // 본인이 비밀번호를 정했는가 (관리자가 미리 넣은 회원은 false)
   cafe24Id?: string; // 쇼핑몰(카페24) 회원아이디 — 적립금 자동 반영에 필요
   pointsSynced?: number; // points 중 이미 쇼핑몰에 올린 금액
 }

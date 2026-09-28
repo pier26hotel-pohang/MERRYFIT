@@ -46,7 +46,7 @@ export async function GET(req: Request) {
 
   const admin = supabaseAdmin();
   const { data: existing, error: findErr } = await admin
-    .from("members").select("id").eq("auth_user_id", user.id).maybeSingle();
+    .from("members").select("id,phone").eq("auth_user_id", user.id).maybeSingle();
   if (findErr) return fail(req, "db", findErr.message);
 
   let memberId = existing?.id as string | undefined;
@@ -70,5 +70,10 @@ export async function GET(req: Request) {
   }
 
   cookieStore.set(MEMBER_COOKIE, memberId, { httpOnly: true, path: "/", maxAge: 60 * 60 * 24 * 30 });
-  return NextResponse.redirect(new URL("/book", req.url));
+
+  // 카카오는 전화번호를 주지 않는다. 연락처가 없으면 한 번 받고 넘어간다 —
+  // 센터에서 전화를 걸 수 있어야 하고, 관리자가 미리 넣어둔 기존 회원과
+  // 이어붙이려면 번호가 있어야 한다.
+  const needsPhone = !existing || !String(existing.phone ?? "").trim();
+  return NextResponse.redirect(new URL(needsPhone ? "/welcome" : "/book", req.url));
 }

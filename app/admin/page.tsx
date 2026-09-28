@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  isUnclaimed,
   loadSnapshot,
   listMembers,
   memberRemaining,
@@ -278,8 +279,13 @@ export default async function AdminPage({
               <div key={m.id} className="border-b border-neutral-100 pb-4 last:border-0">
                 <div className="flex justify-between text-sm">
                   <Link href={`/admin/member/${m.id}`} className="font-medium text-emerald-700 hover:underline">
-                    {m.name} <span className="font-normal text-neutral-400">· {m.branch} ›</span>
+                    {m.name} <span className="font-normal text-neutral-400">· {BRANCH_LABEL[m.branch] ?? m.branch} ›</span>
                   </Link>
+                  {isUnclaimed(m) && (
+                    <span className="ml-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700">
+                      가입 대기
+                    </span>
+                  )}
                   <span className="text-neutral-500">잔여 {memberRemaining(db, m.id)}회 · {m.points.toLocaleString()}P</span>
                 </div>
                 {passes.length > 0 && (

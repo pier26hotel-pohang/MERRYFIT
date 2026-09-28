@@ -63,16 +63,68 @@ export async function signupAction(formData: FormData) {
   if (!name || !phone) redirect("/signup?e=1");
   if (password.length < MIN_PASSWORD) redirect("/signup?e=pw");
   const db = await store.loadSnapshot();
-  if (store.getMemberByPhone(db, phone)) redirect("/signup?e=dup");
+
+  // 관리자가 미리 넣어둔 회원이면 새로 만들지 않고 그 기록을 이어받는다.
+  // 수강권·적립금·결제 이력이 그대로 따라온다.
+  const { member: claimable, taken } = store.findClaimable(db, phone, name);
+  if (taken) redirect("/signup?e=dup");
+
   let id: string;
-  try {
-    id = await store.addMember(name, phone, branch, birthdate, address, password);
-  } catch (err) {
-    // 저장에 실패하면 쿠키만 심어두고 넘어가는 일이 없도록 여기서 끊는다.
-    console.error("[signup]", err);
-    redirect("/signup?e=save");
+  if (claimable) {
+    try {
+      await store.claimMember(claimable.id, { password, birthdate, address, branch });
+    } catch (err) {
+      console.error("[signup:claim]", err);
+      redirect("/signup?e=save");
+    }
+    id = claimable.id;
+  } else {
+    try {
+      id = await store.addMember(name, phone, branch, birthdate, address, password);
+    } catch (err) {
+      // 저장에 실패하면 쿠키만 심어두고 넘어가는 일이 없도록 여기서 끊는다.
+      console.error("[signup]", err);
+      redirect("/signup?e=save");
+    }
   }
   (await cookies()).set(MEMBER_COOKIE, id, { httpOnly: true, path: "/", maxAge: YEAR });
+  redirect("/book");
+}
+
+// 카카오로 들어온 회원의 연락처를 받는다.
+// 이 번호가 관리자가 미리 넣어둔 회원과 맞으면 그쪽으로 합친다.
+export async function savePhoneAction(formData: FormData) {
+  const memberId = await currentMemberId();
+  if (!memberId) redirect("/login");
+
+  const phone = String(formData.get("phone") ?? "").trim();
+  if (phone.replace(/[^0-9]/g, "").length < 9) redirect("/welcome?e=phone");
+
+  const db = await store.loadSnapshot();
+  const me = store.getMember(db, memberId);
+  if (!me) redirect("/login");
+
+  const existing = store.getMemberByPhone(db, phone);
+  if (existing && existing.id !== memberId) {
+    if (!store.isUnclaimed(existing)) redirect("/welcome?e=dup");
+    // 이름까지 맞을 때만 합친다.
+    if (existing.name.replace(/\s+/g, "") !== me.name.replace(/\s+/g, "")) redirect("/welcome?e=name");
+    try {
+      await store.mergeKakaoIntoMember(memberId, existing.id, phone);
+    } catch (err) {
+      console.error("[savePhone:merge]", err);
+      redirect("/welcome?e=save");
+    }
+    (await cookies()).set(MEMBER_COOKIE, existing.id, { httpOnly: true, path: "/", maxAge: YEAR });
+    redirect("/book");
+  }
+
+  try {
+    await store.setMemberPhone(memberId, phone);
+  } catch (err) {
+    console.error("[savePhone]", err);
+    redirect("/welcome?e=save");
+  }
   redirect("/book");
 }
 
