@@ -25,7 +25,8 @@ export function SelfCheckIn({ memberId }: { memberId: string }) {
           const r = await selfCheckInAction(
             memberId,
             pos.coords.latitude,
-            pos.coords.longitude
+            pos.coords.longitude,
+            pos.coords.accuracy
           );
           setOk(r.ok);
           setMsg(r.msg);

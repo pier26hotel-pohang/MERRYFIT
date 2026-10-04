@@ -2,7 +2,30 @@
 // 폼과 관리자 통계가 같은 선택지를 쓰도록 질문은 여기 한 곳에만 둔다.
 import { supabaseAdmin } from "./supabase";
 
+// 가오픈 날짜. 문구와 선택지가 한 군데서만 바뀌도록 모아둔다.
+export const PREOPEN = {
+  date: "2026-10-12",
+  label: "10월 12일 (월)",
+  trials: ["10:30", "14:00", "19:30"],
+  openLabel: "10월 19일 (월)", // 정식 예약 시작
+} as const;
+
 export const Q = {
+  trialSlot: {
+    label: "10/12 무료체험, 어느 시간이 좋으세요?",
+    hint: "신청 안 하고 오셔도 됩니다. 미리 알려주시면 자리를 빼둘게요",
+    options: [
+      "10:30",
+      "14:00",
+      "19:30",
+      "아직 모르겠어요",
+      "체험은 어렵고 상담만 받을게요",
+    ],
+  },
+  visitTime: {
+    label: "1:1 상담은 몇 시쯤이 좋으세요?",
+    options: ["오전 (10~12시)", "점심 (12~14시)", "오후 (14~18시)", "저녁 (18~21시)", "상담은 괜찮아요"],
+  },
   ageGroup: {
     label: "나이대",
     options: ["10대", "20대", "30대", "40대", "50대 이상"],
@@ -98,6 +121,10 @@ export interface Consultation {
   phone: string;
   ageGroup?: string;
   contactTime?: string;
+  trialSlot?: string;   // 10/12 무료체험 희망 타임
+  visitDate?: string;   // 상담 희망 날짜 (자유 입력)
+  visitTime?: string;   // 상담 희망 시간대
+  giftOptin: boolean;   // 기념품 룰렛 참여
   goals: string[];
   painAreas: string[];
   pregnancy?: string;
@@ -143,6 +170,10 @@ export async function saveConsultation(input: ConsultInput): Promise<string> {
     phone: input.phone,
     age_group: input.ageGroup ?? null,
     contact_time: input.contactTime ?? null,
+    trial_slot: input.trialSlot ?? null,
+    visit_date: input.visitDate || null,
+    visit_time: input.visitTime ?? null,
+    gift_optin: input.giftOptin,
     goals: input.goals,
     pain_areas: input.painAreas,
     pregnancy: input.pregnancy ?? null,
@@ -172,6 +203,10 @@ function map(r: any): Consultation {
     phone: r.phone,
     ageGroup: r.age_group ?? undefined,
     contactTime: r.contact_time ?? undefined,
+    trialSlot: r.trial_slot ?? undefined,
+    visitDate: r.visit_date ?? undefined,
+    visitTime: r.visit_time ?? undefined,
+    giftOptin: Boolean(r.gift_optin),
     goals: r.goals ?? [],
     painAreas: r.pain_areas ?? [],
     pregnancy: r.pregnancy ?? undefined,

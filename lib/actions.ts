@@ -158,6 +158,10 @@ export async function submitConsultAction(formData: FormData) {
       phone,
       ageGroup: consult.keepOne(str("ageGroup"), Q.ageGroup.options),
       contactTime: consult.keepOne(str("contactTime"), Q.contactTime.options),
+      trialSlot: consult.keepOne(str("trialSlot"), Q.trialSlot.options),
+      visitDate: str("visitDate").slice(0, 60),
+      visitTime: consult.keepOne(str("visitTime"), Q.visitTime.options),
+      giftOptin: formData.get("giftOptin") === "on",
       goals: consult.keepAllowed(all("goals"), Q.goals.options),
       painAreas: agreeHealth ? consult.keepAllowed(all("painAreas"), Q.painAreas.options) : [],
       pregnancy: agreeHealth ? consult.keepOne(str("pregnancy"), Q.pregnancy.options) : undefined,
@@ -333,8 +337,14 @@ export async function checkInAction(formData: FormData) {
   revalidatePath("/checkin");
 }
 
-export async function selfCheckInAction(memberId: string, lat: number, lng: number) {
-  const res = await store.selfCheckIn(memberId, lat, lng);
+// 출석은 "지금 로그인한 본인"만 할 수 있다.
+//
+// 예전에는 화면이 보내준 memberId 를 그대로 썼다. 그러면 남의 회원번호를 넣어
+// 그 사람을 출석시키고 적립금까지 올려줄 수 있다. 번호는 서버가 쿠키에서 읽는다.
+export async function selfCheckInAction(_memberId: string, lat: number, lng: number, accuracy?: number) {
+  const me = await currentMemberId();
+  if (!me) return { ok: false, msg: "로그인이 풀렸어요. 다시 로그인해 주세요." };
+  const res = await store.selfCheckIn(me, lat, lng, accuracy);
   revalidatePath("/book");
   return res;
 }

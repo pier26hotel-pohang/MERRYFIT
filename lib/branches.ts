@@ -1,7 +1,10 @@
 // 지점 위치(지오펜스) 설정
 // 좌표는 구글 지도에서 도로명 주소로 검색해 확인한 값이다.
-// 거리 검증은 환경변수 ENFORCE_GEOFENCE=true 일 때만 켜진다 —
-// 오픈 직후 GPS 오차로 실제 회원이 막히면 코드 수정 없이 바로 끌 수 있게 했다.
+// 거리 검증은 기본으로 켜져 있다. 끄려면 ENFORCE_GEOFENCE=false 를 명시해야 한다.
+//
+// 처음에는 "true 일 때만 켜진다"로 두었는데, 아무도 환경변수를 넣지 않아서
+// 검증이 통째로 꺼진 채 운영됐다. 센터에서 멀리 있어도 출석이 찍혔다.
+// 안전장치의 기본값은 꺼짐이 아니라 켜짐이어야 한다.
 
 export interface BranchGeo {
   lat: number;
@@ -16,7 +19,11 @@ export const BRANCH_GEO: Record<string, BranchGeo> = {
   "2호점": { lat: 36.0549294, lng: 129.3628948, radiusM: 200 }, // 포항 북구 우현동 646 (새천년대로933번길 5) 2층
 };
 
-export const ENFORCE_GEOFENCE = process.env.ENFORCE_GEOFENCE === "true";
+export const ENFORCE_GEOFENCE = process.env.ENFORCE_GEOFENCE !== "false";
+
+// 휴대폰이 "이 좌표가 ±N미터쯤 맞다"고 알려주는 값. 이게 너무 크면 좌표 자체를
+// 믿을 수 없다 — 실내에서 기지국으로 대충 잡으면 수 km 가 나오기도 한다.
+export const MAX_ACCURACY_M = 1000;
 
 // 두 좌표 사이 거리(미터) — 하버사인 공식
 export function distanceM(aLat: number, aLng: number, bLat: number, bLng: number): number {

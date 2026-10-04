@@ -91,8 +91,11 @@ export const DEFAULT_BRANCH: Branch = "2호점";
 // 예약을 열어주는 날(KST, YYYY-MM-DD). 이 날이 되기 전에는 시간표만 보이고
 // 예약 버튼이 막힌다. 북구점은 공사·오픈 준비가 끝나는 10월 19일부터 받는다.
 // 남구점은 이미 운영 중이라 제한이 없다.
+// 테스트할 때는 BUKGU_OPEN_AT 를 오늘 날짜로 두면 바로 열린다.
+// 환경변수를 쓰는 이유: 코드를 고쳐 배포했다가 되돌리는 걸 잊으면
+// 준비 안 된 지점이 손님에게 열려버린다.
 export const BRANCH_OPEN_AT: Partial<Record<Branch, string>> = {
-  "2호점": "2026-10-19",
+  "2호점": process.env.BUKGU_OPEN_AT || "2026-10-19",
 };
 
 // 가입 시 자동으로 들어가는 수강권.

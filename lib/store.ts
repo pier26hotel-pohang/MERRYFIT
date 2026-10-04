@@ -421,9 +421,9 @@ export async function attendCount(memberId: string): Promise<number> {
   return (m?.prior_visits ?? 0) + (count ?? 0);
 }
 
-export async function selfCheckIn(memberId: string, lat: number, lng: number): Promise<{ ok: boolean; msg: string }> {
+export async function selfCheckIn(memberId: string, lat: number, lng: number, accuracy?: number): Promise<{ ok: boolean; msg: string }> {
   const sb = supabaseAdmin();
-  const { BRANCH_GEO, ENFORCE_GEOFENCE, distanceM } = await import("./branches");
+  const { BRANCH_GEO, ENFORCE_GEOFENCE, MAX_ACCURACY_M, distanceM } = await import("./branches");
   const { data: member } = await sb.from("members").select("*").eq("id", memberId).maybeSingle();
   if (!member) return { ok: false, msg: "회원을 찾을 수 없습니다." };
   const today = todayISO();
@@ -438,6 +438,10 @@ export async function selfCheckIn(memberId: string, lat: number, lng: number): P
   todays.sort((a, b) => a.slot.time.localeCompare(b.slot.time));
   const target = todays[0];
   if (ENFORCE_GEOFENCE) {
+    // 좌표 자체를 못 믿을 정도로 오차가 크면 거리를 재봐야 의미가 없다.
+    if (typeof accuracy === "number" && accuracy > MAX_ACCURACY_M) {
+      return { ok: false, msg: "위치가 정확히 안 잡혀요. 창가로 나오시거나 잠시 뒤 다시 눌러주세요." };
+    }
     // 회원이 등록된 지점이 아니라 "지금 들으러 온 수업의 지점"을 기준으로 잰다.
     // 남구점 회원이 북구점 수업을 예약해 오는 경우가 있고, 카카오 가입자는
     // 지점이 기본값으로 들어가 있어서 member.branch 로 재면 엉뚱한 곳과 비교하게 된다.
