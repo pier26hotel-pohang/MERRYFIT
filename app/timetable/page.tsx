@@ -3,7 +3,7 @@ import Image from "next/image";
 import {
   loadSnapshot,
   distinctTimes,
-  slotForCell,
+  slotsForCell,
   slotBookedCount,
   occurrenceDate,
   weekRangeLabel,
@@ -74,12 +74,14 @@ export default async function TimetablePage({
         times={times}
         cell={(dow, time) => {
           const date = occurrenceDate(dow, weekOffset);
-          const slot = slotForCell(db, branch, dow, time, date);
-          if (!slot) return null;
+          // 같은 시각에 수업이 둘이면 둘 다 보여준다 (남구점 룸 분리 운영)
+          const cellSlots = slotsForCell(db, branch, dow, time, date);
+          if (cellSlots.length === 0) return null;
+          return cellSlots.map((slot) => {
           const count = slotBookedCount(db, slot.id, date);
           const full = count >= slot.capacity;
           return (
-            <div className={`rounded-md border px-1 py-1 ${slot.date ? "border-amber-300 bg-amber-50" : "border-neutral-200 bg-white"}`}>
+            <div key={slot.id} className={`mb-1 rounded-md border px-1 py-1 last:mb-0 ${slot.date ? "border-amber-300 bg-amber-50" : "border-neutral-200 bg-white"}`}>
               <div className="text-[11px] font-semibold leading-tight text-neutral-800">
                 {programAbbrev(slot.program)}
               </div>
@@ -88,6 +90,7 @@ export default async function TimetablePage({
               </div>
             </div>
           );
+          });
         }}
       />
       <p className="mt-3 text-center text-xs text-neutral-400">

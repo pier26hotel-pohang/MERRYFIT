@@ -2,7 +2,7 @@
 // 조회: loadSnapshot()으로 전체를 한 번 읽어 순수 함수로 계산
 // 변경: Supabase에 직접 쓰기(async)
 import { supabaseAdmin } from "./supabase";
-import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, DEFAULT_BRANCH, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
+import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, BRANCH_OPEN_AT, DEFAULT_BRANCH, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
 import { makePasswordRecord, passwordMatches } from "./password";
 import { DOW_LABEL, WEEK_ORDER } from "./week-constants";
 import { tierFor } from "./points";
@@ -25,10 +25,21 @@ function assertOk(label: string, res: { error: { message: string } | null }): vo
 
 // 프로그램·지점별 기본 정원
 export function programCapacity(program: ProgramName, branch: Branch): number {
-  if (branch === "2호점") return 12;
+  if (branch === "2호점") return 14;
   if (program === "기구 필라테스") return 4;
   if (program === "단체수업") return 12;
   return 6;
+}
+
+/**
+ * 이 지점이 아직 예약을 안 받는다면 오픈일을, 이미 열렸으면 null 을 돌려준다.
+ *
+ * 시간표는 미리 보여주되 예약만 막는다 — 오픈 전에 무엇을 하는 곳인지
+ * 보여줄 수 있어야 하고, 회원이 날짜를 기억해 두고 올 수 있어야 한다.
+ */
+export function bookingOpensAt(branch: Branch): string | null {
+  const open = BRANCH_OPEN_AT[branch];
+  return open && todayISO() < open ? open : null;
 }
 
 // ---------- 날짜 계산 (순수) ----------
@@ -105,6 +116,8 @@ function mapMember(r: any): Member {
     hasPassword: Boolean(r.password_hash),
     cafe24Id: r.cafe24_id ?? undefined,
     pointsSynced: r.points_synced ?? 0,
+    priorVisits: r.prior_visits ?? 0,
+    importedFrom: r.imported_from ?? undefined,
   };
 }
 function mapPass(r: any): Pass {
@@ -184,6 +197,17 @@ export function nextRenewalInfo(db: DB, memberId: string): { date: string; type:
 export function attendedCount(db: DB, memberId: string): number {
   return db.reservations.filter((r) => r.memberId === memberId && r.status === "attended").length;
 }
+
+/**
+ * 등급 산정에 쓰는 누적 출석.
+ *
+ * 앱을 켜기 전 남구점에서 쌓은 출석(prior_visits)과 앱에서 실제로 출석한
+ * 횟수를 더한다. 앱 기록만 세면 오래 다닌 회원이 화이트로 떨어진다.
+ */
+export function totalVisits(db: DB, memberId: string): number {
+  const m = getMember(db, memberId);
+  return (m?.priorVisits ?? 0) + attendedCount(db, memberId);
+}
 export function listSlots(db: DB, branch?: Branch): ScheduleSlot[] {
   return branch ? db.slots.filter((s) => s.branch === branch) : db.slots;
 }
@@ -191,9 +215,24 @@ export function distinctTimes(db: DB, branch?: Branch): string[] {
   const set = new Set(listSlots(db, branch).map((s) => s.time));
   return [...set].sort();
 }
+/**
+ * 한 칸(요일 x 시각)에 들어가는 수업들.
+ *
+ * 남구점은 같은 시각에 룸을 나눠 두 수업이 동시에 돈다(예: 10시 체어 + 리포머).
+ * 하나만 돌려주면 나머지 수업은 회원 눈에 아예 안 보이고 예약도 못 한다.
+ *
+ * 그 날짜에만 열린 1회성 수업이 있으면 그것만 쓴다 — 매주 반복을 덮어쓰는 규칙이다.
+ */
+export function slotsForCell(db: DB, branch: Branch, dow: number, time: string, date: string): ScheduleSlot[] {
+  const here = db.slots.filter((s) => s.branch === branch && s.time === time);
+  const oneOff = here.filter((s) => s.date === date);
+  if (oneOff.length) return oneOff;
+  return here.filter((s) => !s.date && s.dayOfWeek === dow);
+}
+
+/** 칸의 대표 수업 하나. 여러 개면 첫 번째. */
 export function slotForCell(db: DB, branch: Branch, dow: number, time: string, date: string): ScheduleSlot | undefined {
-  const slots = db.slots.filter((s) => s.branch === branch && s.time === time);
-  return slots.find((s) => s.date === date) || slots.find((s) => !s.date && s.dayOfWeek === dow);
+  return slotsForCell(db, branch, dow, time, date)[0];
 }
 export function listOneTimeSlots(db: DB): ScheduleSlot[] {
   return db.slots.filter((s) => s.date).sort((a, b) => (a.date! + a.time).localeCompare(b.date! + b.time));
@@ -243,6 +282,11 @@ export async function book(slotId: string, memberId: string, date: string): Prom
   const { data: slot } = await sb.from("slots").select("*").eq("id", slotId).maybeSingle();
   if (!slot) return { ok: false, msg: "수업을 찾을 수 없습니다." };
   if (date < todayISO()) return { ok: false, msg: "지난 수업입니다." };
+  const gate = bookingOpensAt(slot.branch as Branch);
+  if (gate) {
+    const label = BRANCH_LABEL[slot.branch as Branch] ?? slot.branch;
+    return { ok: false, msg: `${label}은 ${gate.slice(5).replace("-", "월 ")}일부터 예약을 받습니다.` };
+  }
   const { data: existing } = await sb
     .from("reservations").select("*").eq("slot_id", slotId).eq("date", date).neq("status", "cancelled");
   const ex = existing ?? [];
@@ -334,14 +378,16 @@ export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg
   // 대우를 다르게 하려는 것이므로, 그날 어느 지점 수업을 들었는지가 아니라
   // 그 사람이 어느 지점 회원인지가 기준이다.
   // (출석 GPS 검증은 반대로 수업 지점을 본다 — 거긴 물리적 위치 문제라서 다르다.)
-  const { data: mb } = await sb.from("members").select("branch").eq("id", r.member_id).maybeSingle();
+  const { data: mb } = await sb.from("members").select("*").eq("id", r.member_id).maybeSingle();
   const branch = (mb?.branch ?? DEFAULT_BRANCH) as Branch;
 
   // 이번 출석까지 포함한 누적 횟수로 등급을 판단한다.
+  // 앱 도입 전 남구점에서 쌓은 출석(prior_visits)도 함께 센다 — 앱 기록만 세면
+  // 몇 년을 다닌 회원이 신규와 같은 적립률을 받게 된다.
   const { count } = await sb
     .from("reservations").select("id", { count: "exact", head: true })
     .eq("member_id", r.member_id).eq("status", "attended");
-  const tier = tierFor(branch, count ?? 1);
+  const tier = tierFor(branch, (mb?.prior_visits ?? 0) + (count ?? 1));
   const earned = unlimited ? 0 : tier.point;
 
   if (earned > 0) {
@@ -364,12 +410,15 @@ export async function checkIn(reservationId: string): Promise<{ ok: boolean; msg
   return { ok: true, msg: "출석 처리", earned, tier: unlimited ? "무제한권(적립 없음)" : tier.name };
 }
 
-/** 회원의 누적 출석 횟수 (등급 표시용) */
+/** 회원의 누적 출석 횟수 (등급 표시용). 이관분 포함. */
 export async function attendCount(memberId: string): Promise<number> {
-  const { count } = await supabaseAdmin()
-    .from("reservations").select("id", { count: "exact", head: true })
-    .eq("member_id", memberId).eq("status", "attended");
-  return count ?? 0;
+  const sb = supabaseAdmin();
+  const [{ count }, { data: m }] = await Promise.all([
+    sb.from("reservations").select("id", { count: "exact", head: true })
+      .eq("member_id", memberId).eq("status", "attended"),
+    sb.from("members").select("*").eq("id", memberId).maybeSingle(),
+  ]);
+  return (m?.prior_visits ?? 0) + (count ?? 0);
 }
 
 export async function selfCheckIn(memberId: string, lat: number, lng: number): Promise<{ ok: boolean; msg: string }> {

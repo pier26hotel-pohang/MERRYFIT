@@ -10,6 +10,9 @@ export const BRANCH_LABEL: Record<Branch, string> = {
 
 export type ProgramName =
   | "기구 필라테스"
+  | "리포머"
+  | "체어"
+  | "캐딜락"
   | "바레"
   | "필라테스"
   | "필라웨이트"
@@ -31,6 +34,8 @@ export interface Member {
   hasPassword?: boolean; // 본인이 비밀번호를 정했는가 (관리자가 미리 넣은 회원은 false)
   cafe24Id?: string; // 쇼핑몰(카페24) 회원아이디 — 적립금 자동 반영에 필요
   pointsSynced?: number; // points 중 이미 쇼핑몰에 올린 금액
+  priorVisits?: number; // 앱 도입 전 다른 시스템에서 쌓은 출석 (등급 계산에만 씀)
+  importedFrom?: string; // 이관 출처. 직접 가입한 회원은 없음
 }
 
 // 수강권 사용 가능 지점 범위
@@ -82,6 +87,13 @@ export const ATTEND_POINT = 5000; // 출석 1회 적립금
 
 // 기본 지점 — 2호점 오픈 이후 신규 회원은 2호점을 먼저 본다.
 export const DEFAULT_BRANCH: Branch = "2호점";
+
+// 예약을 열어주는 날(KST, YYYY-MM-DD). 이 날이 되기 전에는 시간표만 보이고
+// 예약 버튼이 막힌다. 북구점은 공사·오픈 준비가 끝나는 10월 19일부터 받는다.
+// 남구점은 이미 운영 중이라 제한이 없다.
+export const BRANCH_OPEN_AT: Partial<Record<Branch, string>> = {
+  "2호점": "2026-10-19",
+};
 
 // 가입 시 자동으로 들어가는 수강권.
 // 가입 직후 아무것도 못 하고 빈 화면만 보는 구간을 없앤다.

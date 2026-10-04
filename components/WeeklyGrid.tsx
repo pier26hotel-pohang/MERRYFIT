@@ -60,6 +60,10 @@ export function programAbbrev(program: string): string {
       return "필테";
     case "단체수업":
       return "단체";
+    case "리포머":
+      return "리포";
+    case "캐딜락":
+      return "캐딜";
     default:
       return program;
   }

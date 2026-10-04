@@ -1,0 +1,266 @@
+[
+ {
+  "date": "2026-10-05",
+  "day_of_week": 1,
+  "time": "09:00",
+  "program": "체어",
+  "capacity": 6,
+  "instructor": "이수련"
+ },
+ {
+  "date": "2026-10-05",
+  "day_of_week": 1,
+  "time": "10:00",
+  "program": "체어",
+  "capacity": 6,
+  "instructor": "이수련"
+ },
+ {
+  "date": "2026-10-05",
+  "day_of_week": 1,
+  "time": "10:00",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "김보경"
+ },
+ {
+  "date": "2026-10-05",
+  "day_of_week": 1,
+  "time": "18:00",
+  "program": "바레",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-05",
+  "day_of_week": 1,
+  "time": "19:00",
+  "program": "바레",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-05",
+  "day_of_week": 1,
+  "time": "19:00",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "임효경"
+ },
+ {
+  "date": "2026-10-05",
+  "day_of_week": 1,
+  "time": "20:00",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "임효경"
+ },
+ {
+  "date": "2026-10-06",
+  "day_of_week": 2,
+  "time": "08:30",
+  "program": "체어",
+  "capacity": 6,
+  "instructor": "김윤화"
+ },
+ {
+  "date": "2026-10-06",
+  "day_of_week": 2,
+  "time": "10:00",
+  "program": "체어",
+  "capacity": 6,
+  "instructor": "김윤화"
+ },
+ {
+  "date": "2026-10-06",
+  "day_of_week": 2,
+  "time": "18:30",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "김보경"
+ },
+ {
+  "date": "2026-10-06",
+  "day_of_week": 2,
+  "time": "19:00",
+  "program": "바레",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-06",
+  "day_of_week": 2,
+  "time": "19:30",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "김보경"
+ },
+ {
+  "date": "2026-10-06",
+  "day_of_week": 2,
+  "time": "20:30",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "김보경"
+ },
+ {
+  "date": "2026-10-07",
+  "day_of_week": 3,
+  "time": "09:00",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "이수련"
+ },
+ {
+  "date": "2026-10-07",
+  "day_of_week": 3,
+  "time": "10:00",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "이수련"
+ },
+ {
+  "date": "2026-10-07",
+  "day_of_week": 3,
+  "time": "14:00",
+  "program": "바레",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-07",
+  "day_of_week": 3,
+  "time": "18:00",
+  "program": "체어",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-07",
+  "day_of_week": 3,
+  "time": "19:00",
+  "program": "체어",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-07",
+  "day_of_week": 3,
+  "time": "20:00",
+  "program": "요가",
+  "capacity": 8,
+  "instructor": "김유주"
+ },
+ {
+  "date": "2026-10-08",
+  "day_of_week": 4,
+  "time": "08:30",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "김윤화"
+ },
+ {
+  "date": "2026-10-08",
+  "day_of_week": 4,
+  "time": "10:00",
+  "program": "리포머",
+  "capacity": 6,
+  "instructor": "김윤화"
+ },
+ {
+  "date": "2026-10-08",
+  "day_of_week": 4,
+  "time": "18:30",
+  "program": "캐딜락",
+  "capacity": 6,
+  "instructor": "김보경"
+ },
+ {
+  "date": "2026-10-08",
+  "day_of_week": 4,
+  "time": "19:00",
+  "program": "체어",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-08",
+  "day_of_week": 4,
+  "time": "19:30",
+  "program": "캐딜락",
+  "capacity": 6,
+  "instructor": "김보경"
+ },
+ {
+  "date": "2026-10-08",
+  "day_of_week": 4,
+  "time": "20:30",
+  "program": "캐딜락",
+  "capacity": 6,
+  "instructor": "김보경"
+ },
+ {
+  "date": "2026-10-09",
+  "day_of_week": 5,
+  "time": "09:00",
+  "program": "캐딜락",
+  "capacity": 6,
+  "instructor": "이수련"
+ },
+ {
+  "date": "2026-10-09",
+  "day_of_week": 5,
+  "time": "10:00",
+  "program": "캐딜락",
+  "capacity": 6,
+  "instructor": "이수련"
+ },
+ {
+  "date": "2026-10-09",
+  "day_of_week": 5,
+  "time": "11:00",
+  "program": "캐딜락",
+  "capacity": 6,
+  "instructor": "이수련"
+ },
+ {
+  "date": "2026-10-09",
+  "day_of_week": 5,
+  "time": "14:00",
+  "program": "필라웨이트",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-09",
+  "day_of_week": 5,
+  "time": "17:30",
+  "program": "필라웨이트",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-09",
+  "day_of_week": 5,
+  "time": "18:30",
+  "program": "필라웨이트",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-09",
+  "day_of_week": 5,
+  "time": "19:30",
+  "program": "필라웨이트",
+  "capacity": 6,
+  "instructor": "윤가은"
+ },
+ {
+  "date": "2026-10-10",
+  "day_of_week": 6,
+  "time": "10:00",
+  "program": "캐딜락",
+  "capacity": 6,
+  "instructor": "신은송"
+ }
+]

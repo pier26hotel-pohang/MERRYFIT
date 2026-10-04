@@ -1,0 +1,7791 @@
+[
+ {
+  "name": "석복순",
+  "phone": "010-9357-3151",
+  "prior_visits": 371,
+  "grade": "메리 블랙",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 100,
+    "remaining": 40,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-15"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-02-15"
+ },
+ {
+  "name": "박효진B",
+  "phone": "010-9721-7779",
+  "prior_visits": 362,
+  "grade": "메리 블랙",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 100,
+    "remaining": 49,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-12"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-02-12"
+ },
+ {
+  "name": "김지윤",
+  "phone": "010-5796-8195",
+  "prior_visits": 353,
+  "grade": "메리 블랙",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-08-26"
+ },
+ {
+  "name": "손효선",
+  "phone": "010-6541-5131",
+  "prior_visits": 325,
+  "grade": "메리 블랙",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 24,
+    "remaining": 18,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-12-01"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-12-01"
+ },
+ {
+  "name": "신애경",
+  "phone": "010-9503-3321",
+  "prior_visits": 295,
+  "grade": "메리 블랙",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-02"
+   },
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 50,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-03-30"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-03-30"
+ },
+ {
+  "name": "김분선",
+  "phone": "010-9494-7271",
+  "prior_visits": 294,
+  "grade": "메리 블랙",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 35,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-12"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-02-12"
+ },
+ {
+  "name": "천정옥",
+  "phone": "010-6742-6200",
+  "prior_visits": 274,
+  "grade": "메리 블랙",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 100,
+    "remaining": 29,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-06"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-01-06"
+ },
+ {
+  "name": "문다영",
+  "phone": "010-8626-9192",
+  "prior_visits": 233,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-07-01"
+ },
+ {
+  "name": "윤덕기",
+  "phone": "010-5068-2863",
+  "prior_visits": 229,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 100,
+    "remaining": 19,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-03"
+ },
+ {
+  "name": "최현정",
+  "phone": "010-5516-6044",
+  "prior_visits": 196,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-01"
+ },
+ {
+  "name": "이재광",
+  "phone": "010-6305-3188",
+  "prior_visits": 193,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-07-18"
+ },
+ {
+  "name": "이현아",
+  "phone": "010-8853-3600",
+  "prior_visits": 175,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-20"
+ },
+ {
+  "name": "최준호",
+  "phone": "010-5930-6244",
+  "prior_visits": 170,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 60,
+    "remaining": 45,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-03"
+ },
+ {
+  "name": "김윤미",
+  "phone": "010-8014-3687",
+  "prior_visits": 152,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 30,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-13"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 5건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-13"
+ },
+ {
+  "name": "백시윤",
+  "phone": "010-4174-6001",
+  "prior_visits": 150,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-11-10"
+ },
+ {
+  "name": "박현숙",
+  "phone": "010-2535-7625",
+  "prior_visits": 144,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-07-12"
+ },
+ {
+  "name": "황정숙",
+  "phone": "010-9282-9370",
+  "prior_visits": 135,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-12"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-12"
+ },
+ {
+  "name": "엄진희",
+  "phone": "010-8579-2323",
+  "prior_visits": 131,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 100,
+    "remaining": 72,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-04-28"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-04-28"
+ },
+ {
+  "name": "황예지",
+  "phone": "010-3110-8518",
+  "prior_visits": 131,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-04"
+ },
+ {
+  "name": "민혜숙",
+  "phone": "010-7132-1437",
+  "prior_visits": 130,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 41,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-21"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-02-21"
+ },
+ {
+  "name": "신승은",
+  "phone": "010-8996-5544",
+  "prior_visits": 129,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-04"
+ },
+ {
+  "name": "김미경",
+  "phone": "010-7677-6446",
+  "prior_visits": 128,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-12-31"
+ },
+ {
+  "name": "박은지",
+  "phone": "010-9506-7111",
+  "prior_visits": 120,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-19"
+ },
+ {
+  "name": "고아라",
+  "phone": "010-7564-9107",
+  "prior_visits": 117,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-13"
+ },
+ {
+  "name": "김혜지",
+  "phone": "010-4300-6990",
+  "prior_visits": 114,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-20"
+ },
+ {
+  "name": "박미은",
+  "phone": "010-8969-7446",
+  "prior_visits": 113,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 6건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-06"
+ },
+ {
+  "name": "백선혜",
+  "phone": "010-2789-9680",
+  "prior_visits": 105,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-21"
+ },
+ {
+  "name": "유하은",
+  "phone": "010-5091-4341",
+  "prior_visits": 105,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-08-01"
+ },
+ {
+  "name": "정희영",
+  "phone": "010-3592-9680",
+  "prior_visits": 105,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-21"
+ },
+ {
+  "name": "권영애",
+  "phone": "010-3512-2226",
+  "prior_visits": 103,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 47,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-03-14"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-03-14"
+ },
+ {
+  "name": "김예영",
+  "phone": "010-8181-0061",
+  "prior_visits": 103,
+  "grade": "메리 그린",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 30,
+    "remaining": 3,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-03"
+ },
+ {
+  "name": "맹기영",
+  "phone": "010-9362-7639",
+  "prior_visits": 103,
+  "grade": "메리 그린",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-23"
+ },
+ {
+  "name": "김외자",
+  "phone": "010-3042-7606",
+  "prior_visits": 99,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-01"
+ },
+ {
+  "name": "최수자",
+  "phone": "010-4880-6654",
+  "prior_visits": 99,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-08"
+ },
+ {
+  "name": "한수진",
+  "phone": "010-6561-4237",
+  "prior_visits": 96,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-17"
+ },
+ {
+  "name": "윤태영",
+  "phone": "010-8569-4539",
+  "prior_visits": 95,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 8,
+    "remaining": 6,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "최정심",
+  "phone": "010-6536-5258",
+  "prior_visits": 94,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 30,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "박지원B",
+  "phone": "010-8350-3647",
+  "prior_visits": 91,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-28"
+ },
+ {
+  "name": "홍수민",
+  "phone": "010-9955-7196",
+  "prior_visits": 91,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-12"
+ },
+ {
+  "name": "한지원",
+  "phone": "010-3143-5536",
+  "prior_visits": 90,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 4,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-30"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-30"
+ },
+ {
+  "name": "정재천",
+  "phone": "010-3509-3507",
+  "prior_visits": 89,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-14"
+ },
+ {
+  "name": "김태경",
+  "phone": "010-8259-7066",
+  "prior_visits": 88,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-16"
+ },
+ {
+  "name": "손순화",
+  "phone": "010-8911-7639",
+  "prior_visits": 88,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-13"
+ },
+ {
+  "name": "이소라",
+  "phone": "010-9954-1286",
+  "prior_visits": 87,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 30,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-12"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-12"
+ },
+ {
+  "name": "체험",
+  "phone": "010-2437-3978",
+  "prior_visits": 87,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 100,
+    "remaining": 32,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-12"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-12"
+ },
+ {
+  "name": "전세봄",
+  "phone": "010-3422-1632",
+  "prior_visits": 85,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-16"
+ },
+ {
+  "name": "김용대",
+  "phone": "010-3860-6975",
+  "prior_visits": 84,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-05"
+ },
+ {
+  "name": "정예진",
+  "phone": "010-5388-7709",
+  "prior_visits": 83,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-12"
+ },
+ {
+  "name": "강민지",
+  "phone": "010-8225-1827",
+  "prior_visits": 82,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-26"
+ },
+ {
+  "name": "김성민",
+  "phone": "010-9326-3961",
+  "prior_visits": 82,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "루틴패스 Lite (주 1회)",
+    "total": 4,
+    "remaining": 4,
+    "monthly": true,
+    "period_start": "2026-09-19",
+    "expires_at": "2026-12-12"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-12-12"
+ },
+ {
+  "name": "김성희",
+  "phone": "010-3521-6234",
+  "prior_visits": 82,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-31"
+ },
+ {
+  "name": "이성혁",
+  "phone": "010-8370-3384",
+  "prior_visits": 79,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 60,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-08"
+   },
+   {
+    "type": "VIP 개인레슨",
+    "total": 50,
+    "remaining": 50,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-06-30"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-06-30"
+ },
+ {
+  "name": "김진명",
+  "phone": "010-4514-5670",
+  "prior_visits": 78,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-15"
+ },
+ {
+  "name": "임정미",
+  "phone": "010-5632-2677",
+  "prior_visits": 75,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-09-20"
+ },
+ {
+  "name": "정세은",
+  "phone": "010-9353-9028",
+  "prior_visits": 73,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-13"
+ },
+ {
+  "name": "권애정",
+  "phone": "010-7794-5131",
+  "prior_visits": 72,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-31"
+ },
+ {
+  "name": "김예진",
+  "phone": "010-5158-6479",
+  "prior_visits": 72,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-22"
+ },
+ {
+  "name": "이태영",
+  "phone": "010-9350-0862",
+  "prior_visits": 72,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 45,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-25"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-02-25"
+ },
+ {
+  "name": "전현숙",
+  "phone": "010-3524-7066",
+  "prior_visits": 72,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-16"
+ },
+ {
+  "name": "황보예지",
+  "phone": "010-7408-9252",
+  "prior_visits": 72,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-04-05"
+ },
+ {
+  "name": "김지현",
+  "phone": "010-3777-9622",
+  "prior_visits": 71,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-24"
+ },
+ {
+  "name": "신지예",
+  "phone": "010-2527-0165",
+  "prior_visits": 71,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-05"
+ },
+ {
+  "name": "황보 순",
+  "phone": "010-4575-2453",
+  "prior_visits": 70,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-01"
+ },
+ {
+  "name": "이수진A",
+  "phone": "010-9495-3071",
+  "prior_visits": 69,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-31"
+ },
+ {
+  "name": "박경민",
+  "phone": "010-8552-2574",
+  "prior_visits": 68,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-04"
+ },
+ {
+  "name": "정다은",
+  "phone": "010-8585-6627",
+  "prior_visits": 68,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-05-03"
+ },
+ {
+  "name": "김윤정",
+  "phone": "010-7412-7008",
+  "prior_visits": 67,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-16"
+ },
+ {
+  "name": "유진선",
+  "phone": "010-9304-7189",
+  "prior_visits": 66,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-28"
+ },
+ {
+  "name": "임은정",
+  "phone": "010-8998-1115",
+  "prior_visits": 66,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-30"
+ },
+ {
+  "name": "김동현",
+  "phone": "010-5668-7761",
+  "prior_visits": 65,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-04"
+ },
+ {
+  "name": "황은주",
+  "phone": "010-3024-7043",
+  "prior_visits": 65,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-07"
+ },
+ {
+  "name": "강주석",
+  "phone": "010-2819-7286",
+  "prior_visits": 64,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-13"
+ },
+ {
+  "name": "김경천",
+  "phone": "010-3302-6885",
+  "prior_visits": 64,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-25"
+ },
+ {
+  "name": "신현영",
+  "phone": "010-9474-2792",
+  "prior_visits": 64,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-21"
+ },
+ {
+  "name": "지현정",
+  "phone": "010-5018-8580",
+  "prior_visits": 64,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-14"
+ },
+ {
+  "name": "김미성",
+  "phone": "010-8008-6407",
+  "prior_visits": 61,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "🎁메리핏이 드리는 선물",
+    "total": 8,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "김수림",
+  "phone": "010-3908-9407",
+  "prior_visits": 61,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 5건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-07-29"
+ },
+ {
+  "name": "최훈정",
+  "phone": "010-6230-8551",
+  "prior_visits": 61,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-17"
+ },
+ {
+  "name": "김경미",
+  "phone": "010-2876-7347",
+  "prior_visits": 60,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 36,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-05"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-02-05"
+ },
+ {
+  "name": "정소연",
+  "phone": "010-9328-0473",
+  "prior_visits": 60,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 7건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-01-15"
+ },
+ {
+  "name": "배홍선",
+  "phone": "010-7487-2598",
+  "prior_visits": 59,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-30"
+ },
+ {
+  "name": "차인환",
+  "phone": "010-8380-8928",
+  "prior_visits": 59,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 24,
+    "remaining": 13,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-11"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-11"
+ },
+ {
+  "name": "권택진",
+  "phone": "010-4496-6320",
+  "prior_visits": 58,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-31"
+ },
+ {
+  "name": "신리",
+  "phone": "010-5313-5928",
+  "prior_visits": 58,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 8,
+    "remaining": 5,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-17"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-17"
+ },
+ {
+  "name": "이보람B",
+  "phone": "010-7788-5319",
+  "prior_visits": 58,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-04-26"
+ },
+ {
+  "name": "권호정",
+  "phone": "010-9388-8289",
+  "prior_visits": 57,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-09"
+ },
+ {
+  "name": "박지현",
+  "phone": "010-8866-9226",
+  "prior_visits": 57,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 28,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-24"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-24"
+ },
+ {
+  "name": "우수빈",
+  "phone": "010-4124-0897",
+  "prior_visits": 57,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-10"
+ },
+ {
+  "name": "이대혁",
+  "phone": "010-6242-6551",
+  "prior_visits": 57,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-17"
+ },
+ {
+  "name": "김현영",
+  "phone": "010-5390-7477",
+  "prior_visits": 56,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-12"
+ },
+ {
+  "name": "최미진",
+  "phone": "010-8564-9719",
+  "prior_visits": 56,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 24,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-10"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-10"
+ },
+ {
+  "name": "박해지",
+  "phone": "010-2484-6232",
+  "prior_visits": 55,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-24"
+ },
+ {
+  "name": "안송미",
+  "phone": "010-2929-6172",
+  "prior_visits": 55,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-21"
+ },
+ {
+  "name": "배진경",
+  "phone": "010-4951-9181",
+  "prior_visits": 54,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-28"
+ },
+ {
+  "name": "백옥희 아이코젠",
+  "phone": "010-4110-7629",
+  "prior_visits": 54,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-28"
+ },
+ {
+  "name": "김민정 아이코젠",
+  "phone": "010-6265-7629",
+  "prior_visits": 53,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-28"
+ },
+ {
+  "name": "김희숙",
+  "phone": "010-3327-5061",
+  "prior_visits": 53,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 25,
+    "remaining": 7,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-26"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-26"
+ },
+ {
+  "name": "안희정",
+  "phone": "010-4267-3376",
+  "prior_visits": 53,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-03-23"
+ },
+ {
+  "name": "최경은",
+  "phone": "010-9293-7828",
+  "prior_visits": 53,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-14"
+ },
+ {
+  "name": "김연홍",
+  "phone": "010-4743-2937",
+  "prior_visits": 52,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "루틴패스 Pro (주 3회)",
+    "total": 12,
+    "remaining": 12,
+    "monthly": true,
+    "period_start": "2026-08-22",
+    "expires_at": "2026-11-08"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-08"
+ },
+ {
+  "name": "박성흠",
+  "phone": "010-6706-2636",
+  "prior_visits": 52,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-30"
+ },
+ {
+  "name": "임혜정",
+  "phone": "010-7576-1906",
+  "prior_visits": 52,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-04-17"
+ },
+ {
+  "name": "조동희",
+  "phone": "010-5696-6256",
+  "prior_visits": 52,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-31"
+ },
+ {
+  "name": "한영은",
+  "phone": "010-4084-6961",
+  "prior_visits": 52,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-21"
+ },
+ {
+  "name": "박소영",
+  "phone": "010-5108-1643",
+  "prior_visits": 51,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-04"
+ },
+ {
+  "name": "전수빈",
+  "phone": "010-8336-6121",
+  "prior_visits": 51,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-04"
+ },
+ {
+  "name": "정현주",
+  "phone": "010-6568-4546",
+  "prior_visits": 51,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-10-07"
+ },
+ {
+  "name": "김선실",
+  "phone": "010-2248-9601",
+  "prior_visits": 50,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-10"
+ },
+ {
+  "name": "오석구",
+  "phone": "010-4640-6974",
+  "prior_visits": 50,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-06"
+ },
+ {
+  "name": "이현주",
+  "phone": "010-6560-9515",
+  "prior_visits": 50,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-31"
+ },
+ {
+  "name": "정혜수",
+  "phone": "010-8412-3476",
+  "prior_visits": 50,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-03"
+ },
+ {
+  "name": "조상미",
+  "phone": "010-4800-1988",
+  "prior_visits": 50,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-29"
+ },
+ {
+  "name": "곽일주",
+  "phone": "010-4739-5076",
+  "prior_visits": 49,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-04"
+ },
+ {
+  "name": "송춘하",
+  "phone": "010-7100-6623",
+  "prior_visits": 49,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-04-17"
+ },
+ {
+  "name": "심재광",
+  "phone": "010-8575-2561",
+  "prior_visits": 49,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 51,
+    "remaining": 18,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-03"
+ },
+ {
+  "name": "안나영",
+  "phone": "010-7520-2663",
+  "prior_visits": 49,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-04"
+ },
+ {
+  "name": "정종학",
+  "phone": "010-6608-5275",
+  "prior_visits": 49,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 20,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-03"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-03"
+ },
+ {
+  "name": "김민주",
+  "phone": "010-9432-9137",
+  "prior_visits": 48,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-13"
+ },
+ {
+  "name": "박찬희",
+  "phone": "010-7678-4420",
+  "prior_visits": 48,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-09"
+ },
+ {
+  "name": "서시은",
+  "phone": "010-4078-9766",
+  "prior_visits": 48,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-10"
+ },
+ {
+  "name": "황울림",
+  "phone": "010-4469-5846",
+  "prior_visits": 48,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-13"
+ },
+ {
+  "name": "김영주",
+  "phone": "010-4945-0797",
+  "prior_visits": 47,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-04-03"
+ },
+ {
+  "name": "심설남",
+  "phone": "010-2533-8222",
+  "prior_visits": 47,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-27"
+ },
+ {
+  "name": "이유민B",
+  "phone": "010-6701-8253",
+  "prior_visits": 47,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-04-03"
+ },
+ {
+  "name": "김현정",
+  "phone": "010-5422-9008",
+  "prior_visits": 46,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-29"
+ },
+ {
+  "name": "남민지",
+  "phone": "010-5250-8859",
+  "prior_visits": 46,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-10-25"
+ },
+ {
+  "name": "최샛별",
+  "phone": "010-4697-5602",
+  "prior_visits": 46,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "이형원",
+  "phone": "010-8393-1382",
+  "prior_visits": 45,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-17"
+ },
+ {
+  "name": "김동민",
+  "phone": "010-2668-7582",
+  "prior_visits": 44,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 24,
+    "remaining": 24,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-12-26"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-12-26"
+ },
+ {
+  "name": "서현아",
+  "phone": "010-2906-3291",
+  "prior_visits": 44,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-01-02"
+ },
+ {
+  "name": "김민경",
+  "phone": "010-4410-1401",
+  "prior_visits": 43,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-16"
+ },
+ {
+  "name": "김영미",
+  "phone": "010-8625-3498",
+  "prior_visits": 43,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-06"
+ },
+ {
+  "name": "신수영",
+  "phone": "010-5021-2177",
+  "prior_visits": 43,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 25,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-19"
+   },
+   {
+    "type": "메리핏이 드리는 선물🎁",
+    "total": 1,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-18"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-19"
+ },
+ {
+  "name": "허영",
+  "phone": "010-3534-1988",
+  "prior_visits": 42,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-29"
+ },
+ {
+  "name": "김슬기",
+  "phone": "010-4475-6978",
+  "prior_visits": 41,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 50,
+    "remaining": 37,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-12"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-12"
+ },
+ {
+  "name": "김희수",
+  "phone": "010-4424-8325",
+  "prior_visits": 41,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 12,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-03"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-03"
+ },
+ {
+  "name": "신종훈",
+  "phone": "010-5110-7198",
+  "prior_visits": 41,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-31"
+ },
+ {
+  "name": "정유리",
+  "phone": "010-8745-4953",
+  "prior_visits": 41,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-08"
+ },
+ {
+  "name": "김예린",
+  "phone": "010-3193-7343",
+  "prior_visits": 40,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-22"
+ },
+ {
+  "name": "김정숙",
+  "phone": "010-8162-6282",
+  "prior_visits": 40,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 34,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-26"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-26"
+ },
+ {
+  "name": "김주원",
+  "phone": "010-6286-1714",
+  "prior_visits": 40,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-23"
+ },
+ {
+  "name": "류현지",
+  "phone": "010-3529-5998",
+  "prior_visits": 40,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-11-22"
+ },
+ {
+  "name": "양윤서",
+  "phone": "010-5214-4216",
+  "prior_visits": 40,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-13"
+ },
+ {
+  "name": "윤분례",
+  "phone": "010-5600-2346",
+  "prior_visits": 40,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 34,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-26"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-26"
+ },
+ {
+  "name": "이예원",
+  "phone": "010-9353-7998",
+  "prior_visits": 40,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-16"
+ },
+ {
+  "name": "하은희",
+  "phone": "010-8299-8805",
+  "prior_visits": 39,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-12"
+ },
+ {
+  "name": "강연지 아이코젠",
+  "phone": "010-8240-0207",
+  "prior_visits": 38,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-07"
+ },
+ {
+  "name": "김기연",
+  "phone": "010-3443-3230",
+  "prior_visits": 38,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 42,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-22"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-02-22"
+ },
+ {
+  "name": "박주영",
+  "phone": "010-9117-5102",
+  "prior_visits": 38,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-05"
+ },
+ {
+  "name": "오미향",
+  "phone": "010-9948-6988",
+  "prior_visits": 38,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-15"
+ },
+ {
+  "name": "김현재",
+  "phone": "010-7423-1025",
+  "prior_visits": 37,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-24"
+ },
+ {
+  "name": "이지은",
+  "phone": "010-8006-7173",
+  "prior_visits": 37,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-28"
+ },
+ {
+  "name": "김민정",
+  "phone": "010-5080-4154",
+  "prior_visits": 36,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 20,
+    "remaining": 20,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-12-10"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-12-10"
+ },
+ {
+  "name": "박지영",
+  "phone": "010-6450-5631",
+  "prior_visits": 36,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-05-25"
+ },
+ {
+  "name": "신효재",
+  "phone": "010-6638-5012",
+  "prior_visits": 36,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 25,
+    "remaining": 14,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-03"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-03"
+ },
+ {
+  "name": "육도은",
+  "phone": "010-2106-2336",
+  "prior_visits": 36,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 20,
+    "remaining": 15,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-24"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-24"
+ },
+ {
+  "name": "조실화",
+  "phone": "010-3023-5565",
+  "prior_visits": 36,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-21"
+ },
+ {
+  "name": "문종희",
+  "phone": "010-9371-7350",
+  "prior_visits": 35,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 31,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-02"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-01-02"
+ },
+ {
+  "name": "정경희",
+  "phone": "010-8595-0146",
+  "prior_visits": 35,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 39,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-26"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-26"
+ },
+ {
+  "name": "김여진",
+  "phone": "010-5683-6210",
+  "prior_visits": 34,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-18"
+ },
+ {
+  "name": "손기명",
+  "phone": "010-4442-7793",
+  "prior_visits": 33,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-31"
+ },
+ {
+  "name": "신정미",
+  "phone": "010-3777-3562",
+  "prior_visits": 33,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-05-30"
+ },
+ {
+  "name": "유서진",
+  "phone": "010-2024-0753",
+  "prior_visits": 33,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-04-21"
+ },
+ {
+  "name": "이혜숙",
+  "phone": "010-6275-3655",
+  "prior_visits": 33,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-23"
+ },
+ {
+  "name": "임수연",
+  "phone": "010-4641-2542",
+  "prior_visits": 33,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-06"
+ },
+ {
+  "name": "진시연",
+  "phone": "010-8859-5446",
+  "prior_visits": 33,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-29"
+ },
+ {
+  "name": "허윤정",
+  "phone": "010-8614-0214",
+  "prior_visits": 33,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-04-04"
+ },
+ {
+  "name": "강상미",
+  "phone": "010-4866-1351",
+  "prior_visits": 32,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-11"
+ },
+ {
+  "name": "김은숙",
+  "phone": "010-5119-9373",
+  "prior_visits": 32,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-05-31"
+ },
+ {
+  "name": "김하현",
+  "phone": "010-5258-5543",
+  "prior_visits": 32,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-10"
+ },
+ {
+  "name": "박미옥",
+  "phone": "010-2906-2539",
+  "prior_visits": 32,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 20,
+    "remaining": 13,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-17"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-17"
+ },
+ {
+  "name": "박선우",
+  "phone": "010-5786-8256",
+  "prior_visits": 32,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-11-22"
+ },
+ {
+  "name": "심현",
+  "phone": "010-3939-8059",
+  "prior_visits": 32,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-28"
+ },
+ {
+  "name": "우숙희",
+  "phone": "010-4531-1827",
+  "prior_visits": 32,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-12"
+ },
+ {
+  "name": "권효진",
+  "phone": "010-2780-4671",
+  "prior_visits": 31,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-10"
+ },
+ {
+  "name": "이혜린",
+  "phone": "010-4204-3140",
+  "prior_visits": 31,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-12"
+ },
+ {
+  "name": "강기림",
+  "phone": "010-2728-0246",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 16,
+    "remaining": 11,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-03"
+ },
+ {
+  "name": "김서주",
+  "phone": "010-9691-9382",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 듀엣레슨",
+    "total": 16,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "김혜경",
+  "phone": "010-4123-0540",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 24,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-09"
+ },
+ {
+  "name": "김효지",
+  "phone": "010-2747-6305",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-24"
+ },
+ {
+  "name": "백예은",
+  "phone": "010-7926-0082",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-19"
+ },
+ {
+  "name": "송지후",
+  "phone": "010-4500-2860",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-11-01"
+ },
+ {
+  "name": "윤수빈",
+  "phone": "010-3999-8006",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-12"
+ },
+ {
+  "name": "이다은",
+  "phone": "010-4223-3140",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-12"
+ },
+ {
+  "name": "이소영",
+  "phone": "010-8453-3738",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-18"
+ },
+ {
+  "name": "이현지",
+  "phone": "010-4854-3755",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-10"
+ },
+ {
+  "name": "임은지",
+  "phone": "010-7677-7911",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [
+   {
+    "type": "VIP 듀엣레슨",
+    "total": 16,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "정세화",
+  "phone": "010-5628-3370",
+  "prior_visits": 30,
+  "grade": "메리 옐로우",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-10"
+ },
+ {
+  "name": "박시형",
+  "phone": "010-3754-7095",
+  "prior_visits": 29,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-02"
+ },
+ {
+  "name": "정기대",
+  "phone": "010-4534-3444",
+  "prior_visits": 29,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-03"
+ },
+ {
+  "name": "김수정",
+  "phone": "010-9264-6430",
+  "prior_visits": 28,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-14"
+ },
+ {
+  "name": "김채련",
+  "phone": "010-4260-5228",
+  "prior_visits": 28,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-26"
+ },
+ {
+  "name": "원민지",
+  "phone": "010-3448-2347",
+  "prior_visits": 28,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-06-19"
+ },
+ {
+  "name": "김은경",
+  "phone": "010-6334-5215",
+  "prior_visits": 27,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 7건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-11-12"
+ },
+ {
+  "name": "김은빈",
+  "phone": "010-2057-3243",
+  "prior_visits": 27,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-19"
+ },
+ {
+  "name": "민지연",
+  "phone": "010-4441-1077",
+  "prior_visits": 27,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "김유리",
+  "phone": "010-6412-1706",
+  "prior_visits": 26,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-23"
+ },
+ {
+  "name": "김정화",
+  "phone": "010-5163-2512",
+  "prior_visits": 26,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-20"
+ },
+ {
+  "name": "전지원",
+  "phone": "010-9633-2726",
+  "prior_visits": 26,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-05"
+ },
+ {
+  "name": "김연지",
+  "phone": "010-6856-9556",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-20"
+ },
+ {
+  "name": "박희라",
+  "phone": "010-5107-1643",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-04-04"
+ },
+ {
+  "name": "백승민 아이코젠",
+  "phone": "010-5176-0816",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "오예원",
+  "phone": "010-9960-0264",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-28"
+ },
+ {
+  "name": "이주희",
+  "phone": "010-5249-9669",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-11-30"
+ },
+ {
+  "name": "이해정",
+  "phone": "010-3857-8761",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-04"
+ },
+ {
+  "name": "정수연",
+  "phone": "010-5851-0299",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-11"
+ },
+ {
+  "name": "최정문",
+  "phone": "010-4854-2217",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-10-18"
+ },
+ {
+  "name": "황수정",
+  "phone": "010-3557-7960",
+  "prior_visits": 25,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-01-31"
+ },
+ {
+  "name": "권두조",
+  "phone": "010-4252-1689",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-11-15"
+ },
+ {
+  "name": "권아현",
+  "phone": "010-9258-1149",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-30"
+ },
+ {
+  "name": "김소연",
+  "phone": "010-6818-1139",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-13"
+ },
+ {
+  "name": "김수지",
+  "phone": "010-6503-2340",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-06-01"
+ },
+ {
+  "name": "김수현",
+  "phone": "010-5021-5664",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-27"
+ },
+ {
+  "name": "김예은",
+  "phone": "010-6594-2305",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-01-20"
+ },
+ {
+  "name": "김태경B",
+  "phone": "010-6414-6649",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Pro (주 3회)",
+    "total": 12,
+    "remaining": 12,
+    "monthly": true,
+    "period_start": "2026-10-03",
+    "expires_at": "2026-10-30"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-30"
+ },
+ {
+  "name": "박춘의",
+  "phone": "010-4534-5618",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-19"
+ },
+ {
+  "name": "박효진",
+  "phone": "010-4020-5606",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "이다미",
+  "phone": "010-4107-9908",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "이효정",
+  "phone": "010-5255-9057",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-11"
+ },
+ {
+  "name": "전예솔",
+  "phone": "010-4444-0760",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-13"
+ },
+ {
+  "name": "정정훈",
+  "phone": "010-9463-6882",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-14"
+ },
+ {
+  "name": "최준식",
+  "phone": "010-5224-4412",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-27"
+ },
+ {
+  "name": "홍훈기",
+  "phone": "010-5596-7416",
+  "prior_visits": 24,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-21"
+ },
+ {
+  "name": "곽어진 아이코젠",
+  "phone": "010-2610-1194",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-07"
+ },
+ {
+  "name": "김은현",
+  "phone": "010-4522-0904",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "김주연",
+  "phone": "010-8410-2062",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-29"
+ },
+ {
+  "name": "김형민",
+  "phone": "010-8798-0312",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-16"
+ },
+ {
+  "name": "박은경",
+  "phone": "010-5056-5287",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-25"
+ },
+ {
+  "name": "송혜화",
+  "phone": "010-8589-7846",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-04-23"
+ },
+ {
+  "name": "이정화",
+  "phone": "010-6426-3282",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-02"
+ },
+ {
+  "name": "이채은",
+  "phone": "010-2000-5136",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 수강권 [이벤트]",
+    "total": 24,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-20"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-20"
+ },
+ {
+  "name": "허지현",
+  "phone": "010-4140-0114",
+  "prior_visits": 23,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-16"
+ },
+ {
+  "name": "김경남",
+  "phone": "010-4172-3461",
+  "prior_visits": 22,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 24,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-03"
+ },
+ {
+  "name": "김혜정",
+  "phone": "010-2614-2539",
+  "prior_visits": 22,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-02-24"
+ },
+ {
+  "name": "윤수진",
+  "phone": "010-3999-3542",
+  "prior_visits": 22,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "이임영",
+  "phone": "010-2816-2212",
+  "prior_visits": 22,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-19"
+ },
+ {
+  "name": "임서희",
+  "phone": "010-6567-7296",
+  "prior_visits": 22,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-29"
+ },
+ {
+  "name": "최재원",
+  "phone": "010-8581-2145",
+  "prior_visits": 22,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-19"
+ },
+ {
+  "name": "강인혜",
+  "phone": "010-2900-1634",
+  "prior_visits": 21,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-21"
+ },
+ {
+  "name": "권성임",
+  "phone": "010-8838-0434",
+  "prior_visits": 21,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-07"
+ },
+ {
+  "name": "김채림 아이코젠",
+  "phone": "010-5850-1834",
+  "prior_visits": 21,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "나진하",
+  "phone": "010-3584-3509",
+  "prior_visits": 21,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-30"
+ },
+ {
+  "name": "박예지",
+  "phone": "010-9930-1044",
+  "prior_visits": 21,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-24"
+ },
+ {
+  "name": "서은형",
+  "phone": "010-2649-1946",
+  "prior_visits": 21,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-06"
+ },
+ {
+  "name": "이정윤",
+  "phone": "010-9237-3929",
+  "prior_visits": 21,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 29,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-14"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-14"
+ },
+ {
+  "name": "김남경",
+  "phone": "010-5527-7172",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-11-19"
+ },
+ {
+  "name": "김현수",
+  "phone": "010-2447-5195",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-04-25"
+ },
+ {
+  "name": "박성용",
+  "phone": "010-4328-0713",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-22"
+ },
+ {
+  "name": "변황희",
+  "phone": "010-6518-2781",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-02-29"
+ },
+ {
+  "name": "신호정",
+  "phone": "010-8559-3937",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-04-30"
+ },
+ {
+  "name": "윤인석",
+  "phone": "010-8858-6021",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-29"
+ },
+ {
+  "name": "이다희",
+  "phone": "010-2658-5787",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-10"
+ },
+ {
+  "name": "이승미",
+  "phone": "010-7285-1514",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-23"
+ },
+ {
+  "name": "이예지",
+  "phone": "010-9868-2329",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-25"
+ },
+ {
+  "name": "이정아",
+  "phone": "010-4875-9263",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-04-22"
+ },
+ {
+  "name": "최지혜",
+  "phone": "010-2094-1915",
+  "prior_visits": 20,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-31"
+ },
+ {
+  "name": "강혜원",
+  "phone": "010-4893-2778",
+  "prior_visits": 19,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-04-04"
+ },
+ {
+  "name": "김나연B",
+  "phone": "010-9093-0043",
+  "prior_visits": 19,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-12"
+ },
+ {
+  "name": "박다영",
+  "phone": "010-8970-0282",
+  "prior_visits": 19,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-07"
+ },
+ {
+  "name": "박동자",
+  "phone": "010-3535-3117",
+  "prior_visits": 19,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-22"
+ },
+ {
+  "name": "윤채미",
+  "phone": "010-3055-4829",
+  "prior_visits": 19,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-03-09"
+ },
+ {
+  "name": "장혜린",
+  "phone": "010-2376-1756",
+  "prior_visits": 19,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-28"
+ },
+ {
+  "name": "정유진",
+  "phone": "010-9351-2078",
+  "prior_visits": 19,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-19"
+ },
+ {
+  "name": "김미진",
+  "phone": "010-8385-3437",
+  "prior_visits": 18,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 25,
+    "remaining": 7,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-26"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-26"
+ },
+ {
+  "name": "김윤혜",
+  "phone": "010-4480-5443",
+  "prior_visits": 18,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-04"
+ },
+ {
+  "name": "박정현",
+  "phone": "010-3114-5775",
+  "prior_visits": 18,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-05"
+ },
+ {
+  "name": "박찬영",
+  "phone": "010-4456-5224",
+  "prior_visits": 18,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 8,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-21"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-21"
+ },
+ {
+  "name": "심예원",
+  "phone": "010-8339-0441",
+  "prior_visits": 18,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-31"
+ },
+ {
+  "name": "이재연 아이코젠",
+  "phone": "010-7526-2849",
+  "prior_visits": 18,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-31"
+ },
+ {
+  "name": "고예진",
+  "phone": "010-5836-9949",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-30"
+ },
+ {
+  "name": "김소현",
+  "phone": "010-4670-2504",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-16"
+ },
+ {
+  "name": "김은지B",
+  "phone": "010-2998-8535",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-12"
+ },
+ {
+  "name": "김재은",
+  "phone": "010-2333-3625",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-05"
+ },
+ {
+  "name": "김현수B",
+  "phone": "010-8382-6346",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-30"
+ },
+ {
+  "name": "이다영 아이코젠",
+  "phone": "010-6788-5377",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "정성현",
+  "phone": "010-4812-6979",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-28"
+ },
+ {
+  "name": "조혜정",
+  "phone": "010-5032-9240",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-13"
+ },
+ {
+  "name": "최수희",
+  "phone": "010-5701-3969",
+  "prior_visits": 17,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-07"
+ },
+ {
+  "name": "강신원",
+  "phone": "010-3220-8745",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-11-30"
+ },
+ {
+  "name": "고유경",
+  "phone": "010-9367-4876",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-13"
+ },
+ {
+  "name": "김세정",
+  "phone": "010-2036-3755",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 34,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-10"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-01-10"
+ },
+ {
+  "name": "김수빈",
+  "phone": "010-7153-4779",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-05"
+ },
+ {
+  "name": "김영숙",
+  "phone": "010-9397-8745",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-05-03"
+ },
+ {
+  "name": "김현",
+  "phone": "010-4466-8586",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 5건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-21"
+ },
+ {
+  "name": "김혜진",
+  "phone": "010-6211-4132",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-06"
+ },
+ {
+  "name": "남성랑",
+  "phone": "010-2543-1807",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-23"
+ },
+ {
+  "name": "박서윤",
+  "phone": "010-8953-3082",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-10-29"
+ },
+ {
+  "name": "박소영B",
+  "phone": "010-5206-2345",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-17"
+ },
+ {
+  "name": "박현숙B",
+  "phone": "010-6707-0371",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-26"
+ },
+ {
+  "name": "서은혜",
+  "phone": "010-2584-4998",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-05"
+ },
+ {
+  "name": "손민정",
+  "phone": "010-3930-1907",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 23,
+    "remaining": 23,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-09"
+   },
+   {
+    "type": "VIP 개인레슨",
+    "total": 5,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-09"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-09"
+ },
+ {
+  "name": "신혜수",
+  "phone": "010-2552-1734",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-01-18"
+ },
+ {
+  "name": "오영순",
+  "phone": "010-6668-1295",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-06"
+ },
+ {
+  "name": "윤미진",
+  "phone": "010-3150-8538",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-13"
+ },
+ {
+  "name": "이윤서",
+  "phone": "010-9251-0084",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-04"
+ },
+ {
+  "name": "정소은",
+  "phone": "010-5152-4020",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-12"
+ },
+ {
+  "name": "정하은",
+  "phone": "010-7102-8428",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-02"
+ },
+ {
+  "name": "조현주",
+  "phone": "010-9855-9240",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-13"
+ },
+ {
+  "name": "조현표",
+  "phone": "010-2297-0113",
+  "prior_visits": 16,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-18"
+ },
+ {
+  "name": "김보라",
+  "phone": "010-2698-7222",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-26"
+ },
+ {
+  "name": "김연지B",
+  "phone": "010-7376-3202",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 35,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-03-01"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-03-01"
+ },
+ {
+  "name": "김윤아",
+  "phone": "010-4158-1244",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-04"
+ },
+ {
+  "name": "김주예",
+  "phone": "010-4612-4940",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-10-25"
+ },
+ {
+  "name": "박영옥",
+  "phone": "010-3811-4688",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-19"
+ },
+ {
+  "name": "서해영",
+  "phone": "010-4263-8819",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-29"
+ },
+ {
+  "name": "이우리",
+  "phone": "010-3902-8847",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-03-31"
+ },
+ {
+  "name": "이진경",
+  "phone": "010-7166-6785",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-09"
+ },
+ {
+  "name": "정예지 산모님",
+  "phone": "010-7424-0611",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-03"
+ },
+ {
+  "name": "최찬미",
+  "phone": "010-4720-6830",
+  "prior_visits": 15,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-31"
+ },
+ {
+  "name": "김도희",
+  "phone": "010-5444-5222",
+  "prior_visits": 14,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-09"
+ },
+ {
+  "name": "박소연",
+  "phone": "010-9275-7454",
+  "prior_visits": 14,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-04-07"
+ },
+ {
+  "name": "박진희",
+  "phone": "010-4303-7688",
+  "prior_visits": 14,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 10,
+    "remaining": 5,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-18"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-18"
+ },
+ {
+  "name": "이송이",
+  "phone": "010-2221-8711",
+  "prior_visits": 14,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-03"
+ },
+ {
+  "name": "이영리 아이코젠",
+  "phone": "010-3022-3027",
+  "prior_visits": 14,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-01"
+ },
+ {
+  "name": "이현정",
+  "phone": "010-6672-0201",
+  "prior_visits": 14,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-03-13"
+ },
+ {
+  "name": "황윤정",
+  "phone": "010-9550-3522",
+  "prior_visits": 14,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Pro (주 3회)",
+    "total": 12,
+    "remaining": 12,
+    "monthly": true,
+    "period_start": "2026-08-31",
+    "expires_at": "2026-11-21"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-21"
+ },
+ {
+  "name": "김가은",
+  "phone": "010-9259-4663",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-13"
+ },
+ {
+  "name": "김민정D",
+  "phone": "010-3344-5829",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-13"
+ },
+ {
+  "name": "김유정",
+  "phone": "010-5843-0114",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-30"
+ },
+ {
+  "name": "노향민 아이코젠",
+  "phone": "010-2352-0411",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-28"
+ },
+ {
+  "name": "박지윤",
+  "phone": "010-9477-3523",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-02"
+ },
+ {
+  "name": "송지안",
+  "phone": "010-6899-7174",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-11-25"
+ },
+ {
+  "name": "이송현 아이코젠",
+  "phone": "010-4937-2383",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "이희성",
+  "phone": "010-5317-2672",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-09"
+ },
+ {
+  "name": "최가영",
+  "phone": "010-8323-4515",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-31"
+ },
+ {
+  "name": "함태이",
+  "phone": "010-9793-7004",
+  "prior_visits": 13,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-16"
+ },
+ {
+  "name": "권주은",
+  "phone": "010-6384-7934",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 4,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "김나현A",
+  "phone": "010-4160-4435",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 수강권 [이벤트]",
+    "total": 20,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-20"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-20"
+ },
+ {
+  "name": "김누리",
+  "phone": "010-4944-1452",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-19"
+ },
+ {
+  "name": "김예빈",
+  "phone": "010-2534-9741",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 6,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "김은수",
+  "phone": "010-2363-5881",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-02"
+ },
+ {
+  "name": "박소연B",
+  "phone": "010-2535-8887",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-11-30"
+ },
+ {
+  "name": "윤정민",
+  "phone": "010-6512-2788",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-01-06"
+ },
+ {
+  "name": "이예린",
+  "phone": "010-6822-3951",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-17"
+ },
+ {
+  "name": "임나은",
+  "phone": "010-9301-3210",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-11"
+ },
+ {
+  "name": "임은선",
+  "phone": "010-5007-6309",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-14"
+ },
+ {
+  "name": "채은정",
+  "phone": "010-8967-4738",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-21"
+ },
+ {
+  "name": "최순임",
+  "phone": "010-5118-4810",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-07-27"
+ },
+ {
+  "name": "최희정",
+  "phone": "010-2416-0410",
+  "prior_visits": 12,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-08-25"
+ },
+ {
+  "name": "권미영",
+  "phone": "010-3764-8575",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-21"
+ },
+ {
+  "name": "김규린",
+  "phone": "010-7609-2466",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-10-25"
+ },
+ {
+  "name": "김주연B",
+  "phone": "010-2832-0204",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-13"
+ },
+ {
+  "name": "백미숙",
+  "phone": "010-5702-7026",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-31"
+ },
+ {
+  "name": "이승희",
+  "phone": "010-3498-6909",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-09"
+ },
+ {
+  "name": "이희진",
+  "phone": "010-9883-0423",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Basic (주 2회)",
+    "total": 8,
+    "remaining": 8,
+    "monthly": true,
+    "period_start": "2026-09-26",
+    "expires_at": "2026-10-23"
+   },
+   {
+    "type": "메리핏이 드리는 선물🎁",
+    "total": 1,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-23"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-23"
+ },
+ {
+  "name": "전다혜",
+  "phone": "010-3366-9569",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-05-28"
+ },
+ {
+  "name": "조민지",
+  "phone": "010-6662-5437",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-19"
+ },
+ {
+  "name": "지현주",
+  "phone": "010-3312-2632",
+  "prior_visits": 11,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-04"
+ },
+ {
+  "name": "강정희",
+  "phone": "010-7518-3113",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-05"
+ },
+ {
+  "name": "공규리",
+  "phone": "010-5156-5393",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-05-11"
+ },
+ {
+  "name": "김다현",
+  "phone": "010-9242-0954",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-27"
+ },
+ {
+  "name": "김도희B",
+  "phone": "010-5099-0169",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-15"
+ },
+ {
+  "name": "김명옥",
+  "phone": "010-4149-3542",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-18"
+ },
+ {
+  "name": "김수정",
+  "phone": "010-4500-9991",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-21"
+ },
+ {
+  "name": "김영미B",
+  "phone": "010-4905-4547",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-09"
+ },
+ {
+  "name": "김윤자",
+  "phone": "010-9156-1607",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-08"
+ },
+ {
+  "name": "김철호",
+  "phone": "010-2403-4273",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-02-28"
+ },
+ {
+  "name": "김효진",
+  "phone": "010-3217-7726",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-05-07"
+ },
+ {
+  "name": "린",
+  "phone": "010-4294-9993",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-07"
+ },
+ {
+  "name": "박상현",
+  "phone": "010-8829-5439",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-23"
+ },
+ {
+  "name": "박소연C",
+  "phone": "010-7213-6469",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-07"
+ },
+ {
+  "name": "박영주",
+  "phone": "010-8847-4260",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-19"
+ },
+ {
+  "name": "백다애",
+  "phone": "010-5131-8635",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-15"
+ },
+ {
+  "name": "석지원",
+  "phone": "010-6655-5759",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Pro (주 3회)",
+    "total": 12,
+    "remaining": 12,
+    "monthly": true,
+    "period_start": "2026-09-12",
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "손민영",
+  "phone": "010-5047-0715",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "송예진",
+  "phone": "010-3355-1361",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-03-31"
+ },
+ {
+  "name": "심수연",
+  "phone": "010-4338-9940",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-31"
+ },
+ {
+  "name": "심은희",
+  "phone": "010-6712-8461",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-21"
+ },
+ {
+  "name": "안수진",
+  "phone": "010-2522-1557",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-09-10"
+ },
+ {
+  "name": "양유영",
+  "phone": "010-5377-5750",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Pro (주 3회)",
+    "total": 12,
+    "remaining": 12,
+    "monthly": true,
+    "period_start": "2026-10-12",
+    "expires_at": "2026-11-08"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-08"
+ },
+ {
+  "name": "여에스라",
+  "phone": "010-2782-5491",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-29"
+ },
+ {
+  "name": "윤성아",
+  "phone": "010-6711-2491",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-13"
+ },
+ {
+  "name": "윤소연",
+  "phone": "010-7476-7879",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-18"
+ },
+ {
+  "name": "이보은",
+  "phone": "010-5447-1225",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-03-22"
+ },
+ {
+  "name": "이상미",
+  "phone": "010-9431-5992",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-02-24"
+ },
+ {
+  "name": "이상준",
+  "phone": "010-7741-8589",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-10"
+ },
+ {
+  "name": "이소연",
+  "phone": "010-9320-0312",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-19"
+ },
+ {
+  "name": "이수진C",
+  "phone": "010-5398-5483",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-06"
+ },
+ {
+  "name": "이시연",
+  "phone": "010-4776-5957",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-05"
+ },
+ {
+  "name": "이예진B",
+  "phone": "010-3946-4249",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-20"
+ },
+ {
+  "name": "이지미",
+  "phone": "010-7126-8419",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-28"
+ },
+ {
+  "name": "이지훈",
+  "phone": "010-7104-1127",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-01"
+ },
+ {
+  "name": "이해림",
+  "phone": "010-9320-4006",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-25"
+ },
+ {
+  "name": "장성희",
+  "phone": "010-5019-2860",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-20"
+ },
+ {
+  "name": "정지원",
+  "phone": "010-2770-2034",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-06"
+ },
+ {
+  "name": "정찬주",
+  "phone": "010-5442-8036",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-02"
+ },
+ {
+  "name": "정혜선",
+  "phone": "010-9194-4133",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-18"
+ },
+ {
+  "name": "조수연",
+  "phone": "010-3905-4682",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-31"
+ },
+ {
+  "name": "조한나",
+  "phone": "010-9449-3409",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-02"
+ },
+ {
+  "name": "천유란",
+  "phone": "010-9731-9531",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-21"
+ },
+ {
+  "name": "천지원 아이코젠",
+  "phone": "010-2483-9930",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-07"
+ },
+ {
+  "name": "최정은",
+  "phone": "010-5126-0844",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-13"
+ },
+ {
+  "name": "황보진문",
+  "phone": "010-3524-1254",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-11"
+ },
+ {
+  "name": "황은정(강사님)",
+  "phone": "010-8485-2355",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏이 드리는 선물🎁",
+    "total": 8,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "황주희",
+  "phone": "010-3460-3465",
+  "prior_visits": 10,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-29"
+ },
+ {
+  "name": "강은경",
+  "phone": "010-8220-5740",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-08"
+ },
+ {
+  "name": "고선영",
+  "phone": "010-4584-1237",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 50,
+    "remaining": 43,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-02-28"
+   },
+   {
+    "type": "VIP 개인레슨",
+    "total": 4,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-12"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-02-28"
+ },
+ {
+  "name": "김민선",
+  "phone": "010-7337-5739",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-26"
+ },
+ {
+  "name": "김민지 아이코젠",
+  "phone": "010-8793-9614",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "김아현",
+  "phone": "010-2000-4608",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-09"
+ },
+ {
+  "name": "박경애",
+  "phone": "010-5344-5424",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-24"
+ },
+ {
+  "name": "박성찬",
+  "phone": "010-3006-2809",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-09"
+ },
+ {
+  "name": "박지원",
+  "phone": "010-8561-4078",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-08-31"
+ },
+ {
+  "name": "배유미",
+  "phone": "010-9977-4498",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-15"
+ },
+ {
+  "name": "원서희",
+  "phone": "010-4804-1803",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-05-31"
+ },
+ {
+  "name": "윤지원",
+  "phone": "010-4061-7379",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-03"
+ },
+ {
+  "name": "이미영",
+  "phone": "010-8048-2415",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 24,
+    "remaining": 18,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-12-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-12-09"
+ },
+ {
+  "name": "이신호 아이코젠",
+  "phone": "010-8547-1490",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "이영희",
+  "phone": "010-9551-3993",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-05"
+ },
+ {
+  "name": "이재민",
+  "phone": "010-7663-8784",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-04-07"
+ },
+ {
+  "name": "이지은B",
+  "phone": "010-5417-3811",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-29"
+ },
+ {
+  "name": "이효락",
+  "phone": "010-5004-0775",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-08"
+ },
+ {
+  "name": "장미금",
+  "phone": "010-3071-9932",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-29"
+ },
+ {
+  "name": "장영생",
+  "phone": "010-9350-9824",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-26"
+ },
+ {
+  "name": "정경숙",
+  "phone": "010-4520-8537",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-08"
+ },
+ {
+  "name": "정윤진",
+  "phone": "010-8060-1622",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "차혜지",
+  "phone": "010-7567-2229",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-08"
+ },
+ {
+  "name": "최예지",
+  "phone": "010-3521-3720",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "최윤정",
+  "phone": "010-4670-8278",
+  "prior_visits": 9,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-29"
+ },
+ {
+  "name": "강리윤",
+  "phone": "010-8982-4409",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "권다애",
+  "phone": "010-4409-7470",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-10-26"
+ },
+ {
+  "name": "김나연C",
+  "phone": "010-7711-9131",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-29"
+ },
+ {
+  "name": "김실단",
+  "phone": "010-4674-6616",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-03"
+ },
+ {
+  "name": "김영득",
+  "phone": "010-5627-0996",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-23"
+ },
+ {
+  "name": "김영미C",
+  "phone": "010-3596-4488",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 12,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-13"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-13"
+ },
+ {
+  "name": "김태리",
+  "phone": "010-2534-8171",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "김현주",
+  "phone": "010-2362-8222",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-12"
+ },
+ {
+  "name": "박예지 산모님",
+  "phone": "010-5813-4707",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-30"
+ },
+ {
+  "name": "박지영 아이코젠",
+  "phone": "010-9966-1910",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-07"
+ },
+ {
+  "name": "변희경",
+  "phone": "010-4830-5772",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Pro (주 3회)",
+    "total": 12,
+    "remaining": 12,
+    "monthly": true,
+    "period_start": "2026-05-11",
+    "expires_at": "2026-11-07"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-11-07"
+ },
+ {
+  "name": "서유진",
+  "phone": "010-3882-0490",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-12"
+ },
+ {
+  "name": "오금비",
+  "phone": "010-9093-9953",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-13"
+ },
+ {
+  "name": "윤상순",
+  "phone": "010-4531-4854",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-11-25"
+ },
+ {
+  "name": "이경미",
+  "phone": "010-2884-2787",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "이경진",
+  "phone": "010-8969-4554",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-24"
+ },
+ {
+  "name": "이미라",
+  "phone": "010-9491-4419",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-24"
+ },
+ {
+  "name": "이수종 아이코젠",
+  "phone": "010-5077-8450",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-07-31"
+ },
+ {
+  "name": "이수진 아이코젠",
+  "phone": "010-2306-7205",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "아이코젠 수강권",
+    "total": 8,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "이주형",
+  "phone": "010-6627-3810",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-14"
+ },
+ {
+  "name": "이현실",
+  "phone": "010-8250-8854",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-02"
+ },
+ {
+  "name": "임지윤",
+  "phone": "010-5040-0775",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-11"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-11"
+ },
+ {
+  "name": "정연주",
+  "phone": "010-5114-5529",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-18"
+ },
+ {
+  "name": "정혜진",
+  "phone": "010-5636-6490",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-28"
+ },
+ {
+  "name": "정희연",
+  "phone": "010-4755-2981",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-04-05"
+ },
+ {
+  "name": "조준휘",
+  "phone": "010-3244-6527",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-16"
+ },
+ {
+  "name": "조채은 산모님",
+  "phone": "010-3410-0332",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-30"
+ },
+ {
+  "name": "차현경",
+  "phone": "010-8566-3343",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-03-15"
+ },
+ {
+  "name": "채지민",
+  "phone": "010-8281-5663",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-08-24"
+ },
+ {
+  "name": "최상아",
+  "phone": "010-9737-3213",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-07"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-07"
+ },
+ {
+  "name": "최성경",
+  "phone": "010-5418-7665",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-16"
+ },
+ {
+  "name": "최연수",
+  "phone": "010-2824-6056",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-18"
+ },
+ {
+  "name": "최진석",
+  "phone": "010-7531-3333",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-13"
+ },
+ {
+  "name": "황하늘",
+  "phone": "010-3280-3910",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-08"
+ },
+ {
+  "name": "황해일",
+  "phone": "010-2043-2638",
+  "prior_visits": 8,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-01-18"
+ },
+ {
+  "name": "김국선",
+  "phone": "010-2675-6164",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-04"
+ },
+ {
+  "name": "김미선",
+  "phone": "010-6437-5335",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-04"
+ },
+ {
+  "name": "김원경",
+  "phone": "010-2858-0876",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-07"
+ },
+ {
+  "name": "김지아",
+  "phone": "010-7398-2422",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-21"
+ },
+ {
+  "name": "김화영",
+  "phone": "010-9307-7099",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-16"
+ },
+ {
+  "name": "안승수",
+  "phone": "010-5397-0163",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-17"
+ },
+ {
+  "name": "오혜림",
+  "phone": "010-2083-5259",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-11-22"
+ },
+ {
+  "name": "윤가은",
+  "phone": "010-2458-7182",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 3,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-23"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-23"
+ },
+ {
+  "name": "이다은B",
+  "phone": "010-6363-1962",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-05"
+ },
+ {
+  "name": "최윤석",
+  "phone": "010-9397-7609",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-16"
+ },
+ {
+  "name": "최형우",
+  "phone": "010-8977-7099",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-16"
+ },
+ {
+  "name": "홍지현",
+  "phone": "010-2532-1405",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-07"
+ },
+ {
+  "name": "황영애 아이코젠",
+  "phone": "010-3582-3275",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-01-06"
+ },
+ {
+  "name": "황지예",
+  "phone": "010-2577-8637",
+  "prior_visits": 7,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-05"
+ },
+ {
+  "name": "곽지수",
+  "phone": "010-9384-9328",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-07"
+   },
+   {
+    "type": "VIP 개인레슨",
+    "total": 7,
+    "remaining": 3,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-27"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-07"
+ },
+ {
+  "name": "권미화",
+  "phone": "010-4145-1959",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-09-30"
+ },
+ {
+  "name": "김가은",
+  "phone": "010-9890-6978",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 3,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-20"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-20"
+ },
+ {
+  "name": "김도영",
+  "phone": "010-9492-0767",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-19"
+ },
+ {
+  "name": "김소희 아이코젠",
+  "phone": "010-2171-4386",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "배영숙",
+  "phone": "010-7611-2613",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-19"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-19"
+ },
+ {
+  "name": "이동건",
+  "phone": "010-2898-9972",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-28"
+ },
+ {
+  "name": "이태림",
+  "phone": "010-4662-1391",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-22"
+ },
+ {
+  "name": "임유라",
+  "phone": "010-2608-7221",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-14"
+ },
+ {
+  "name": "정재락",
+  "phone": "010-3807-1377",
+  "prior_visits": 6,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-05-19"
+ },
+ {
+  "name": "강나정",
+  "phone": "010-9847-6764",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-18"
+ },
+ {
+  "name": "김규영",
+  "phone": "010-4209-0889",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 7,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-03"
+ },
+ {
+  "name": "김민지",
+  "phone": "010-3555-8058",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-12"
+ },
+ {
+  "name": "김은영",
+  "phone": "010-6707-9510",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "메리핏 스타터",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-03"
+   },
+   {
+    "type": "VIP 개인레슨",
+    "total": 4,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-09"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-09"
+ },
+ {
+  "name": "김혜경C",
+  "phone": "010-7139-6457",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-01"
+ },
+ {
+  "name": "문조현",
+  "phone": "010-2380-0713",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-08-30"
+ },
+ {
+  "name": "박서준",
+  "phone": "010-9760-2212",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 5,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-11"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-11"
+ },
+ {
+  "name": "이시은",
+  "phone": "010-6400-5670",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-12"
+ },
+ {
+  "name": "이희구",
+  "phone": "010-3500-9522",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 10,
+    "remaining": 5,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-10"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-10"
+ },
+ {
+  "name": "장미림",
+  "phone": "010-7588-1101",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-03-14"
+ },
+ {
+  "name": "정혜성",
+  "phone": "010-4794-2509",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-19"
+ },
+ {
+  "name": "지홍선",
+  "phone": "010-4169-7559",
+  "prior_visits": 5,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-08-31"
+ },
+ {
+  "name": "곽재혁",
+  "phone": "010-8640-7077",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-04-09"
+ },
+ {
+  "name": "권세림",
+  "phone": "010-4721-0859",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 6,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-15"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-15"
+ },
+ {
+  "name": "김하정",
+  "phone": "010-8941-0880",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-12"
+ },
+ {
+  "name": "박다은",
+  "phone": "010-9209-9541",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-12-15"
+ },
+ {
+  "name": "박성은",
+  "phone": "010-7703-2994",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "🎀메리핏 입문자(개인)",
+    "total": 5,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-12-08"
+   },
+   {
+    "type": "메리핏 자유수강권 [이벤트]",
+    "total": 24,
+    "remaining": 24,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2027-01-03"
+   },
+   {
+    "type": "🎀메리핏 입문자(개인)",
+    "total": 5,
+    "remaining": 5,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-16"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2027-01-03"
+ },
+ {
+  "name": "박채영",
+  "phone": "010-8534-0971",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2023-11-30"
+ },
+ {
+  "name": "서수민",
+  "phone": "010-8234-8223",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-02-23"
+ },
+ {
+  "name": "손선영",
+  "phone": "010-4523-9714",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-26"
+ },
+ {
+  "name": "우연서",
+  "phone": "010-8811-7697",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 8,
+    "remaining": 4,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-20"
+   },
+   {
+    "type": "메리핏이 드리는 선물🎁",
+    "total": 1,
+    "remaining": 1,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-10"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-20"
+ },
+ {
+  "name": "이은실 아이코젠",
+  "phone": "010-9285-7877",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-07-31"
+ },
+ {
+  "name": "이형숙",
+  "phone": "010-9776-6161",
+  "prior_visits": 4,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-04-11"
+ },
+ {
+  "name": "권기호",
+  "phone": "010-2383-6909",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-28"
+ },
+ {
+  "name": "김기량",
+  "phone": "010-8686-2315",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-11-03"
+ },
+ {
+  "name": "김소정 아이코젠",
+  "phone": "010-2748-2152",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-06"
+ },
+ {
+  "name": "김지수B",
+  "phone": "010-2547-8658",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-11"
+ },
+ {
+  "name": "송아영 아이코젠",
+  "phone": "010-3155-1864",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-16"
+ },
+ {
+  "name": "유보라",
+  "phone": "010-7203-4473",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-06"
+ },
+ {
+  "name": "이서연",
+  "phone": "010-7670-9317",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-11-15"
+ },
+ {
+  "name": "이예진",
+  "phone": "010-3136-2763",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2023-11-29"
+ },
+ {
+  "name": "이현경",
+  "phone": "010-6657-2705",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-12"
+ },
+ {
+  "name": "임향기 체험단",
+  "phone": "010-2201-0165",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-06"
+ },
+ {
+  "name": "정지찬",
+  "phone": "010-8692-8119",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-26"
+ },
+ {
+  "name": "최영자",
+  "phone": "010-8636-1730",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 7,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "황명숙",
+  "phone": "010-5152-5115",
+  "prior_visits": 3,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-03-12"
+ },
+ {
+  "name": "권지수",
+  "phone": "010-2257-8504",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-20"
+ },
+ {
+  "name": "김다혜",
+  "phone": "010-6374-9185",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-02-15"
+ },
+ {
+  "name": "김단비",
+  "phone": "010-3081-7141",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-29"
+ },
+ {
+  "name": "김도은",
+  "phone": "010-4359-3696",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-06"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-06"
+ },
+ {
+  "name": "김상미",
+  "phone": "010-4407-3945",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-05"
+ },
+ {
+  "name": "김소영",
+  "phone": "010-8332-2383",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "🎀메리핏 입문자(개인)",
+    "total": 3,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-10"
+   },
+   {
+    "type": "자유수강권(횟수제)",
+    "total": 13,
+    "remaining": 12,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-21"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-21"
+ },
+ {
+  "name": "김예현",
+  "phone": "010-9602-6681",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-07-18"
+ },
+ {
+  "name": "김유진C",
+  "phone": "010-4923-3334",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-10-04"
+ },
+ {
+  "name": "김종원 아이코젠",
+  "phone": "010-9722-3062",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-07"
+ },
+ {
+  "name": "김채원",
+  "phone": "010-4521-0330",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 8,
+    "remaining": 6,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-17"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-17"
+ },
+ {
+  "name": "박귀희",
+  "phone": "010-6319-7676",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-15"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-15"
+ },
+ {
+  "name": "박봉순",
+  "phone": "010-9576-3696",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-06"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-06"
+ },
+ {
+  "name": "박선정",
+  "phone": "010-3522-8280",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-07-27"
+ },
+ {
+  "name": "박은주",
+  "phone": "010-6531-1370",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-03-23"
+ },
+ {
+  "name": "석미정",
+  "phone": "010-5596-3364",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-12-26"
+ },
+ {
+  "name": "송하은",
+  "phone": "010-5042-5733",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-31"
+ },
+ {
+  "name": "윤보람",
+  "phone": "010-4802-2818",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-25"
+ },
+ {
+  "name": "윤은정",
+  "phone": "010-9136-5808",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-24"
+ },
+ {
+  "name": "이선영",
+  "phone": "010-9847-1551",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 8,
+    "remaining": 6,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-28"
+   },
+   {
+    "type": "루틴패스 Pro (주 3회)",
+    "total": 12,
+    "remaining": 12,
+    "monthly": true,
+    "period_start": "2026-10-31",
+    "expires_at": "2027-01-23"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2027-01-23"
+ },
+ {
+  "name": "이수현",
+  "phone": "010-2544-4071",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-18"
+ },
+ {
+  "name": "이순옥",
+  "phone": "010-9370-3460",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "이애라",
+  "phone": "010-3220-0900",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-31"
+ },
+ {
+  "name": "임소연",
+  "phone": "010-8925-2883",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-30"
+ },
+ {
+  "name": "임수민",
+  "phone": "010-7411-8122",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-22"
+ },
+ {
+  "name": "장향순",
+  "phone": "010-6665-1108",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-05-25"
+ },
+ {
+  "name": "정예지 아이코젠",
+  "phone": "010-4823-7171",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-07"
+ },
+ {
+  "name": "정유나",
+  "phone": "010-2980-6257",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-05-03"
+ },
+ {
+  "name": "조지은 아이코젠",
+  "phone": "010-4547-3872",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-16"
+ },
+ {
+  "name": "채연주",
+  "phone": "010-2043-6754",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-04-28"
+ },
+ {
+  "name": "허정윤",
+  "phone": "010-6472-0536",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-14"
+ },
+ {
+  "name": "허혜진 아이코젠",
+  "phone": "010-2976-8712",
+  "prior_visits": 2,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-07"
+ },
+ {
+  "name": "강다영",
+  "phone": "010-7477-2260",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-03"
+ },
+ {
+  "name": "강시내",
+  "phone": "010-8591-2874",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-30"
+ },
+ {
+  "name": "곽수진B",
+  "phone": "010-9294-9453",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 9,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-16"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-16"
+ },
+ {
+  "name": "구다현",
+  "phone": "010-2915-3576",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-28"
+ },
+ {
+  "name": "권도연",
+  "phone": "010-5134-8848",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-22"
+ },
+ {
+  "name": "권영자",
+  "phone": "010-2237-1587",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-11"
+ },
+ {
+  "name": "김가영",
+  "phone": "010-7734-1720",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-05-10"
+ },
+ {
+  "name": "김가원",
+  "phone": "010-3435-1529",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-18"
+ },
+ {
+  "name": "김경선",
+  "phone": "010-8203-8772",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-17"
+ },
+ {
+  "name": "김다슬",
+  "phone": "010-7104-9807",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-05"
+ },
+ {
+  "name": "김다슬",
+  "phone": "010-2784-4584",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 9,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-03"
+ },
+ {
+  "name": "김령연",
+  "phone": "010-5953-7646",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-02"
+ },
+ {
+  "name": "김미덕",
+  "phone": "010-2019-3187",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-03"
+ },
+ {
+  "name": "김민정C",
+  "phone": "010-2272-9853",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-20"
+ },
+ {
+  "name": "김민준",
+  "phone": "010-9009-8530",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-02-15"
+ },
+ {
+  "name": "김병우",
+  "phone": "010-2001-2686",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-02"
+ },
+ {
+  "name": "김서현",
+  "phone": "010-7232-3846",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-20"
+ },
+ {
+  "name": "김수민",
+  "phone": "010-2254-5215",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-10"
+ },
+ {
+  "name": "김연아",
+  "phone": "010-9091-7761",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-31"
+ },
+ {
+  "name": "김원빈",
+  "phone": "010-4643-8678",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-02"
+ },
+ {
+  "name": "김유진",
+  "phone": "010-8854-9571",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-03"
+ },
+ {
+  "name": "김윤하",
+  "phone": "010-9546-0805",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-04"
+ },
+ {
+  "name": "김은선",
+  "phone": "010-3112-2409",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "김은정",
+  "phone": "010-5498-9527",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-07"
+ },
+ {
+  "name": "김은지",
+  "phone": "010-7997-8138",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-28"
+ },
+ {
+  "name": "김정희",
+  "phone": "010-7629-5885",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-20"
+ },
+ {
+  "name": "김정희B",
+  "phone": "010-3522-0524",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-05"
+ },
+ {
+  "name": "김지수",
+  "phone": "010-7190-0940",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-11-30"
+ },
+ {
+  "name": "김지수",
+  "phone": "010-6706-4205",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-10"
+ },
+ {
+  "name": "김지영",
+  "phone": "010-7183-0420",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-08-31"
+ },
+ {
+  "name": "김지혜",
+  "phone": "010-7488-2262",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-11"
+ },
+ {
+  "name": "김지훈",
+  "phone": "010-4439-0657",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-05-24"
+ },
+ {
+  "name": "김채이 체험단",
+  "phone": "010-3348-0430",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-06"
+ },
+ {
+  "name": "김태승",
+  "phone": "010-2368-9523",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-05-31"
+ },
+ {
+  "name": "김현지",
+  "phone": "010-9285-7765",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-16"
+ },
+ {
+  "name": "김혜경B",
+  "phone": "010-2413-7144",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-16"
+ },
+ {
+  "name": "김혜진B",
+  "phone": "010-9477-6850",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-12"
+ },
+ {
+  "name": "김효정",
+  "phone": "010-2456-6573",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-08"
+ },
+ {
+  "name": "김희정",
+  "phone": "010-5251-1160",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-05"
+ },
+ {
+  "name": "남경숙",
+  "phone": "010-3498-9012",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-11"
+ },
+ {
+  "name": "남궁다은",
+  "phone": "010-8376-6428",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-09"
+ },
+ {
+  "name": "류호형 아이코젠",
+  "phone": "010-3364-3345",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-07"
+ },
+ {
+  "name": "문경진",
+  "phone": "010-2712-5132",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-03"
+ },
+ {
+  "name": "문지선",
+  "phone": "010-7794-2519",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-02"
+ },
+ {
+  "name": "민정아",
+  "phone": "010-3839-6739",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-03-10"
+ },
+ {
+  "name": "박경희",
+  "phone": "010-9547-4094",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-19"
+ },
+ {
+  "name": "박설희",
+  "phone": "010-9252-4100",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-05-13"
+ },
+ {
+  "name": "박소영",
+  "phone": "010-6713-9134",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-07-27"
+ },
+ {
+  "name": "박소현",
+  "phone": "010-7179-0841",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 4건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-06-27"
+ },
+ {
+  "name": "박은유",
+  "phone": "010-6787-1297",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-15"
+ },
+ {
+  "name": "박정하",
+  "phone": "010-8600-0963",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-14"
+ },
+ {
+  "name": "박종애",
+  "phone": "010-3804-8726",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-09-23"
+ },
+ {
+  "name": "방윤경",
+  "phone": "010-3025-0225",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-21"
+ },
+ {
+  "name": "배윤주",
+  "phone": "010-4644-9429",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-09"
+ },
+ {
+  "name": "배지영",
+  "phone": "010-9821-9824",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-12"
+ },
+ {
+  "name": "백선주",
+  "phone": "010-3319-9213",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-05-19"
+ },
+ {
+  "name": "서명순",
+  "phone": "010-8921-1877",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-04"
+ },
+ {
+  "name": "서혜영",
+  "phone": "010-5535-0307",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "성혜경",
+  "phone": "010-7663-8559",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-07"
+ },
+ {
+  "name": "손미리",
+  "phone": "010-4616-5131",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-13"
+ },
+ {
+  "name": "송누리",
+  "phone": "010-2460-2661",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-16"
+ },
+ {
+  "name": "송은비",
+  "phone": "010-8983-1152",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-28"
+ },
+ {
+  "name": "송은희",
+  "phone": "010-4225-5782",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-16"
+ },
+ {
+  "name": "송지은",
+  "phone": "010-2593-6951",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-04-22"
+ },
+ {
+  "name": "신다해",
+  "phone": "010-9912-9915",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-08-09"
+ },
+ {
+  "name": "심지예",
+  "phone": "010-5873-0179",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-09-30"
+ },
+ {
+  "name": "안라미",
+  "phone": "010-4050-8333",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-28"
+ },
+ {
+  "name": "안윤아",
+  "phone": "010-9786-8081",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-11-30"
+ },
+ {
+  "name": "여성아이 김건희",
+  "phone": "010-3554-0112",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 김민정",
+  "phone": "010-7374-1744",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 서혜진",
+  "phone": "010-9550-6243",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 손영아",
+  "phone": "010-8721-7473",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 이승현",
+  "phone": "010-2350-0924",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 진우정",
+  "phone": "010-2258-2486",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "우승아",
+  "phone": "010-9286-7461",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-24"
+ },
+ {
+  "name": "우지아",
+  "phone": "010-4561-9298",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-24"
+ },
+ {
+  "name": "유정현",
+  "phone": "010-2550-4728",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-21"
+ },
+ {
+  "name": "윤나라",
+  "phone": "010-5199-1029",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-21"
+ },
+ {
+  "name": "윤서빈",
+  "phone": "010-6380-2863",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-06"
+ },
+ {
+  "name": "이근",
+  "phone": "010-8529-3103",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-06"
+ },
+ {
+  "name": "이라겸",
+  "phone": "010-4122-6732",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-10"
+ },
+ {
+  "name": "이보람",
+  "phone": "010-656-4977",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-12"
+ },
+ {
+  "name": "이서영",
+  "phone": "010-8706-2686",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-02"
+ },
+ {
+  "name": "이선희",
+  "phone": "010-9494-7273",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-17"
+ },
+ {
+  "name": "이수진",
+  "phone": "010-7666-0277",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-18"
+ },
+ {
+  "name": "이수진B",
+  "phone": "010-5011-1683",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-22"
+ },
+ {
+  "name": "이신옥",
+  "phone": "010-6575-1605",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-05"
+ },
+ {
+  "name": "이연주",
+  "phone": "010-2968-4869",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-07"
+ },
+ {
+  "name": "이은란",
+  "phone": "010-5170-2447",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-25"
+ },
+ {
+  "name": "이은정",
+  "phone": "010-9636-1551",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-08-01"
+ },
+ {
+  "name": "이재은",
+  "phone": "010-9407-2478",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-20"
+ },
+ {
+  "name": "이정애",
+  "phone": "010-4620-7053",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-10-12"
+ },
+ {
+  "name": "이채연",
+  "phone": "010-8671-2570",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-13"
+ },
+ {
+  "name": "이춘희",
+  "phone": "010-6535-2402",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-03-25"
+ },
+ {
+  "name": "이혜진",
+  "phone": "010-6638-9371",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-22"
+ },
+ {
+  "name": "임소정",
+  "phone": "010-6482-0922",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-11"
+ },
+ {
+  "name": "임지혜",
+  "phone": "010-9955-7211",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-15"
+ },
+ {
+  "name": "장민기",
+  "phone": "010-7388-9398",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 9,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-30"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-30"
+ },
+ {
+  "name": "장설린",
+  "phone": "010-2074-6738",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-12-09"
+ },
+ {
+  "name": "장영신",
+  "phone": "010-3150-2599",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-16"
+ },
+ {
+  "name": "전가영",
+  "phone": "010-4243-1335",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-04-23"
+ },
+ {
+  "name": "전아정",
+  "phone": "010-2381-7590",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-16"
+ },
+ {
+  "name": "전행자",
+  "phone": "010-9934-4006",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-20"
+ },
+ {
+  "name": "정선우",
+  "phone": "010-9326-0880",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-09"
+ },
+ {
+  "name": "정성신",
+  "phone": "010-4222-1922",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 9,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "정소영",
+  "phone": "010-3325-2846",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-29"
+ },
+ {
+  "name": "주정민",
+  "phone": "010-5103-5608",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-31"
+ },
+ {
+  "name": "최다희B",
+  "phone": "010-8470-8747",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 9,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-22"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-22"
+ },
+ {
+  "name": "최수아",
+  "phone": "010-2257-4239",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-22"
+ },
+ {
+  "name": "최예진",
+  "phone": "010-9370-9983",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-22"
+ },
+ {
+  "name": "최은솔",
+  "phone": "010-2388-0987",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-08-16"
+ },
+ {
+  "name": "최칠규",
+  "phone": "010-7702-9105",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-16"
+ },
+ {
+  "name": "최혜경",
+  "phone": "010-9926-6501",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-11-15"
+ },
+ {
+  "name": "하진실 아이코젠",
+  "phone": "010-3222-3465",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-28"
+ },
+ {
+  "name": "한현대",
+  "phone": "010-3684-7583",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-03"
+ },
+ {
+  "name": "허서윤",
+  "phone": "010-7160-4996",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-12"
+ },
+ {
+  "name": "황다빈",
+  "phone": "010-6660-7639",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-18"
+ },
+ {
+  "name": "황보현",
+  "phone": "010-2975-8322",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-09"
+ },
+ {
+  "name": "황혜정",
+  "phone": "010-9848-6764",
+  "prior_visits": 1,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-07-29"
+ },
+ {
+  "name": "Ana",
+  "phone": "010-2670-0613",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "Ben",
+  "phone": "010-2467-3817",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-03-20"
+ },
+ {
+  "name": "곽수진",
+  "phone": "010-4266-3011",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-03-17"
+ },
+ {
+  "name": "구리아",
+  "phone": "010-2522-0695",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-24"
+ },
+ {
+  "name": "권라희",
+  "phone": "010-5069-5060",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Lite (주 1회)",
+    "total": 4,
+    "remaining": 4,
+    "monthly": true,
+    "period_start": "2026-09-30",
+    "expires_at": "2026-10-28"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-28"
+ },
+ {
+  "name": "권민진 아이코젠",
+  "phone": "010-2356-8740",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-07-10"
+ },
+ {
+  "name": "김두경 아이코젠",
+  "phone": "010-7550-4920",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-04-01"
+ },
+ {
+  "name": "김세은",
+  "phone": "010-5046-1385",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-14"
+ },
+ {
+  "name": "김소라",
+  "phone": "010-7214-6709",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-13"
+   },
+   {
+    "type": "🎀 메리핏 체험권 🎀",
+    "total": 2,
+    "remaining": 2,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-13"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-13"
+ },
+ {
+  "name": "김소정",
+  "phone": "010-2539-3699",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-19"
+ },
+ {
+  "name": "김승민 체험단",
+  "phone": "010-3906-5323",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-26"
+ },
+ {
+  "name": "김은숙",
+  "phone": "010-6855-9828",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-12-27"
+ },
+ {
+  "name": "김재이 아이코젠",
+  "phone": "010-9384-8631",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-09-02"
+ },
+ {
+  "name": "김정수 아이코젠",
+  "phone": "010-3269-1390",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-09-06"
+ },
+ {
+  "name": "김지수A",
+  "phone": "010-3242-9233",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-02"
+ },
+ {
+  "name": "김태율",
+  "phone": "010-5125-3792",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-03-07"
+ },
+ {
+  "name": "김혜빈 체험단",
+  "phone": "010-3182-7067",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-21"
+ },
+ {
+  "name": "남경리",
+  "phone": "010-4324-1445",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "루틴패스 Basic (주 2회)",
+    "total": 8,
+    "remaining": 8,
+    "monthly": true,
+    "period_start": "2026-09-05",
+    "expires_at": "2026-10-02"
+   }
+  ],
+  "memo": "이관: 횟수 미기록 수강권 6건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-10-02"
+ },
+ {
+  "name": "박경희B",
+  "phone": "010-5589-0230",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-18"
+ },
+ {
+  "name": "박명숙",
+  "phone": "010-4943-6358",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-27"
+ },
+ {
+  "name": "박민혁",
+  "phone": "010-5623-3795",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-05-09"
+ },
+ {
+  "name": "박은숙",
+  "phone": "010-3208-3724",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-04"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-04"
+ },
+ {
+  "name": "박진아",
+  "phone": "010-3326-4530",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-07-18"
+ },
+ {
+  "name": "박채빈",
+  "phone": "010-8103-7166",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-07-11"
+ },
+ {
+  "name": "박효선",
+  "phone": "010-6533-9671",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-07-31"
+ },
+ {
+  "name": "방성은 아이코젠",
+  "phone": "010-9690-9947",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-05-30"
+ },
+ {
+  "name": "손수태(손보미)",
+  "phone": "010-8407-1352",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "손준선",
+  "phone": "010-4130-7144",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-13"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-13"
+ },
+ {
+  "name": "송주엽",
+  "phone": "010-9465-5800",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-03"
+ },
+ {
+  "name": "송지연",
+  "phone": "010-2221-8617",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-06-11"
+ },
+ {
+  "name": "신우진",
+  "phone": "010-4929-4706",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-11-30"
+ },
+ {
+  "name": "양덕승",
+  "phone": "010-9282-5891",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-05-01"
+ },
+ {
+  "name": "여도은",
+  "phone": "010-3182-9545",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "개인레슨(임산부)",
+    "total": 20,
+    "remaining": 20,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-12-26"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-12-26"
+ },
+ {
+  "name": "여성아이 김남희",
+  "phone": "010-5033-4434",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 김은애",
+  "phone": "010-5119-4434",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 이미경",
+  "phone": "010-2507-7997",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 최경미",
+  "phone": "010-8362-6776",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "여성아이 탁유정",
+  "phone": "010-5794-7578",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-06-30"
+ },
+ {
+  "name": "오명자",
+  "phone": "010-8248-2306",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-02-19"
+ },
+ {
+  "name": "유영선",
+  "phone": "010-5831-1190",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-02-28"
+ },
+ {
+  "name": "윤지민",
+  "phone": "010-8894-3343",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-02-27"
+ },
+ {
+  "name": "이경찬",
+  "phone": "010-4335-1830",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-03-25"
+ },
+ {
+  "name": "이루다",
+  "phone": "010-4884-6657",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-01-31"
+ },
+ {
+  "name": "이명희",
+  "phone": "010-4077-3332",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2023-10-29"
+ },
+ {
+  "name": "이상민",
+  "phone": "010-9904-6737",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-06-26"
+ },
+ {
+  "name": "이시은 아이코젠",
+  "phone": "010-6666-4164",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-02-12"
+ },
+ {
+  "name": "이애진",
+  "phone": "010-6604-6169",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-12"
+ },
+ {
+  "name": "이유민",
+  "phone": "010-2610-4322",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-03-19"
+ },
+ {
+  "name": "이윤주",
+  "phone": "010-2723-9677",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-08-30"
+ },
+ {
+  "name": "이은현",
+  "phone": "010-5280-0371",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-13"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-13"
+ },
+ {
+  "name": "이주연 아이코젠",
+  "phone": "010-7702-0903",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-09"
+ },
+ {
+  "name": "이지미B",
+  "phone": "010-7650-0045",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 8,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-03"
+ },
+ {
+  "name": "이지민 아이코젠",
+  "phone": "010-3735-5801",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-05-29"
+ },
+ {
+  "name": "이지은C",
+  "phone": "010-8233-2594",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-08-28"
+ },
+ {
+  "name": "이채영",
+  "phone": "010-5206-1765",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-07-02"
+ },
+ {
+  "name": "이채원",
+  "phone": "010-5671-1771",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-07-25"
+ },
+ {
+  "name": "이하림",
+  "phone": "010-3028-2107",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2025-09-30"
+ },
+ {
+  "name": "임지민",
+  "phone": "010-5023-5484",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-07"
+ },
+ {
+  "name": "장보경",
+  "phone": "010-8859-0317",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 2건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2023-10-31"
+ },
+ {
+  "name": "전민경",
+  "phone": "010-7303-5408",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2023-12-06"
+ },
+ {
+  "name": "전소정",
+  "phone": "010-5660-6134",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-10"
+ },
+ {
+  "name": "정미경",
+  "phone": "010-3484-0718",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-03-30"
+ },
+ {
+  "name": "정지원B 아이코젠",
+  "phone": "010-8733-9567",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 3건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2024-10-30"
+ },
+ {
+  "name": "조미선",
+  "phone": "010-2081-0687",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "VIP 개인레슨",
+    "total": 8,
+    "remaining": 8,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-11-03"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-11-03"
+ },
+ {
+  "name": "최예빈",
+  "phone": "010-2351-2587",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-06-07"
+ },
+ {
+  "name": "최유리",
+  "phone": "010-2214-9874",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-22"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-22"
+ },
+ {
+  "name": "최정은B",
+  "phone": "010-8690-5126",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "한유민",
+  "phone": "010-4642-9559",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-08-01"
+ },
+ {
+  "name": "한진",
+  "phone": "010-7924-5770",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2025-12-28"
+ },
+ {
+  "name": "허송희",
+  "phone": "010-9379-8481",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2026-06-04"
+ },
+ {
+  "name": "허예은",
+  "phone": "010-6750-4992",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "이관: 횟수 미기록 수강권 1건 — 실제 출석이 더 많을 수 있음",
+  "last_seen": "2026-03-06"
+ },
+ {
+  "name": "황선혜",
+  "phone": "010-2127-9188",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [
+   {
+    "type": "자유수강권(평생교육바우처)",
+    "total": 10,
+    "remaining": 10,
+    "monthly": false,
+    "period_start": null,
+    "expires_at": "2026-10-31"
+   }
+  ],
+  "memo": "",
+  "last_seen": "2026-10-31"
+ },
+ {
+  "name": "황효진",
+  "phone": "010-5153-8863",
+  "prior_visits": 0,
+  "grade": "메리 화이트",
+  "passes": [],
+  "memo": "",
+  "last_seen": "2024-01-02"
+ }
+]

@@ -50,8 +50,14 @@ export function AddClassForm({ branch }: { branch: string }) {
       <div className="flex gap-2">
         <select name="program" className={inputCls} defaultValue="기구 필라테스">
           <option>기구 필라테스</option>
+          <option>리포머</option>
+          <option>체어</option>
+          <option>캐딜락</option>
           <option>바레</option>
+          <option>필라테스</option>
           <option>필라웨이트</option>
+          <option>요가</option>
+          <option>아로마</option>
           <option>단체수업</option>
         </select>
         <input type="time" name="time" className={inputCls} required />

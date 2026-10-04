@@ -8,17 +8,18 @@ import {
   memberRemaining,
   hasUnlimited,
   nextRenewalInfo,
-  attendedCount,
   distinctTimes,
-  slotForCell,
+  slotsForCell,
   slotBookedCount,
   getActiveReservation,
   occurrenceDate,
   weekRangeLabel,
   canCancelDate,
   todayISO,
+  totalVisits,
   upcomingReservations,
   DOW_LABEL,
+  bookingOpensAt,
 } from "@/lib/store";
 import { Branch, BRANCH_LABEL } from "@/lib/types";
 import { tierFor, nextTier } from "@/lib/points";
@@ -96,7 +97,7 @@ export default async function MemberHome({
           </div>
           <div className="rounded-xl bg-emerald-700/60 py-2">
             <div className="text-xs text-emerald-100">출석</div>
-            <div className="text-base font-bold">{attendedCount(db, member.id)}회</div>
+            <div className="text-base font-bold">{totalVisits(db, member.id)}회</div>
           </div>
         </div>
 
@@ -112,7 +113,9 @@ export default async function MemberHome({
 
         {/* 적립 등급 — 많이 나올수록 1회 적립금이 올라간다 */}
         {(() => {
-          const n = attendedCount(db, member.id);
+          // 남구점에서 쌓은 출석도 함께 센다. 앱 기록만 세면 오래 다닌 회원이
+          // 신규와 같은 적립률을 받는다.
+          const n = totalVisits(db, member.id);
           const tier = tierFor(member.branch, n);
           const next = nextTier(member.branch, n);
           return (
@@ -191,6 +194,20 @@ export default async function MemberHome({
         ))}
       </div>
 
+      {/* 아직 예약을 안 받는 지점 — 시간표는 보여주되 언제부터인지 알려준다 */}
+      {(() => {
+        const open = bookingOpensAt(branch);
+        if (!open) return null;
+        const [, m, d] = open.split("-");
+        return (
+          <p className="mb-2 rounded-xl bg-amber-50 px-3.5 py-2.5 text-center text-sm text-amber-800">
+            {BRANCH_LABEL[branch]}은 <b>{Number(m)}월 {Number(d)}일</b>부터 예약을 받아요.
+            <br />
+            <span className="text-xs">시간표를 미리 보고 계획해 두세요.</span>
+          </p>
+        );
+      })()}
+
       {/* 주차 전환 */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex gap-2">
@@ -216,14 +233,17 @@ export default async function MemberHome({
         times={times}
         cell={(dow, time) => {
           const date = occurrenceDate(dow, weekOffset);
-          const slot = slotForCell(db, branch, dow, time, date);
-          if (!slot) return null;
+          // 남구점은 같은 시각에 룸을 나눠 두 수업이 동시에 돈다. 다 보여줘야 한다.
+          const cellSlots = slotsForCell(db, branch, dow, time, date);
+          if (cellSlots.length === 0) return null;
+          const past = date < todayISO();
+          const locked = Boolean(bookingOpensAt(branch));
+          return cellSlots.map((slot) => {
           const count = slotBookedCount(db, slot.id, date);
           const full = count >= slot.capacity;
-          const past = date < todayISO();
           const myR = getActiveReservation(db, slot.id, date, member.id);
           return (
-            <div className="rounded-md border border-neutral-200 bg-white px-1 py-1">
+            <div key={slot.id} className="mb-1 rounded-md border border-neutral-200 bg-white px-1 py-1 last:mb-0">
               <div className="text-[11px] font-semibold leading-tight text-neutral-800">
                 {programAbbrev(slot.program)}
               </div>
@@ -250,6 +270,10 @@ export default async function MemberHome({
                 <div className="mt-0.5 rounded bg-neutral-100 py-0.5 text-[10px] text-neutral-300">
                   종료
                 </div>
+              ) : locked ? (
+                <div className="mt-0.5 rounded bg-neutral-100 py-0.5 text-[10px] text-neutral-400">
+                  준비 중
+                </div>
               ) : full ? (
                 <div className="mt-0.5 rounded bg-neutral-100 py-0.5 text-[10px] text-neutral-400">
                   마감
@@ -266,6 +290,7 @@ export default async function MemberHome({
               )}
             </div>
           );
+          });
         }}
       />
       <p className="mt-3 text-center text-xs text-neutral-400">
