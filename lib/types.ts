@@ -18,6 +18,7 @@ export type ProgramName =
   | "필라웨이트"
   | "요가"
   | "아로마"
+  | "상담신청"
   | "단체수업";
 
 export interface Member {

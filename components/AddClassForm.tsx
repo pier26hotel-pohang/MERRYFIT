@@ -58,6 +58,7 @@ export function AddClassForm({ branch }: { branch: string }) {
           <option>필라웨이트</option>
           <option>요가</option>
           <option>아로마</option>
+          <option>상담신청</option>
           <option>단체수업</option>
         </select>
         <input type="time" name="time" className={inputCls} required />

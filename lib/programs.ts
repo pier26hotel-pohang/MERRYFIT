@@ -14,6 +14,7 @@ export const PROGRAMS: ProgramInfo[] = [
   { name: "필라웨이트", short: "필웨", desc: "유산소 + 필라테스", bg: "#E1EFE4", fg: "#2B6644" },
   { name: "요가", short: "요가", desc: "유연성 · 호흡 · 균형", bg: "#DAECEC", fg: "#28696B" },
   { name: "아로마", short: "아로마", desc: "아로마와 함께하는 이완 · 회복", bg: "#EBE4F5", fg: "#5A4687" },
+  { name: "상담신청", short: "상담", desc: "1:1 상담 · 2명까지", bg: "#F5EFE2", fg: "#7A6130" },
 ];
 
 const BY_NAME = new Map(PROGRAMS.map((p) => [p.name, p]));

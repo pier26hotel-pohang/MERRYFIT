@@ -64,6 +64,8 @@ export function programAbbrev(program: string): string {
       return "리포";
     case "캐딜락":
       return "캐딜";
+    case "상담신청":
+      return "상담";
     default:
       return program;
   }

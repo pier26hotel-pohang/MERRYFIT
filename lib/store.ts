@@ -42,6 +42,16 @@ export function bookingOpensAt(branch: Branch): string | null {
   return open && todayISO() < open ? open : null;
 }
 
+/** 수업이 아니라 1:1 상담 자리인가. 수강권을 깎지 않는다. */
+export function isConsultSlot(program: string): boolean {
+  return program === "상담신청";
+}
+
+/** 그날 그 시간은 닫혀 있는가. 정원 0 을 "휴무" 표시로 쓴다. */
+export function isClosedSlot(capacity: number): boolean {
+  return capacity <= 0;
+}
+
 // ---------- 날짜 계산 (순수) ----------
 //
 // 모든 날짜는 한국 시간(KST) 기준이다.
@@ -291,7 +301,17 @@ export async function book(slotId: string, memberId: string, date: string): Prom
     .from("reservations").select("*").eq("slot_id", slotId).eq("date", date).neq("status", "cancelled");
   const ex = existing ?? [];
   if (ex.some((r) => r.member_id === memberId)) return { ok: false, msg: "이미 예약함" };
+  if (isClosedSlot(slot.capacity)) return { ok: false, msg: "이 시간은 쉬어갑니다." };
   if (ex.length >= slot.capacity) return { ok: false, msg: "정원 마감" };
+
+  // 1:1 상담은 수업이 아니다. 수강권을 깎지도, 잔여가 없다고 막지도 않는다.
+  // 상담받으러 오는 사람에게 수강권부터 사라고 할 수는 없다.
+  if (isConsultSlot(slot.program)) {
+    assertOk("상담 신청", await sb.from("reservations").insert({
+      id: uid("r"), slot_id: slotId, member_id: memberId, date, status: "booked", pass_id: null,
+    }));
+    return { ok: true, msg: "상담 신청 완료" };
+  }
   // 정기권은 갱신일이 지났으면 횟수가 채워진 것으로 본다 (DB 는 아래에서 맞춘다).
   const today = todayISO();
   const { data: passes } = await sb.from("passes").select("*").eq("member_id", memberId);

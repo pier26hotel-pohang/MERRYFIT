@@ -20,6 +20,8 @@ import {
   upcomingReservations,
   DOW_LABEL,
   bookingOpensAt,
+  isClosedSlot,
+  isConsultSlot,
 } from "@/lib/store";
 import { Branch, BRANCH_LABEL } from "@/lib/types";
 import { tierFor, nextTier } from "@/lib/points";
@@ -33,6 +35,14 @@ import { DEFAULT_BRANCH } from "@/lib/types";
 import { CancelButton } from "@/components/CancelButton";
 
 export const dynamic = "force-dynamic";
+
+// 몇 주 뒤까지 보여줄지. 0 = 이번 주.
+const WEEKS_AHEAD = 2;
+const WEEK_TABS = [
+  { o: 0, l: "이번 주" },
+  { o: 1, l: "다음 주" },
+  { o: 2, l: "그다음" },
+];
 
 function fmtD(iso: string) {
   const d = new Date(iso + "T00:00:00");
@@ -50,7 +60,8 @@ export default async function MemberHome({
   const db = await loadSnapshot();
   const member = getMember(db, memberId);
   if (!member) redirect("/login");
-  const weekOffset = w === "1" ? 1 : 0;
+  // 3주까지 본다. 2주 뒤를 막아두면 10/12 가오픈 같은 날을 아예 예약할 수 없다.
+  const weekOffset = Math.min(Math.max(Number(w) || 0, 0), WEEKS_AHEAD);
 
   // 기본은 2호점. 직접 고른 지점이 있으면 그대로 존중하고,
   // 그 지점에 수업이 없으면 수업이 있는 지점을 대신 보여준다
@@ -211,10 +222,7 @@ export default async function MemberHome({
       {/* 주차 전환 */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex gap-2">
-          {[
-            { o: 0, l: "이번 주" },
-            { o: 1, l: "다음 주" },
-          ].map(({ o, l }) => (
+          {WEEK_TABS.map(({ o, l }) => (
             <Link
               key={o}
               href={link(branch, o)}
@@ -239,11 +247,26 @@ export default async function MemberHome({
           const past = date < todayISO();
           const locked = Boolean(bookingOpensAt(branch));
           return cellSlots.map((slot) => {
+          const closed = isClosedSlot(slot.capacity);
           const count = slotBookedCount(db, slot.id, date);
           const full = count >= slot.capacity;
           const myR = getActiveReservation(db, slot.id, date, member.id);
+          if (closed) {
+            return (
+              <div key={slot.id} className="mb-1 rounded-md border border-dashed border-neutral-200 bg-neutral-50 px-1 py-2 text-[10px] text-neutral-300 last:mb-0">
+                휴무
+              </div>
+            );
+          }
           return (
-            <div key={slot.id} className="mb-1 rounded-md border border-neutral-200 bg-white px-1 py-1 last:mb-0">
+            <div
+              key={slot.id}
+              className={`mb-1 rounded-md border px-1 py-1 last:mb-0 ${
+                isConsultSlot(slot.program)
+                  ? "border-amber-300 bg-amber-50"
+                  : "border-neutral-200 bg-white"
+              }`}
+            >
               <div className="text-[11px] font-semibold leading-tight text-neutral-800">
                 {programAbbrev(slot.program)}
               </div>
@@ -283,8 +306,14 @@ export default async function MemberHome({
                   <input type="hidden" name="slotId" value={slot.id} />
                   <input type="hidden" name="memberId" value={member.id} />
                   <input type="hidden" name="date" value={date} />
-                  <button className="mt-0.5 w-full rounded bg-emerald-700 py-0.5 text-[10px] font-medium text-white hover:bg-emerald-800">
-                    신청
+                  <button
+                    className={`mt-0.5 w-full rounded py-0.5 text-[10px] font-medium text-white ${
+                      isConsultSlot(slot.program)
+                        ? "bg-amber-600 hover:bg-amber-700"
+                        : "bg-emerald-700 hover:bg-emerald-800"
+                    }`}
+                  >
+                    {isConsultSlot(slot.program) ? "상담" : "신청"}
                   </button>
                 </form>
               )}
