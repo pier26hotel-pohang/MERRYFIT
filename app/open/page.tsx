@@ -36,7 +36,17 @@ const PASSES = [
   { name: "루틴패스 Lite", count: "월 4회", price: "10만원", note: "주 1회" },
   { name: "루틴패스 Basic", count: "월 8회", price: "17만원", note: "주 2회" },
   { name: "루틴패스 Pro", count: "월 12회", price: "22만원", note: "주 3회" },
-  { name: "루틴패스 Unlimited", count: "무제한", price: "28만원", note: "매일" },
+  {
+    name: "루틴패스 Unlimited",
+    count: "무제한",
+    price: "28만원",
+    note: "매일",
+    // 정상가 35만원 → 오픈 기간 28만원.
+    was: "35만원",
+    // 무제한권은 출석 적립금이 붙지 않는다(lib/store.ts checkIn 의 isUnlimited).
+    // 가격표에 안 써두면 등록하고 나서 "왜 적립이 안 되냐"가 된다.
+    noPoint: true,
+  },
 ];
 
 const POINTS = ["바레 · 필라테스 · 요가", "체형 교정 & 자세 개선", "개인 맞춤형 프로그램", "쾌적한 프리미엄 스튜디오"];
@@ -138,15 +148,32 @@ export default async function OpenPage({
             {PASSES.map((p, i) => (
               <li key={p.name} className={`flex items-center gap-3 px-4 py-3 ${i === 0 ? "bg-emerald-50/60" : ""}`}>
                 <div className="flex-1">
-                  <div className="text-[15px] font-bold text-neutral-900">{p.name}</div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[15px] font-bold text-neutral-900">{p.name}</span>
+                    {p.was && (
+                      <span className="rounded-full bg-emerald-800 px-1.5 py-0.5 text-[10px] font-bold text-white">
+                        오픈특가
+                      </span>
+                    )}
+                  </div>
                   <div className="text-xs text-neutral-500">
                     {p.count} · {p.note}
+                    {p.noPoint && <span className="text-neutral-400"> · 적립금 미적용</span>}
                   </div>
                 </div>
-                <div className="text-right text-lg font-extrabold tabular-nums text-neutral-900">{p.price}</div>
+                <div className="text-right">
+                  {p.was && (
+                    <div className="text-xs text-neutral-400 line-through tabular-nums">{p.was}</div>
+                  )}
+                  <div className="text-lg font-extrabold tabular-nums text-neutral-900">{p.price}</div>
+                </div>
               </li>
             ))}
           </ul>
+          <p className="mt-2 text-[11px] leading-relaxed text-neutral-400">
+            Unlimited 는 정상가 35만원, 오픈 기간 28만원입니다. 무제한권으로 들은 수업은
+            출석 적립금이 쌓이지 않습니다.
+          </p>
           <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2">
             {POINTS.map((t) => (
               <li key={t} className="flex items-start gap-1.5 text-[13px] text-neutral-700">
