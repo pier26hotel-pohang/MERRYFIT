@@ -16,9 +16,9 @@ export interface PointTier {
 // 각 배열은 minAttend 오름차순.
 //
 // 북구점: 오픈 이벤트라 처음부터 5,000원으로 시작한다.
-// 남구점: 이미 운영 중인 지점이라 1,000원에서 시작해 200회에 5,000원이 된다.
-//         구간을 100/200 으로 띄워 둔 것은, 이관해 온 출석이 그대로 등급에
-//         반영되기 때문이다. 문턱이 낮으면 오픈하자마자 적립 부담이 커진다.
+// 남구점: 이미 운영 중인 지점이라 1,000원에서 시작해 100회마다 1,000원씩 오르고
+//         400회에 5,000원이 된다. 이관해 온 출석이 그대로 등급에 반영되므로
+//         문턱을 100 단위로 띄워 두었다.
 export const BRANCH_TIERS: Record<Branch, PointTier[]> = {
   "2호점": [
     { name: "웰컴", minAttend: 0, point: ATTEND_POINT, note: "출석할 때마다 5,000원" },
@@ -28,8 +28,10 @@ export const BRANCH_TIERS: Record<Branch, PointTier[]> = {
   ],
   "1호점": [
     { name: "시작", minAttend: 0, point: 1000, note: "출석할 때마다 1,000원" },
-    { name: "루틴", minAttend: 100, point: 3000, note: "100회부터 3,000원" },
-    { name: "메리", minAttend: 200, point: ATTEND_POINT, note: "200회부터 5,000원" },
+    { name: "루틴", minAttend: 100, point: 2000, note: "100회부터 2,000원" },
+    { name: "코어", minAttend: 200, point: 3000, note: "200회부터 3,000원" },
+    { name: "플러스", minAttend: 300, point: 4000, note: "300회부터 4,000원" },
+    { name: "메리", minAttend: 400, point: ATTEND_POINT, note: "400회부터 5,000원" },
   ],
 };
 
