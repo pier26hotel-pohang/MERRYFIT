@@ -19,7 +19,7 @@ import {
   totalVisits,
   upcomingReservations,
   DOW_LABEL,
-  bookingOpensAt,
+  firstClassAt,
   isClosedSlot,
   isConsultSlot,
 } from "@/lib/store";
@@ -205,16 +205,16 @@ export default async function MemberHome({
         ))}
       </div>
 
-      {/* 아직 예약을 안 받는 지점 — 시간표는 보여주되 언제부터인지 알려준다 */}
+      {/* 아직 문을 열기 전인 지점 — 언제부터 수업이 있는지 알려준다 */}
       {(() => {
-        const open = bookingOpensAt(branch);
-        if (!open) return null;
-        const [, m, d] = open.split("-");
+        const first = firstClassAt(branch);
+        if (!first) return null;
+        const [, m, d] = first.split("-");
         return (
           <p className="mb-2 rounded-xl bg-amber-50 px-3.5 py-2.5 text-center text-sm text-amber-800">
-            {BRANCH_LABEL[branch]}은 <b>{Number(m)}월 {Number(d)}일</b>부터 예약을 받아요.
+            {BRANCH_LABEL[branch]}은 <b>{Number(m)}월 {Number(d)}일</b>부터 수업이 시작돼요.
             <br />
-            <span className="text-xs">시간표를 미리 보고 계획해 두세요.</span>
+            <span className="text-xs">그날 수업은 지금 바로 신청하실 수 있어요.</span>
           </p>
         );
       })()}
@@ -245,7 +245,6 @@ export default async function MemberHome({
           const cellSlots = slotsForCell(db, branch, dow, time, date);
           if (cellSlots.length === 0) return null;
           const past = date < todayISO();
-          const locked = Boolean(bookingOpensAt(branch));
           return cellSlots.map((slot) => {
           const closed = isClosedSlot(slot.capacity);
           const count = slotBookedCount(db, slot.id, date);
@@ -292,10 +291,6 @@ export default async function MemberHome({
               ) : past ? (
                 <div className="mt-0.5 rounded bg-neutral-100 py-0.5 text-[10px] text-neutral-300">
                   종료
-                </div>
-              ) : locked ? (
-                <div className="mt-0.5 rounded bg-neutral-100 py-0.5 text-[10px] text-neutral-400">
-                  준비 중
                 </div>
               ) : full ? (
                 <div className="mt-0.5 rounded bg-neutral-100 py-0.5 text-[10px] text-neutral-400">

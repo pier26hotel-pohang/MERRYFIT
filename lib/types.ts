@@ -89,14 +89,15 @@ export const ATTEND_POINT = 5000; // 출석 1회 적립금
 // 기본 지점 — 2호점 오픈 이후 신규 회원은 2호점을 먼저 본다.
 export const DEFAULT_BRANCH: Branch = "2호점";
 
-// 예약을 열어주는 날(KST, YYYY-MM-DD). 이 날이 되기 전에는 시간표만 보이고
-// 예약 버튼이 막힌다. 북구점은 공사·오픈 준비가 끝나는 10월 19일부터 받는다.
-// 남구점은 이미 운영 중이라 제한이 없다.
-// 테스트할 때는 BUKGU_OPEN_AT 를 오늘 날짜로 두면 바로 열린다.
-// 환경변수를 쓰는 이유: 코드를 고쳐 배포했다가 되돌리는 걸 잊으면
-// 준비 안 된 지점이 손님에게 열려버린다.
-export const BRANCH_OPEN_AT: Partial<Record<Branch, string>> = {
-  "2호점": process.env.BUKGU_OPEN_AT || "2026-10-12",  // 가오픈일부터 예약을 받는다
+// 그 지점에서 수업이 시작되는 날(KST, YYYY-MM-DD).
+//
+// 예약은 지금 당장 받는다. 막아야 하는 건 "예약하는 행위" 가 아니라 "개원 전 날짜" 다.
+// 문을 열기도 전인 날에 수업이 떠 있으면 그게 틀린 것이고, 12일 수업을 미리
+// 잡아두려는 사람을 막을 이유는 없다.
+//
+// 이 날보다 이른 날짜에는 그 지점 수업이 아예 보이지 않는다.
+export const BRANCH_FIRST_CLASS: Partial<Record<Branch, string>> = {
+  "2호점": process.env.BUKGU_FIRST_CLASS || "2026-10-12",
 };
 
 // 가입 시 자동으로 들어가는 수강권.

@@ -2,7 +2,7 @@
 // 조회: loadSnapshot()으로 전체를 한 번 읽어 순수 함수로 계산
 // 변경: Supabase에 직접 쓰기(async)
 import { supabaseAdmin } from "./supabase";
-import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, BRANCH_OPEN_AT, DEFAULT_BRANCH, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
+import { DB, Member, Pass, ScheduleSlot, Branch, BRANCH_LABEL, BRANCH_FIRST_CLASS, DEFAULT_BRANCH, ProgramName, PassScope, ATTEND_POINT, WELCOME_PASS, PointRequest, PointRequestStatus } from "./types";
 import { makePasswordRecord, passwordMatches } from "./password";
 import { DOW_LABEL, WEEK_ORDER } from "./week-constants";
 import { tierFor } from "./points";
@@ -31,15 +31,16 @@ export function programCapacity(program: ProgramName, branch: Branch): number {
   return 6;
 }
 
-/**
- * 이 지점이 아직 예약을 안 받는다면 오픈일을, 이미 열렸으면 null 을 돌려준다.
- *
- * 시간표는 미리 보여주되 예약만 막는다 — 오픈 전에 무엇을 하는 곳인지
- * 보여줄 수 있어야 하고, 회원이 날짜를 기억해 두고 올 수 있어야 한다.
- */
-export function bookingOpensAt(branch: Branch): string | null {
-  const open = BRANCH_OPEN_AT[branch];
-  return open && todayISO() < open ? open : null;
+/** 그 지점 수업이 아직 시작 전이면 그 날짜를, 이미 시작했으면 null 을 돌려준다. */
+export function firstClassAt(branch: Branch): string | null {
+  const d = BRANCH_FIRST_CLASS[branch];
+  return d && todayISO() < d ? d : null;
+}
+
+/** 그 날짜에 이 지점이 문을 여는가. 개원 전 날짜에는 수업이 없다. */
+export function branchOpenOn(branch: Branch, date: string): boolean {
+  const d = BRANCH_FIRST_CLASS[branch];
+  return !d || date >= d;
 }
 
 /** 수업이 아니라 1:1 상담 자리인가. 수강권을 깎지 않는다. */
@@ -234,6 +235,7 @@ export function distinctTimes(db: DB, branch?: Branch): string[] {
  * 그 날짜에만 열린 1회성 수업이 있으면 그것만 쓴다 — 매주 반복을 덮어쓰는 규칙이다.
  */
 export function slotsForCell(db: DB, branch: Branch, dow: number, time: string, date: string): ScheduleSlot[] {
+  if (!branchOpenOn(branch, date)) return [];
   const here = db.slots.filter((s) => s.branch === branch && s.time === time);
   const oneOff = here.filter((s) => s.date === date);
   if (oneOff.length) return oneOff;
@@ -292,10 +294,10 @@ export async function book(slotId: string, memberId: string, date: string): Prom
   const { data: slot } = await sb.from("slots").select("*").eq("id", slotId).maybeSingle();
   if (!slot) return { ok: false, msg: "수업을 찾을 수 없습니다." };
   if (date < todayISO()) return { ok: false, msg: "지난 수업입니다." };
-  const gate = bookingOpensAt(slot.branch as Branch);
-  if (gate) {
+  if (!branchOpenOn(slot.branch as Branch, date)) {
     const label = BRANCH_LABEL[slot.branch as Branch] ?? slot.branch;
-    return { ok: false, msg: `${label}은 ${gate.slice(5).replace("-", "월 ")}일부터 예약을 받습니다.` };
+    const d = BRANCH_FIRST_CLASS[slot.branch as Branch]!;
+    return { ok: false, msg: `${label}은 ${d.slice(5).replace("-", "월 ")}일부터 수업이 시작됩니다.` };
   }
   const { data: existing } = await sb
     .from("reservations").select("*").eq("slot_id", slotId).eq("date", date).neq("status", "cancelled");
