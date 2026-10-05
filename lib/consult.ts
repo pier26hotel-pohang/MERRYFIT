@@ -165,7 +165,11 @@ export function keepOne(value: string | undefined, allowed: readonly string[]): 
 
 export async function saveConsultation(input: ConsultInput): Promise<string> {
   const id = uid();
-  const { error } = await supabaseAdmin().from("consultations").insert({
+
+  // 가오픈 때 추가한 항목(trial_slot 등)은 11_preopen.sql 을 실행해야 컬럼이 생긴다.
+  // 컬럼이 없는 DB 에 보내면 insert 가 통째로 실패해서, 신청서 전체가 저장되지 않는다.
+  // 실제로 그렇게 두 시간치 신청을 잃었다. 새 항목을 못 넣더라도 본문은 반드시 남긴다.
+  const base: Record<string, unknown> = {
     id,
     name: input.name,
     phone: input.phone,
@@ -190,7 +194,19 @@ export async function saveConsultation(input: ConsultInput): Promise<string> {
     agree_privacy: input.agreePrivacy,
     agree_health: input.agreeHealth,
     agree_marketing: input.agreeMarketing,
-  });
+  };
+
+  const EXTRA = ["trial_slot", "visit_date", "visit_time", "gift_optin"];
+  const sb = supabaseAdmin();
+  let { error } = await sb.from("consultations").insert(base);
+
+  // 새 컬럼이 아직 없으면 그 항목만 빼고 다시 넣는다.
+  if (error && EXTRA.some((c) => error!.message.includes(c))) {
+    console.error("[consult] 가오픈 항목 컬럼 없음 — 본문만 저장합니다. 11_preopen.sql 실행 필요.");
+    const fallback = { ...base };
+    for (const c of EXTRA) delete fallback[c];
+    ({ error } = await sb.from("consultations").insert(fallback));
+  }
   if (error) throw new Error(`상담 신청 저장 실패: ${error.message}`);
   return id;
 }
