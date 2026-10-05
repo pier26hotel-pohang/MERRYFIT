@@ -51,8 +51,12 @@ if (readErr) {
   console.error("회원 조회 실패:", readErr.message);
   process.exit(1);
 }
+// 숫자만 뽑아 비교한다. 앱 가입은 "01012345678", 이관분은 "010-1234-5678" 로
+// 들어와서, 문자열을 그대로 견주면 같은 사람을 못 알아보고 레코드를 또 만든다.
+// 실제로 그렇게 중복 8건을 만들었다.
+const digits = (p) => String(p ?? "").replace(/\D/g, "");
 const byPhone = new Map(
-  existing.filter((m) => m.phone).map((m) => [String(m.phone).trim(), m])
+  existing.filter((m) => m.phone).map((m) => [digits(m.phone), m])
 );
 console.log(`현재 DB 회원 ${existing.length}명 (이관분 ${existing.filter((m) => m.imported_from).length}명)\n`);
 
@@ -62,7 +66,7 @@ const toUpdate = [];
 const skipped = [];
 
 for (const r of rows) {
-  const hit = byPhone.get(r.phone);
+  const hit = byPhone.get(digits(r.phone));
   if (!hit) {
     toInsert.push(r);
     continue;
