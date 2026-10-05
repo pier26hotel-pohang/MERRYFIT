@@ -203,6 +203,26 @@ export async function requestPointTransferAction(): Promise<{ ok: boolean; msg: 
   return r;
 }
 
+/**
+ * 쇼핑몰 가입을 마친 회원을 연락처로 찾아 연결한다.
+ *
+ * 연동이 꺼져 있거나 못 찾으면 실패를 그대로 알려준다 — 조용히 넘기면
+ * 회원은 연결된 줄 알고 기다리게 된다.
+ */
+export async function linkShopAccountAction(): Promise<{ ok: boolean; msg: string }> {
+  const memberId = await currentMemberId();
+  if (!memberId) return { ok: false, msg: "로그인이 필요해요." };
+  try {
+    const { linkByPhone } = await import("./cafe24");
+    const r = await linkByPhone(memberId);
+    if (r.ok) revalidatePath("/book");
+    return r;
+  } catch (e) {
+    console.error("[linkShop]", e);
+    return { ok: false, msg: "연결 중 문제가 생겼어요. 센터로 연락 주세요." };
+  }
+}
+
 export async function completePointRequestAction(formData: FormData) {
   await store.completePointRequest(String(formData.get("requestId")));
   revalidatePath("/admin");

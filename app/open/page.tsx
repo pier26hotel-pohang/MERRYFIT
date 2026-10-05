@@ -171,8 +171,8 @@ export default async function OpenPage({
             ))}
           </ul>
           <p className="mt-2 text-[11px] leading-relaxed text-neutral-400">
-            Unlimited 는 정상가 35만원, 오픈 기간 28만원입니다. 무제한권으로 들은 수업은
-            출석 적립금이 쌓이지 않습니다.
+            Unlimited 는 정상가 35만원, <b>2026년 12월 31일까지</b> 28만원입니다.
+            무제한권으로 들은 수업은 출석 적립금이 쌓이지 않습니다.
           </p>
           <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2">
             {POINTS.map((t) => (

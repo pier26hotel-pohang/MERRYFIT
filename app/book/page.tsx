@@ -185,7 +185,7 @@ export default async function MemberHome({
       >
         🛍️ 메리핏 쇼핑몰 바로가기
       </a>
-      <PointTransferButton points={member.points} pending={Boolean(pointReq)} />
+      <PointTransferButton points={member.points} pending={Boolean(pointReq)} linked={Boolean(member.cafe24Id)} />
 
       {/* 위치 검증 셀프 체크인 */}
       <SelfCheckIn memberId={member.id} />

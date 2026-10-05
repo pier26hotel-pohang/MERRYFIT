@@ -160,3 +160,66 @@ export async function syncMemberPoints(memberId: string): Promise<GiveResult> {
   }
   return r;
 }
+
+/**
+ * 연락처로 쇼핑몰 회원을 찾아 앱 회원과 연결한다.
+ *
+ * 쇼핑몰에 가입할 때 쓴 휴대폰 번호가 앱과 같으면 자동으로 붙는다.
+ * 번호를 다르게 적었거나 아직 가입 전이면 못 찾는다 — 그때는 센터에서
+ * 아이디를 직접 넣어줘야 한다.
+ *
+ * 필요한 권한: mall.read_customer
+ */
+export async function findCafe24IdByPhone(phone: string): Promise<{ id?: string; msg: string }> {
+  if (!cafe24Enabled()) return { msg: "카페24 연동이 설정되지 않았습니다." };
+  const d = String(phone ?? "").replace(/\D/g, "");
+  if (d.length < 10) return { msg: "연락처가 올바르지 않습니다." };
+  // 쇼핑몰이 어느 형식으로 저장했는지 알 수 없어 둘 다 시도한다.
+  const forms = [`${d.slice(0, 3)}-${d.slice(3, d.length - 4)}-${d.slice(-4)}`, d];
+
+  try {
+    const token = await accessToken();
+    for (const cellphone of forms) {
+      const url = `https://${MALL_ID}.cafe24api.com/api/v2/admin/customers`
+        + `?shop_no=1&cellphone=${encodeURIComponent(cellphone)}&limit=2`;
+      const res = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "X-Cafe24-Api-Version": API_VERSION,
+        },
+      });
+      if (!res.ok) {
+        const body = await res.text();
+        return { msg: `쇼핑몰 조회 실패 (${res.status}): ${body.slice(0, 160)}` };
+      }
+      const j = (await res.json()) as { customers?: { member_id?: string }[] };
+      const list = j.customers ?? [];
+      // 같은 번호로 두 개가 나오면 어느 쪽인지 알 수 없다. 사람이 확인해야 한다.
+      if (list.length > 1) return { msg: "같은 번호로 쇼핑몰 계정이 여러 개입니다. 센터로 연락 주세요." };
+      if (list.length === 1 && list[0].member_id) return { id: list[0].member_id, msg: "연결되었습니다." };
+    }
+    return { msg: "그 번호로 가입된 쇼핑몰 계정을 찾지 못했습니다." };
+  } catch (e) {
+    return { msg: e instanceof Error ? e.message : String(e) };
+  }
+}
+
+/** 앱 회원의 연락처로 쇼핑몰 계정을 찾아 members.cafe24_id 에 저장한다. */
+export async function linkByPhone(memberId: string): Promise<{ ok: boolean; msg: string }> {
+  const sb = supabaseAdmin();
+  const { data: m } = await sb.from("members").select("id,phone,cafe24_id").eq("id", memberId).maybeSingle();
+  if (!m) return { ok: false, msg: "회원을 찾을 수 없습니다." };
+  if (m.cafe24_id) return { ok: true, msg: "이미 연결되어 있습니다." };
+  if (!m.phone) return { ok: false, msg: "앱에 연락처가 없습니다. 센터로 연락 주세요." };
+
+  const r = await findCafe24IdByPhone(m.phone);
+  if (!r.id) return { ok: false, msg: r.msg };
+
+  // 다른 회원이 이미 쓰고 있는 아이디면 붙이지 않는다.
+  const { data: taken } = await sb.from("members").select("id").eq("cafe24_id", r.id).neq("id", memberId).maybeSingle();
+  if (taken) return { ok: false, msg: "그 쇼핑몰 계정은 다른 회원에 연결되어 있습니다. 센터로 연락 주세요." };
+
+  const { error } = await sb.from("members").update({ cafe24_id: r.id }).eq("id", memberId);
+  if (error) return { ok: false, msg: `저장 실패: ${error.message}` };
+  return { ok: true, msg: "쇼핑몰 계정과 연결되었습니다." };
+}
