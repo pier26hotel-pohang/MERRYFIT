@@ -17,7 +17,6 @@ import { Branch, BRANCH_LABEL } from "@/lib/types";
 import {
   addMemberAction,
   issuePassAction,
-  deleteSlotAction,
   setMemoAction,
   logoutAction,
   assignInstructorAction,
@@ -152,21 +151,22 @@ export default async function AdminPage({
             const slot = slotForCell(db, branch, dow, time, date);
             if (!slot) return null;
             const count = slotBookedCount(db, slot.id, date);
+            // 칸을 누르면 신청자 명단으로. 삭제는 거기서만 — 격자에 ×를 두면
+            // 손가락이 스치기만 해도 수업과 예약이 통째로 사라진다.
             return (
-              <div className={`relative rounded-md border px-1 py-1 ${slot.date ? "border-amber-300 bg-amber-50" : "border-neutral-200 bg-white"}`}>
-                <form action={deleteSlotAction} className="absolute right-0 top-0">
-                  <input type="hidden" name="slotId" value={slot.id} />
-                  <button className="px-1 text-[10px] text-red-400 hover:text-red-600">×</button>
-                </form>
+              <Link
+                href={`/admin/slot/${slot.id}?d=${date}`}
+                className={`block rounded-md border px-1 py-1 hover:border-emerald-400 ${slot.date ? "border-amber-300 bg-amber-50" : "border-neutral-200 bg-white"}`}
+              >
                 <div className="text-[11px] font-semibold text-neutral-800">
                   {programAbbrev(slot.program)}
                 </div>
                 <div className="text-[10px] text-neutral-500">{count}/{slot.capacity}</div>
-              </div>
+              </Link>
             );
           }}
         />
-        <p className="mt-1 text-xs text-neutral-400">노란 칸 = 1회성 수업</p>
+        <p className="mt-1 text-xs text-neutral-400">칸을 누르면 신청자 명단 · 노란 칸 = 1회성 수업</p>
       </section>
 
       {/* 담당 강사 배정 — 급여는 여기서 배정한 강사 기준으로 계산된다 */}
@@ -218,11 +218,12 @@ export default async function AdminPage({
           <div className="space-y-1 text-sm">
             {oneTimes.map((s) => (
               <div key={s.id} className="flex items-center justify-between border-b border-neutral-100 py-1.5 last:border-0">
-                <span>{fmtDate(s.date!)} {s.time} · {s.program}</span>
-                <form action={deleteSlotAction}>
-                  <input type="hidden" name="slotId" value={s.id} />
-                  <button className="text-xs text-red-500 hover:underline">삭제</button>
-                </form>
+                <Link href={`/admin/slot/${s.id}?d=${s.date}`} className="text-emerald-700 hover:underline">
+                  {fmtDate(s.date!)} {s.time} · {s.program}
+                </Link>
+                <Link href={`/admin/slot/${s.id}?d=${s.date}`} className="text-xs text-neutral-400 hover:underline">
+                  신청자 보기 ›
+                </Link>
               </div>
             ))}
           </div>

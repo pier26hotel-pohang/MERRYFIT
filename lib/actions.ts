@@ -492,6 +492,10 @@ export async function setMemoAction(formData: FormData) {
 }
 
 export async function deleteSlotAction(formData: FormData) {
+  const branch = String(formData.get("branch") ?? "");
   await store.deleteSlot(String(formData.get("slotId")));
   revalidatePath("/admin");
+  revalidatePath("/book");
+  // 지운 수업 상세에 그대로 남아 있으면 404 를 보게 된다.
+  if (branch) redirect(`/admin?b=${encodeURIComponent(branch)}`);
 }

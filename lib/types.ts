@@ -96,7 +96,7 @@ export const DEFAULT_BRANCH: Branch = "2호점";
 // 환경변수를 쓰는 이유: 코드를 고쳐 배포했다가 되돌리는 걸 잊으면
 // 준비 안 된 지점이 손님에게 열려버린다.
 export const BRANCH_OPEN_AT: Partial<Record<Branch, string>> = {
-  "2호점": process.env.BUKGU_OPEN_AT || "2026-10-19",
+  "2호점": process.env.BUKGU_OPEN_AT || "2026-10-12",  // 가오픈일부터 예약을 받는다
 };
 
 // 가입 시 자동으로 들어가는 수강권.
