@@ -98,6 +98,29 @@ export function occurrenceDate(dayOfWeek: number, weekOffset = 0): string {
 export function todayISO(): string {
   return toISO(kstNow());
 }
+
+/** 지금이 오늘 몇 분째인가 (한국 기준). 09:30 → 570 */
+export function nowMinutes(): number {
+  const d = kstNow();
+  return d.getUTCHours() * 60 + d.getUTCMinutes();
+}
+
+/** "HH:mm" → 분 */
+export function toMinutes(hhmm: string): number {
+  const [h, m] = hhmm.split(":").map(Number);
+  return h * 60 + (m || 0);
+}
+
+/** 지점별 수업 길이(분). 남구점 50분, 북구점 45분. */
+export function classMinutes(branch: string): number {
+  return branch === "1호점" ? 50 : 45;
+}
+
+// 출석을 받아주는 구간.
+//   시작 60분 전부터 — 일찍 와서 옷 갈아입고 누르는 사람이 많다.
+//   끝나고 30분 뒤까지 — 수업 중에는 폰을 안 보니 끝나고 누르기도 한다.
+export const CHECKIN_BEFORE_MIN = 60;
+export const CHECKIN_AFTER_MIN = 30;
 export function weekRangeLabel(weekOffset = 0): string {
   const mon = mondayOfWeek(weekOffset);
   const sun = new Date(mon);
@@ -457,8 +480,35 @@ export async function selfCheckIn(memberId: string, lat: number, lng: number, ac
     .map((r) => ({ r, slot: slotMap.get(r.slot_id) }))
     .filter((x) => x.slot) as { r: { id: string }; slot: { time: string; program: string; branch: string } }[];
   if (todays.length === 0) return { ok: false, msg: "오늘 예약된 수업이 없어요." };
-  todays.sort((a, b) => a.slot.time.localeCompare(b.slot.time));
-  const target = todays[0];
+
+  // 지금 시각에 해당하는 수업만 받는다.
+  //
+  // 예전에는 그날 예약 중 "가장 이른 것" 을 그냥 집었다. 저녁 수업만 예약해 둔
+  // 사람이 아침에 눌러도 출석이 찍혔고, 센터에 오지도 않고 적립금을 받을 수 있었다.
+  const now = nowMinutes();
+  const windowed = todays
+    .map((x) => {
+      const start = toMinutes(x.slot.time);
+      const end = start + classMinutes(x.slot.branch);
+      return { ...x, start, end, gap: Math.abs(now - start) };
+    })
+    .filter((x) => now >= x.start - CHECKIN_BEFORE_MIN && now <= x.end + CHECKIN_AFTER_MIN)
+    // 여러 개가 걸리면 지금과 가장 가까운 수업
+    .sort((a, b) => a.gap - b.gap);
+
+  if (windowed.length === 0) {
+    const next = todays
+      .map((x) => ({ t: x.slot.time, m: toMinutes(x.slot.time) }))
+      .sort((a, b) => a.m - b.m)
+      .find((x) => x.m > now);
+    return {
+      ok: false,
+      msg: next
+        ? `아직 수업 시간이 아니에요. ${next.t} 수업은 ${CHECKIN_BEFORE_MIN}분 전부터 출석할 수 있어요.`
+        : "오늘 수업은 이미 끝났어요. 출석이 안 되었다면 센터에 말씀해 주세요.",
+    };
+  }
+  const target = windowed[0];
   if (ENFORCE_GEOFENCE) {
     // 좌표 자체를 못 믿을 정도로 오차가 크면 거리를 재봐야 의미가 없다.
     if (typeof accuracy === "number" && accuracy > MAX_ACCURACY_M) {
