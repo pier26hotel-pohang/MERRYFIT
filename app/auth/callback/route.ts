@@ -52,10 +52,18 @@ export async function GET(req: Request) {
   let memberId = existing?.id as string | undefined;
   if (!memberId) {
     memberId = "m_" + Math.random().toString(36).slice(2, 9);
+    // 카카오는 실명을 주지 않는다. user_metadata.name 은 닉네임이라
+    // "JSY22110189♡7121123☆" 같은 값이 그대로 출석부에 올라간 적이 있다.
+    // 사람 이름처럼 보일 때만 쓰고, 아니면 비워 둔 뒤 /welcome 에서 받는다.
+    const looksLikeName = (v: unknown) =>
+      typeof v === "string" &&
+      v.trim().length >= 2 &&
+      v.trim().length <= 20 &&
+      !/[0-9]/.test(v) &&
+      /^[가-힣a-zA-Z\s]+$/.test(v.trim());
+
     const name =
-      user.user_metadata?.name ||
-      user.user_metadata?.full_name ||
-      user.user_metadata?.preferred_username ||
+      [user.user_metadata?.name, user.user_metadata?.full_name].find(looksLikeName)?.trim() ??
       "회원";
     const { error: insErr } = await admin.from("members").insert({
       id: memberId, name, phone: "", branch: DEFAULT_BRANCH, points: 0, memo: "", auth_user_id: user.id,

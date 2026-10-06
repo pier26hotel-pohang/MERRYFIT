@@ -66,8 +66,8 @@ export async function signupAction(formData: FormData) {
 
   // 관리자가 미리 넣어둔 회원이면 새로 만들지 않고 그 기록을 이어받는다.
   // 수강권·적립금·결제 이력이 그대로 따라온다.
-  const { member: claimable, taken } = store.findClaimable(db, phone, name);
-  if (taken) redirect("/signup?e=dup");
+  const { member: claimable, taken, nameMismatch } = store.findClaimable(db, phone, name);
+  if (taken) redirect(nameMismatch ? "/signup?e=name" : "/signup?e=dup");
 
   let id: string;
   if (claimable) {
@@ -99,10 +99,22 @@ export async function savePhoneAction(formData: FormData) {
 
   const phone = String(formData.get("phone") ?? "").trim();
   if (phone.replace(/[^0-9]/g, "").length < 9) redirect("/welcome?e=phone");
+  // 카카오는 닉네임만 준다. 출석부에 쓸 실명을 여기서 받는다.
+  const name = String(formData.get("name") ?? "").trim().slice(0, 40);
+  if (!name) redirect("/welcome?e=name2");
+
+  try {
+    await store.setMemberName(memberId, name);
+  } catch (err) {
+    console.error("[savePhone:name]", err);
+    redirect("/welcome?e=save");
+  }
 
   const db = await store.loadSnapshot();
   const me = store.getMember(db, memberId);
   if (!me) redirect("/login");
+  // 방금 저장한 이름으로 비교한다 (스냅샷이 이전 값일 수 있다)
+  me.name = name;
 
   const existing = store.getMemberByPhone(db, phone);
   if (existing && existing.id !== memberId) {

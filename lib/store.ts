@@ -197,10 +197,22 @@ export function listMembers(db: DB): Member[] {
 export function getMember(db: DB, id: string): Member | undefined {
   return db.members.find((m) => m.id === id);
 }
+/**
+ * 연락처를 한 가지 모양으로 맞춘다. 비교는 반드시 이걸 거쳐야 한다.
+ *
+ * 같은 번호가 "010-1234-5678", "01012345678", "+821012345678" 세 가지로
+ * 들어온다. 숫자만 뽑는 것으로는 부족하다 — +82 를 떼고 0 을 붙여야
+ * 같은 값이 된다. 안 그러면 같은 사람이 회원으로 두 번 생긴다.
+ */
+export function normPhone(s: string): string {
+  let d = String(s ?? "").replace(/[^0-9]/g, "");
+  if (d.startsWith("82")) d = "0" + d.slice(2);   // +82 10 … → 010 …
+  return d;
+}
+
 export function getMemberByPhone(db: DB, phone: string): Member | undefined {
-  const norm = (s: string) => s.replace(/[^0-9]/g, "");
-  const p = norm(phone);
-  return db.members.find((m) => norm(m.phone) === p);
+  const p = normPhone(phone);
+  return db.members.find((m) => normPhone(m.phone) === p);
 }
 export function memberPasses(db: DB, memberId: string): Pass[] {
   return db.passes.filter((p) => p.memberId === memberId);
@@ -535,6 +547,14 @@ export async function selfCheckIn(memberId: string, lat: number, lng: number, ac
   return { ok: true, msg: earned > 0 ? `${head} +${earned.toLocaleString()}P 적립 🎉` : `${head} 🎉` };
 }
 
+/** 저장용 표기. 010-1234-5678 로 통일한다. */
+export function formatPhone(s: string): string {
+  const d = normPhone(s);
+  if (d.length === 11) return `${d.slice(0, 3)}-${d.slice(3, 7)}-${d.slice(7)}`;
+  if (d.length === 10) return `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}`;
+  return String(s ?? "").trim();
+}
+
 export async function addMember(
   name: string,
   phone: string,
@@ -546,7 +566,7 @@ export async function addMember(
   const id = uid("m");
   const pw = password ? makePasswordRecord(password) : null;
   assertOk("회원 등록", await supabaseAdmin().from("members").insert({
-    id, name, phone, branch, points: 0, memo: "",
+    id, name, phone: formatPhone(phone), branch, points: 0, memo: "",
     birthdate: birthdate || null,
     address: address || null,
     password_hash: pw?.hash ?? null,
@@ -571,17 +591,42 @@ export function isUnclaimed(m: Member): boolean {
   return !m.hasPassword && !m.kakaoId;
 }
 
-const normName = (s: string) => s.replace(/\s+/g, "");
+/**
+ * 이름 비교용으로 다듬는다.
+ *
+ * 옛 시스템에서 동명이인을 구분하려고 "박효진B", 프로그램을 적어두려고
+ * "백옥희 아이코젠", "정예지 산모님" 처럼 꼬리표를 붙여둔 이름이 82명 있다.
+ * 본인은 "박효진" 으로 가입하므로, 그대로 비교하면 "이미 가입된 연락처"로
+ * 막힌다. 누적 362회인 분까지 막히고 있었다.
+ *
+ * 꼬리표와 공백을 떼고 견준다. 연락처가 이미 일치하는 상태에서 쓰는
+ * 비교라, 이 정도로 느슨해도 남의 기록을 가져갈 위험은 없다.
+ */
+const NAME_SUFFIX = /\s*(아이코젠|산모님|선생님|원장님|강사님|회원님|님)$/;
+const normName = (s: string) =>
+  String(s ?? "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(NAME_SUFFIX, "")      // "백옥희 아이코젠" → "백옥희"
+    .replace(/[A-Za-z0-9]+$/, "")  // "박효진B" → "박효진"
+    .replace(/\s+/g, "");
 
 /**
  * 연락처로 대기 중인 회원을 찾는다.
  * 이름까지 맞아야 한다 — 번호만 알면 남의 기록을 가져갈 수 있으면 안 된다.
  */
-export function findClaimable(db: DB, phone: string, name: string): { member?: Member; taken: boolean } {
+export function findClaimable(
+  db: DB,
+  phone: string,
+  name: string
+): { member?: Member; taken: boolean; nameMismatch?: boolean } {
   const m = getMemberByPhone(db, phone);
   if (!m) return { taken: false };
+  // 이미 본인이 가입을 마친 번호
   if (!isUnclaimed(m)) return { taken: true };
-  return normName(m.name) === normName(name) ? { member: m, taken: false } : { taken: true };
+  if (normName(m.name) === normName(name)) return { member: m, taken: false };
+  // 센터에 등록은 돼 있는데 이름이 다르다 — 안내가 달라야 한다
+  return { taken: true, nameMismatch: true };
 }
 
 /** 대기 중이던 회원을 본인이 이어받는다 — 수강권·적립금·결제 이력이 그대로 따라온다. */
@@ -598,6 +643,10 @@ export async function claimMember(
 }
 
 /** 카카오로 들어온 회원에게 연락처를 붙인다. */
+export async function setMemberName(memberId: string, name: string): Promise<void> {
+  assertOk("이름 저장", await supabaseAdmin().from("members").update({ name }).eq("id", memberId));
+}
+
 export async function setMemberPhone(memberId: string, phone: string): Promise<void> {
   assertOk("연락처 저장", await supabaseAdmin().from("members").update({ phone }).eq("id", memberId));
 }
@@ -629,14 +678,14 @@ export async function verifyMemberLogin(
   phone: string,
   password: string
 ): Promise<{ id: string } | "nopw" | "bad" | null> {
-  const digits = phone.replace(/[^0-9]/g, "");
+  const digits = normPhone(phone);
   if (!digits) return null;
   const { data, error } = await supabaseAdmin().from("members").select("id,phone,password_hash,password_salt");
   if (error) {
     console.error("[verifyMemberLogin]", error.message);
     return null;
   }
-  const m = (data ?? []).find((r) => String(r.phone ?? "").replace(/[^0-9]/g, "") === digits);
+  const m = (data ?? []).find((r) => normPhone(r.phone ?? "") === digits);
   if (!m) return null;
   if (!m.password_hash || !m.password_salt) return "nopw";
   return passwordMatches(password, m.password_hash, m.password_salt) ? { id: m.id } : "bad";
