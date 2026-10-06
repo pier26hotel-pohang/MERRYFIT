@@ -124,6 +124,19 @@ function Row({ c, b }: { c: Consultation; b: Booked }) {
         {c.agreeHealth && c.concern && (
           <><dt className="text-neutral-400">몸 고민</dt><dd className="text-neutral-800">{c.concern}</dd></>
         )}
+        {c.trialSlot && (
+          <><dt className="text-neutral-400">10/12 체험</dt>
+            <dd className="font-semibold text-emerald-800">
+              {c.trialSlot}
+              {c.giftOptin && <span className="ml-1.5 text-xs font-normal text-amber-700">· 룰렛 참여</span>}
+            </dd></>
+        )}
+        {(c.visitDate || c.visitTime) && (
+          <><dt className="text-neutral-400">상담 희망</dt>
+            <dd className="text-neutral-800">
+              {[c.visitDate, c.visitTime].filter(Boolean).join(" · ")}
+            </dd></>
+        )}
         {b.classes.length > 0 && (
           <><dt className="text-neutral-400">잡은 수업</dt>
             <dd className="font-semibold text-emerald-800">{b.classes.join(" · ")}</dd></>

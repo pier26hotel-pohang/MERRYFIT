@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { submitConsultAction } from "@/lib/actions";
-import { Q } from "@/lib/consult";
+import { PREOPEN, Q } from "@/lib/consult";
 import { LimitChecks } from "@/components/LimitChecks";
 
 export const dynamic = "force-dynamic";
@@ -123,13 +123,53 @@ export default async function ConsultPage({
           <Chips name="contactTime" options={Q.contactTime.options} type="radio" />
         </Block>
 
-        {/* 02 목적 */}
-        <Block n={2} title={Q.goals.label} hint={Q.goals.hint}>
+        {/* 02 가오픈 체험 */}
+        <Block n={2} title={`${PREOPEN.label} 가오픈`} hint="무료체험과 1:1 상담을 받습니다">
+          <div className="rounded-xl bg-emerald-50 px-3.5 py-3 text-[13px] leading-relaxed text-emerald-900">
+            <b>{PREOPEN.label}</b> 바레 무료체험 · {PREOPEN.trials.join(" / ")}
+            <br />
+            신청 없이 오셔도 되지만, 미리 알려주시면 자리를 빼둘게요.
+            <br />
+            당일 <b>1:1 상담</b>과 <b>수강권 등록</b>도 바로 가능합니다.
+          </div>
+
+          <p className="text-xs text-neutral-500">{Q.trialSlot.label}</p>
+          <p className="-mt-1.5 text-[11px] text-neutral-400">{Q.trialSlot.hint}</p>
+          <Chips name="trialSlot" options={Q.trialSlot.options} type="radio" />
+
+          <label className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-amber-200 bg-amber-50 px-3.5 py-3">
+            <input type="checkbox" name="giftOptin" className="mt-0.5 h-4 w-4 accent-amber-600" />
+            <span className="text-[13px] leading-relaxed text-amber-900">
+              <b>기념품 룰렛</b>에 참여할래요
+              <br />
+              <span className="text-[11px] text-amber-700">
+                미리 신청하신 분께 드립니다 · 필라테스 양말, 운동복 등
+              </span>
+            </span>
+          </label>
+        </Block>
+
+        {/* 03 상담 희망 일시 */}
+        <Block n={3} title="1:1 상담은 언제가 좋으세요?" hint="편한 날과 시간을 알려주시면 맞춰서 준비해 둘게요">
+          <label htmlFor="c-visitdate" className="sr-only">상담 희망 날짜</label>
+          <input
+            id="c-visitdate"
+            name="visitDate"
+            placeholder="예: 10월 12일 / 이번 주 주말 / 평일 아무 때나"
+            className={input}
+            maxLength={60}
+          />
+          <p className="text-xs text-neutral-500">{Q.visitTime.label}</p>
+          <Chips name="visitTime" options={Q.visitTime.options} type="radio" />
+        </Block>
+
+        {/* 04 목적 */}
+        <Block n={4} title={Q.goals.label} hint={Q.goals.hint}>
           <Chips name="goals" options={Q.goals.options} />
         </Block>
 
         {/* 03 몸 상태 */}
-        <Block n={3} title="몸 상태" hint="수업 강도를 맞추는 데만 씁니다">
+        <Block n={5} title="몸 상태" hint="수업 강도를 맞추는 데만 씁니다">
           <p className="text-xs text-neutral-500">{Q.painAreas.label}</p>
           <Chips name="painAreas" options={Q.painAreas.options} />
           <p className="mt-2 text-xs text-neutral-500">
@@ -150,12 +190,12 @@ export default async function ConsultPage({
         </Block>
 
         {/* 04 경험 */}
-        <Block n={4} title={Q.experience.label}>
+        <Block n={6} title={Q.experience.label}>
           <Chips name="experience" options={Q.experience.options} type="radio" />
         </Block>
 
         {/* 05 희망 수업·시간 */}
-        <Block n={5} title="원하는 수업과 시간">
+        <Block n={7} title="원하는 수업과 시간">
           <p className="text-xs text-neutral-500">
             {Q.programs.label} <span className="text-neutral-400">· {Q.programs.hint}</span>
           </p>
@@ -179,14 +219,14 @@ export default async function ConsultPage({
         </Block>
 
         {/* 06 선택 기준 */}
-        <Block n={6} title={Q.priorities.label} hint={Q.priorities.hint}>
+        <Block n={8} title={Q.priorities.label} hint={Q.priorities.hint}>
           <LimitChecks name="priorities" max={Q.priorities.max}>
             <Chips name="priorities" options={Q.priorities.options} />
           </LimitChecks>
         </Block>
 
         {/* 07 유입 경로 */}
-        <Block n={7} title={Q.source.label}>
+        <Block n={9} title={Q.source.label}>
           <Chips name="source" options={Q.source.options} type="radio" />
         </Block>
 
