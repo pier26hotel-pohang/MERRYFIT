@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAdmin } from "@/lib/auth";
 import { setConsultStatusAction } from "@/lib/actions";
+import { loadSnapshot, getMemberByPhone, upcomingReservations } from "@/lib/store";
 import {
   listConsultations,
   tally,
@@ -67,7 +68,15 @@ function Tags({ items }: { items: string[] }) {
   );
 }
 
-function Row({ c }: { c: Consultation }) {
+/** 설문을 낸 사람이 실제로 수업을 잡았는지 */
+interface Booked {
+  /** 앱 회원으로 존재하는가 */
+  member: boolean;
+  /** 앞으로 잡힌 수업 — 없으면 빈 배열 */
+  classes: string[];
+}
+
+function Row({ c, b }: { c: Consultation; b: Booked }) {
   const tel = c.phone.replace(/[^0-9]/g, "");
   const via = c.utmSource ? UTM_LABEL[c.utmSource] ?? c.utmSource : null;
   return (
@@ -79,6 +88,15 @@ function Row({ c }: { c: Consultation }) {
             <span className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${STATUS_STYLE[c.status]}`}>
               {STATUS_LABEL[c.status]}
             </span>
+            {b.classes.length > 0 ? (
+              <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-800">
+                예약 {b.classes.length}건
+              </span>
+            ) : (
+              <span className="rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800">
+                {b.member ? "예약 안 함" : "가입 안 함"}
+              </span>
+            )}
           </div>
           <a href={`tel:${tel}`} className="text-sm font-semibold text-emerald-800 underline underline-offset-2">
             {c.phone}
@@ -105,6 +123,10 @@ function Row({ c }: { c: Consultation }) {
         )}
         {c.agreeHealth && c.concern && (
           <><dt className="text-neutral-400">몸 고민</dt><dd className="text-neutral-800">{c.concern}</dd></>
+        )}
+        {b.classes.length > 0 && (
+          <><dt className="text-neutral-400">잡은 수업</dt>
+            <dd className="font-semibold text-emerald-800">{b.classes.join(" · ")}</dd></>
         )}
         {c.priorities.length > 0 && (<><dt className="text-neutral-400">선택 기준</dt><dd><Tags items={c.priorities} /></dd></>)}
         {(c.source || via) && (
@@ -161,6 +183,22 @@ export default async function AdminConsultPage({
     : null;
 
   const all = await listConsultations();
+
+  // 설문만 내고 수업은 안 잡은 사람을 가려내려면 예약까지 같이 봐야 한다.
+  // 설문 = 신청이라고 생각하고 오시는 분이 있어서, 둘을 나란히 두지 않으면
+  // 센터에서 그 차이를 알 수가 없다.
+  const db = await loadSnapshot();
+  const booked = new Map<string, Booked>();
+  for (const c of all) {
+    const m = getMemberByPhone(db, c.phone);
+    booked.set(c.id, {
+      member: Boolean(m),
+      classes: m
+        ? upcomingReservations(db, m.id).map((x) => `${x.r.date.slice(5).replace("-", "/")} ${x.slot.time}`)
+        : [],
+    });
+  }
+  const noBooking = all.filter((c) => (booked.get(c.id)?.classes.length ?? 0) === 0);
   const shown = filter ? all.filter((c) => c.status === filter) : all;
   const total = all.length;
   const count = (st: ConsultStatus) => all.filter((c) => c.status === st).length;
@@ -202,9 +240,19 @@ export default async function AdminConsultPage({
       </div>
 
       {total > 0 && (
-        <p className="mb-4 rounded-xl bg-emerald-50 px-3 py-2 text-sm text-emerald-900">
+        <p className="mb-2 rounded-xl bg-emerald-50 px-3 py-2 text-sm text-emerald-900">
           전체 <b>{total}</b>건 · 등록 전환율{" "}
           <b>{Math.round((count("registered") / total) * 100)}%</b>
+        </p>
+      )}
+      {noBooking.length > 0 && (
+        <p className="mb-4 rounded-xl bg-amber-50 px-3 py-2.5 text-sm leading-relaxed text-amber-900">
+          설문은 냈는데 <b>수업을 아직 안 잡은 분이 {noBooking.length}명</b>입니다.
+          <br />
+          <span className="text-xs">
+            {noBooking.slice(0, 8).map((c) => c.name).join(" · ")}
+            {noBooking.length > 8 && ` 외 ${noBooking.length - 8}명`}
+          </span>
         </p>
       )}
 
@@ -227,7 +275,7 @@ export default async function AdminConsultPage({
       ) : (
         <ul className="flex flex-col gap-3">
           {shown.map((c) => (
-            <Row key={c.id} c={c} />
+            <Row key={c.id} c={c} b={booked.get(c.id) ?? { member: false, classes: [] }} />
           ))}
         </ul>
       )}
